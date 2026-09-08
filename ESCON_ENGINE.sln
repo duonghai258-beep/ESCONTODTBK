@@ -1,0 +1,34 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTBK.Domain", "src\DTBK.Domain\DTBK.Domain.csproj", "{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0001}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTBK.Policy", "src\DTBK.Policy\DTBK.Policy.csproj", "{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0002}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTBK.Coefficient", "src\DTBK.Coefficient\DTBK.Coefficient.csproj", "{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0003}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTBK.Engine", "src\DTBK.Engine\DTBK.Engine.csproj", "{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0004}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0002}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0002}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B7A7F9C-1B55-4C20-A1C0-9C9A2A2D0004}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
