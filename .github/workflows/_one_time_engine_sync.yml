@@ -17,7 +17,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf /tmp/DTBK_New_1 /tmp/DTBK_New_1.tar.gz
-          curl -fsSL https://github.com/duonghai258-beep/DT.BK_New_1/archive/refs/heads/main.tar.gz -o /tmp/DTBK_New_1.tar.gz
+          curl -fsSL https://codeload.github.com/duonghai258-beep/DT.BK_New_1/tar.gz/refs/heads/main -o /tmp/DTBK_New_1.tar.gz
           mkdir -p /tmp/DTBK_New_1
           tar -xzf /tmp/DTBK_New_1.tar.gz -C /tmp/DTBK_New_1 --strip-components=1
           test -f ESCON_ENGINE.sln
