@@ -1,1 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup><TargetFramework>net8.0</TargetFramework><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings><RootNamespace>DTBK.Policy</RootNamespace><LangVersion>latest</LangVersion></PropertyGroup><ItemGroup><ProjectReference Include="..\DTBK.Domain\DTBK.Domain.csproj" /></ItemGroup></Project>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>net8.0</TargetFramework><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings><RootNamespace>DTBK.Policy</RootNamespace><LangVersion>latest</LangVersion></PropertyGroup>
+  <ItemGroup><ProjectReference Include="..\DTBK.Domain\DTBK.Domain.csproj" /></ItemGroup>
+</Project>
