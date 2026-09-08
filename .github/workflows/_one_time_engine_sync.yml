@@ -1,0 +1,46 @@
+name: one-time-engine-sync
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout destination
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Copy exact engine project closure
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/DTBK_New_1
+          git clone --depth 1 --branch main https://github.com/duonghai258-beep/DT.BK_New_1.git /tmp/DTBK_New_1
+          test -f ESCON_ENGINE.sln
+          rm -rf src engine DataPack docs reports evidence .github
+          mkdir -p src
+          cp -a /tmp/DTBK_New_1/src/DTBK.Engine src/
+          cp -a /tmp/DTBK_New_1/src/DTBK.Domain src/
+          cp -a /tmp/DTBK_New_1/src/DTBK.Policy src/
+          cp -a /tmp/DTBK_New_1/src/DTBK.Coefficient src/
+          test -f src/DTBK.Engine/DTBK.Engine.csproj
+          test -f src/DTBK.Domain/DTBK.Domain.csproj
+          test -f src/DTBK.Policy/DTBK.Policy.csproj
+          test -f src/DTBK.Coefficient/DTBK.Coefficient.csproj
+          grep -F '<ProjectReference Include="..\\DTBK.Domain\\DTBK.Domain.csproj" />' src/DTBK.Engine/DTBK.Engine.csproj
+          grep -F '<ProjectReference Include="..\\DTBK.Policy\\DTBK.Policy.csproj" />' src/DTBK.Engine/DTBK.Engine.csproj
+          grep -F '<ProjectReference Include="..\\DTBK.Coefficient\\DTBK.Coefficient.csproj" />' src/DTBK.Engine/DTBK.Engine.csproj
+          find . -type f -not -path './.git/*' | grep -Ev '^\./(ESCON_ENGINE\.sln|src/DTBK\.(Engine|Domain|Policy|Coefficient)/.*)$' && { echo 'CLEAN_SCOPE_FAIL'; exit 1; } || true
+          files=$(find src/DTBK.Engine src/DTBK.Domain src/DTBK.Policy src/DTBK.Coefficient -type f | sort)
+          test -n "$files"
+          dup=$(printf '%s\n' "$files" | sed 's#^.*/##' | sort | uniq -d)
+          test -z "$dup" || { echo "DUPLICATE_FILENAMES:"; printf '%s\n' "$dup"; exit 1; }
+          dotnet build ESCON_ENGINE.sln --configuration Release --no-restore || dotnet build ESCON_ENGINE.sln --configuration Release
+          rm -rf .github
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'chore: sync complete ESCON engine software closure from New_1' || exit 0
+          git push origin HEAD:main
