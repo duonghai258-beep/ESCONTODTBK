@@ -3,7 +3,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>DTBK.Engine.Partial</RootNamespace>
+    <RootNamespace>DTBK.Engine</RootNamespace>
     <LangVersion>12.0</LangVersion>
   </PropertyGroup>
 </Project>
