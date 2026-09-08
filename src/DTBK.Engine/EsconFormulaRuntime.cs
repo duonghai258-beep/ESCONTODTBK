@@ -6,8 +6,10 @@ namespace DTBK.Engine;
 /// <summary>Evidence-bounded runtime for observed ESCON formula constructs.</summary>
 public sealed class EsconFormulaRuntime
 {
+    // ESCON binary evidence uses SPVALUE\(([^\)]*)\): observed formulas are unquoted
+    // identifiers (e.g. SPVALUE(VAT)). Keep quoted forms supported for compatibility.
     private static readonly Regex SpValueToken = new(
-        @"SPVALUE\s*\(\s*(?<quote>[\"'])(?<key>.*?)\k<quote>\s*\)",
+        @"SPVALUE\s*\(\s*(?<key>[^)]*?)\s*\)",
         RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
     private readonly IEsconValueProvider _provider;
@@ -38,7 +40,7 @@ public sealed class EsconFormulaRuntime
     {
         return SpValueToken.Replace(formula, match =>
         {
-            var key = match.Groups["key"].Value;
+            var key = match.Groups["key"].Value.Trim().Trim('\"', '\'');
             if (!_specialValues.Contains(key))
                 return match.Value;
 
