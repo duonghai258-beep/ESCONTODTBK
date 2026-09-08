@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../../src/DTBK.Engine/DTBK.Engine.csproj" />
+    <Compile Include="../../src/DTBK.Engine/SpecialValueStore.cs" Link="SpecialValueStore.cs" />
+    <Compile Include="../../src/DTBK.Engine/EsconFormulaRuntime.cs" Link="EsconFormulaRuntime.cs" />
   </ItemGroup>
 </Project>
