@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - name: Build engine
-        run: dotnet build ESCON_ENGINE.sln --configuration Release --nologo
+      - name: Build P01 parity project
+        run: dotnet build tests/DTBK.Engine.P01.Parity/DTBK.Engine.P01.Parity.csproj --configuration Release --nologo
       - name: Run P01 parity verifier
-        run: dotnet run --project tests/DTBK.Engine.P01.Parity/DTBK.Engine.P01.Parity.csproj --configuration Release --no-restore
+        run: dotnet run --project tests/DTBK.Engine.P01.Parity/DTBK.Engine.P01.Parity.csproj --configuration Release --no-build --nologo
