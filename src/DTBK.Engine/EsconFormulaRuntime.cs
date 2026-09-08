@@ -45,7 +45,7 @@ public sealed class EsconFormulaRuntime
                 return match.Value;
 
             var value = _specialValues[key];
-            return value?.ToString() ?? string.Empty;
+            return value.ToString();
         });
     }
 
