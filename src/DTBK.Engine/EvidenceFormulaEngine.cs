@@ -9,12 +9,12 @@ public sealed class EvidenceFormulaEngine
     private static readonly Regex FieldPattern = new(@"\[(?<name>[^\]]+)\]", RegexOptions.Compiled);
     public FormulaValueResult Evaluate(string expression, FormulaEvaluationContext context)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(expression);
-        ArgumentNullException.ThrowIfNull(context);
+        ArgumentException.ThrowIfNullOrWhiteSpace(expression); ArgumentNullException.ThrowIfNull(context);
         var dependencies = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-        var parser = new Parser(expression, context, dependencies);
-        var value = parser.ParseExpression(); parser.ExpectEnd();
-        return new FormulaValueResult(value, DTBK.Domain.VerificationStatus.NeedsVerification, dependencies.Select(x => new FormulaDependency(x.Key, x.Value)).ToArray(), null, new FormulaTraceStep("FORMULA", expression, value.ToString(CultureInfo.InvariantCulture), "NeedsVerification"));
+        var parser = new Parser(expression, context, dependencies); var value = parser.ParseExpression(); parser.ExpectEnd();
+        return new FormulaValueResult(value, DTBK.Domain.VerificationStatus.NeedsVerification,
+            dependencies.Select(x => new FormulaDependency(x.Key, x.Value)).ToArray(), null,
+            new FormulaTraceStep("FORMULA", expression, value.ToString(CultureInfo.InvariantCulture), "NeedsVerification"));
     }
     private sealed class Parser
     {
@@ -24,7 +24,7 @@ public sealed class EvidenceFormulaEngine
         public void ExpectEnd(){SkipWhite();if(_position!=_text.Length)throw Error($"Unexpected token at position {_position}: '{_text[_position..]}'.");}
         private decimal ParseAdditive(){var value=ParseMultiplicative();while(true){SkipWhite();if(Match('+'))value+=ParseMultiplicative();else if(Match('-'))value-=ParseMultiplicative();else return value;}}
         private decimal ParseMultiplicative(){var value=ParseUnary();while(true){SkipWhite();if(Match('*'))value*=ParseUnary();else if(Match('/')){var divisor=ParseUnary();if(divisor==0m)throw Error("Division by zero.");value/=divisor;}else return value;}}
-        private decimal ParseUnary(){SkipWhite();if(Match('+'))return ParseUnary();if(Match('-'))return -ParseUnary();return ParsePrimary();}
+        private decimal ParseUnary(){SkipWhite();if(Match('+'))return ParseUnary();if(Match('-'))return-ParseUnary();return ParsePrimary();}
         private decimal ParsePrimary(){SkipWhite();if(Match('(')){var value=ParseExpression();Expect(')');return value;}if(Peek('['))return ResolveField();if(char.IsDigit(Current)||Current=='.')return ParseNumber();if(char.IsLetter(Current)||Current=='_')return ParseFunctionOrIdentifier();throw Error($"Expected value at position {_position}.");}
         private decimal ResolveField(){var start=++_position;while(_position<_text.Length&&_text[_position]!=']')_position++;if(_position>=_text.Length)throw Error("Unterminated field reference.");var name=_text[start.._position].Trim();_position++;if(!_context.TryGetValue(name,out var value))throw Error($"Missing field '{name}'.");_dependencies[$"FIELD:{name}"]=name;return value;}
         private decimal ParseFunctionOrIdentifier(){var name=ParseIdentifier();SkipWhite();if(!Match('('))throw Error($"Unsupported bare identifier '{name}'.");return name.ToUpperInvariant() switch{"IF"=>ParseIf(),"OR"=>ParseOr(),"SPVALUE"=>ParseSpValue(),"SUMGROUP"=>ParseSumGroup(),_=>throw Error($"Unsupported function '{name}'.")};}
@@ -45,10 +45,12 @@ public sealed class EvidenceFormulaEngine
         private static string Normalize(string expression){var builder=new StringBuilder(expression.Length);foreach(var ch in expression)builder.Append(ch=='×'?'*':ch=='÷'?'/':ch);return builder.ToString();}
     }
 }
+
 public sealed class FormulaEvaluationContext
 {
     private readonly IReadOnlyDictionary<string,decimal> _values;private readonly IReadOnlyDictionary<string,decimal> _specialValues;private readonly IReadOnlyList<FormulaRow> _rows;
     public FormulaEvaluationContext(IReadOnlyDictionary<string,decimal> values,IReadOnlyDictionary<string,decimal>? specialValues=null,IReadOnlyList<FormulaRow>? rows=null,string groupKey=""){_values=new Dictionary<string,decimal>(values,StringComparer.OrdinalIgnoreCase);_specialValues=new Dictionary<string,decimal>(specialValues??new Dictionary<string,decimal>(),StringComparer.OrdinalIgnoreCase);_rows=rows??Array.Empty<FormulaRow>();GroupKey=groupKey??string.Empty;}
-    public string GroupKey{get;}public bool TryGetValue(string name,out decimal value)=>_values.TryGetValue(name,out value);public bool TryResolveSpecialValue(string name,out decimal value)=>_specialValues.TryGetValue(name,out value);public decimal SumGroup(string field){var selected=string.IsNullOrWhiteSpace(GroupKey)?_rows:_rows.Where(x=>string.Equals(x.GroupKey,GroupKey,StringComparison.OrdinalIgnoreCase)).ToArray();return selected.Sum(x=>x.Get(field));}
+    public string GroupKey{get;} public bool TryGetValue(string name,out decimal value)=>_values.TryGetValue(name,out value); public bool TryResolveSpecialValue(string name,out decimal value)=>_specialValues.TryGetValue(name,out value);
+    public decimal SumGroup(string field){var selected=string.IsNullOrWhiteSpace(GroupKey)?_rows:_rows.Where(x=>string.Equals(x.GroupKey,GroupKey,StringComparison.OrdinalIgnoreCase)).ToArray();return selected.Sum(x=>x.Get(field));}
 }
 public sealed record FormulaRow(string GroupKey,IReadOnlyDictionary<string,decimal> Values){public decimal Get(string field)=>Values.TryGetValue(field,out var value)?value:throw new KeyNotFoundException($"SUMGROUP field '{field}' is missing from row group '{GroupKey}'.");}
