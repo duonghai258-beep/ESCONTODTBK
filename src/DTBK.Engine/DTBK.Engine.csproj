@@ -4,6 +4,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>DTBK.Engine</RootNamespace>
+    <!-- Pin the language level to the .NET 8 toolchain for reproducible builds. -->
     <LangVersion>12.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
