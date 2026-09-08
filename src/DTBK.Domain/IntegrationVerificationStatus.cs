@@ -1,2 +1,10 @@
 namespace DTBK.Domain;
-public enum IntegrationVerificationStatus{Verified,PartiallyVerified,Unverified,SourceOnly,Blocked}
+
+public enum IntegrationVerificationStatus
+{
+    Verified,
+    PartiallyVerified,
+    Unverified,
+    SourceOnly,
+    Blocked
+}
