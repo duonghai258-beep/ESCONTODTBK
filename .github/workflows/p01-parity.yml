@@ -1,0 +1,19 @@
+name: P01 SPVALUE parity
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  p01-parity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Build engine
+        run: dotnet build ESCON_ENGINE.sln --configuration Release --nologo
+      - name: Run P01 parity verifier
+        run: dotnet run --project tests/DTBK.Engine.P01.Parity/DTBK.Engine.P01.Parity.csproj --configuration Release --no-restore
