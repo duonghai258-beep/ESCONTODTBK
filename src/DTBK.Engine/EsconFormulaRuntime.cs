@@ -1,24 +1,50 @@
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace DTBK.Engine;
 
 /// <summary>Evidence-bounded runtime for observed ESCON formula constructs.</summary>
 public sealed class EsconFormulaRuntime
 {
+    private static readonly Regex SpValueToken = new(
+        @"SPVALUE\s*\(\s*(?<quote>[\"'])(?<key>.*?)\k<quote>\s*\)",
+        RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+
     private readonly IEsconValueProvider _provider;
     private readonly IReadOnlyList<IReadOnlyDictionary<string, decimal?>> _groupRows;
+    private readonly SpecialValueStore _specialValues;
 
-    public EsconFormulaRuntime(IEsconValueProvider provider, IReadOnlyList<IReadOnlyDictionary<string, decimal?>>? groupRows = null)
+    public EsconFormulaRuntime(
+        IEsconValueProvider provider,
+        IReadOnlyList<IReadOnlyDictionary<string, decimal?>>? groupRows = null,
+        SpecialValueStore? specialValues = null)
     {
         _provider = provider ?? throw new ArgumentNullException(nameof(provider));
         _groupRows = groupRows ?? Array.Empty<IReadOnlyDictionary<string, decimal?>>();
+        _specialValues = specialValues ?? new SpecialValueStore();
     }
+
+    public SpecialValueStore SpecialValues => _specialValues;
 
     public decimal? Evaluate(string expression, IReadOnlyDictionary<string, decimal?> row)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(expression);
         ArgumentNullException.ThrowIfNull(row);
-        return new Parser(this, expression, row).Parse();
+        var preprocessed = PreprocessSpecialValues(expression);
+        return new Parser(this, preprocessed, row).Parse();
+    }
+
+    private string PreprocessSpecialValues(string formula)
+    {
+        return SpValueToken.Replace(formula, match =>
+        {
+            var key = match.Groups["key"].Value;
+            if (!_specialValues.Contains(key))
+                return match.Value;
+
+            var value = _specialValues[key];
+            return value?.ToString() ?? string.Empty;
+        });
     }
 
     private decimal? Field(string name, IReadOnlyDictionary<string, decimal?> row)
@@ -53,7 +79,7 @@ public sealed class EsconFormulaRuntime
         }
         private static decimal? Compare(decimal? a, decimal? b, Func<decimal,decimal,bool> op) => a.HasValue && b.HasValue ? Bool(op(a.Value,b.Value)) : null;
         private decimal? Additive() { var v=Multiplicative(); while(true){Skip(); if(Take("+")) v=Bin(v,Multiplicative(),(a,b)=>a+b); else if(Take("-")) v=Bin(v,Multiplicative(),(a,b)=>a-b); else return v;} }
-        private decimal? Multiplicative() { var v=Unary(); while(true){Skip(); if(Take("*")) v=Bin(v,Unary(),(a,b)=>a*b); else if(Take("/")){var r=Unary(); if(r==0) throw new DivideByZeroException(); v=Bin(v,r,(a,b)=>a/b);} else return v;} }
+        private decimal? Multiplicative() { var v=Unary(); while(true){Skip(); if(Take("*")) v=Bin(v,Unary(),(a,b)=>a*b); else if(Take("/")){var r=Unary(); if(r==0) throw new DivideByZeroException(); v=Bin(v,r,(a,b)=>a/b); } else return v;} }
         private decimal? Unary(){Skip(); if(Take("+")) return Unary(); if(Take("-")){var v=Unary(); return v.HasValue ? -v : null;} return Primary();}
         private decimal? Primary()
         {
@@ -66,7 +92,6 @@ public sealed class EsconFormulaRuntime
             var args=Arguments();
             return id.ToUpperInvariant() switch
             {
-                "SPVALUE" when args.Count==1 => _rt._provider.ResolveSpecialValue(Unquote(args[0])),
                 "SUMGROUP" when args.Count==1 => _rt.SumGroup(UnwrapField(args[0])),
                 "IF" when args.Count==3 => new Parser(_rt, IsTrue(new Parser(_rt,args[0],_row).Parse()) ? args[1] : args[2], _row).Parse(),
                 _ => throw Error($"unsupported ESCON function '{id}' or invalid argument count")
@@ -83,7 +108,6 @@ public sealed class EsconFormulaRuntime
         private static decimal? Bin(decimal? a,decimal? b,Func<decimal,decimal,decimal> f)=>a.HasValue&&b.HasValue?f(a.Value,b.Value):null;
         private static decimal? Bool(bool b)=>b?1m:0m;
         private static bool IsTrue(decimal? v)=>v.HasValue&&v.Value!=0m;
-        private static string Unquote(string s)=>s.Trim().Trim('\"','\'');
         private static string UnwrapField(string s)=>s.Trim().TrimStart('[').TrimEnd(']').Trim();
         private InvalidOperationException Error(string m)=>new($"ESCON formula parse error at {_p}: {m}");
     }
