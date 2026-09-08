@@ -1,0 +1,24 @@
+using System.Security.Cryptography;
+using System.Text;
+using DTBK.Domain;
+
+namespace DTBK.Engine;
+
+public sealed class TransportEngine
+{
+    private const string Version = "2.7.0-TRANSPORT-1";
+    private readonly ITransportResolver _resolver;
+    public TransportEngine(ITransportResolver resolver) => _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
+    public TransportCostResult Calculate(TransportRequest request)
+    {
+        Validate(request); var resolved = _resolver.Resolve(request); ValidateResolved(request, resolved);
+        var distanceUnits = request.Quantity * resolved.Route.DistanceKm / resolved.Norm.DistanceUnitKm; var transportFactor = resolved.Prices.TransportIncluded ? 0m : 1m; var fuelCost = transportFactor * distanceUnits * resolved.Norm.FuelPerDistanceUnit * resolved.Prices.FuelUnitPrice; var vehicleCost = transportFactor * distanceUnits * resolved.Vehicle.HoursPerDistanceUnit * resolved.Prices.VehicleHourlyRate; var laborCost = transportFactor * distanceUnits * resolved.Norm.OperatorHoursPerDistanceUnit * resolved.Prices.OperatorHourlyRate; var otherCost = transportFactor * distanceUnits * resolved.Vehicle.OtherHourlyCost; var total = fuelCost + vehicleCost + laborCost + otherCost;
+        var inputHash = Hash(string.Join("|", request.MaterialCode, request.Quantity, request.RouteCode, request.EffectiveDate.ToString("O"))); var outputHash = Hash(string.Join("|", fuelCost, vehicleCost, laborCost, otherCost, total));
+        var trace = new CalculationTrace("TRANSPORT", inputHash, outputHash, Version, new[] { new CalculationTraceStep("INPUT", "Quantity", request.Quantity.ToString("0.######"), "", "", "TRANSPORT_INPUT"), new CalculationTraceStep("RESOLVER", "Route", resolved.Route.RouteCode, resolved.Route.SourceReference, resolved.Route.SourceHash, "TRANSPORT_ROUTE"), new CalculationTraceStep("RESOLVER", "Norm", resolved.Norm.NormCode, resolved.Norm.SourceReference, resolved.Norm.SourceHash, "TRANSPORT_NORM"), new CalculationTraceStep("RESOLVER", "Price", resolved.Prices.PriceSource, resolved.Prices.PriceSource, resolved.Prices.PriceSourceHash, "TRANSPORT_PRICE"), new CalculationTraceStep("RULE", "TransportIncluded", resolved.Prices.TransportIncluded.ToString(), resolved.Prices.PriceSource, resolved.Prices.PriceSourceHash, "TRANSPORT_INCLUDED"), new CalculationTraceStep("CALCULATION", "Formula", resolved.Prices.TransportIncluded ? "included in site price; separate transport = 0" : "quantity * distance / distanceUnit", resolved.Norm.SourceReference, resolved.Norm.SourceHash, "TRANSPORT_COST"), new CalculationTraceStep("OUTPUT", "TotalCost", total.ToString("0.##"), resolved.Prices.PriceSource, resolved.Prices.PriceSourceHash, "TRANSPORT_COST") });
+        return new(request.Quantity, resolved.Route.DistanceKm, fuelCost, vehicleCost, laborCost, otherCost, total, request.Currency, "CALCULATION_PASS", trace);
+    }
+    public CalculationOutcome<TransportCostResult> TryCalculate(TransportRequest request) { try { var result = Calculate(request); return new(result, DTBK.Domain.VerificationStatus.NeedsVerification, "Transport result requires verified official source provenance.", result.Trace); } catch (Exception ex) when (ex is InvalidOperationException or ArgumentException) { return new(null, DTBK.Domain.VerificationStatus.Blocked, ex.Message, null); } }
+    private static void Validate(TransportRequest request) { if (string.IsNullOrWhiteSpace(request.MaterialCode)) throw new ArgumentException("MaterialCode is required.", nameof(request)); if (request.Quantity <= 0) throw new ArgumentOutOfRangeException(nameof(request.Quantity)); if (request.ProvinceId <= 0) throw new ArgumentOutOfRangeException(nameof(request.ProvinceId)); if (string.IsNullOrWhiteSpace(request.RouteCode)) throw new ArgumentException("RouteCode is required.", nameof(request)); if (string.IsNullOrWhiteSpace(request.VehicleCode)) throw new ArgumentException("VehicleCode is required.", nameof(request)); }
+    private static void ValidateResolved(TransportRequest request, TransportResolvedInputs inputs) { if (inputs.Route.DistanceKm <= 0) throw new InvalidOperationException("Transport route distance must be positive."); if (inputs.Norm.DistanceUnitKm <= 0) throw new InvalidOperationException("Transport norm distance unit must be positive."); if (inputs.Vehicle.HoursPerDistanceUnit < 0 || inputs.Norm.FuelPerDistanceUnit < 0 || inputs.Norm.OperatorHoursPerDistanceUnit < 0) throw new InvalidOperationException("Transport norm contains a negative component."); if (inputs.Norm.MaterialCode != request.MaterialCode) throw new InvalidOperationException("Transport norm material does not match request."); if (inputs.Norm.VehicleCode != request.VehicleCode) throw new InvalidOperationException("Transport norm vehicle does not match request."); }
+    private static string Hash(string value) => Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(value)));
+}
