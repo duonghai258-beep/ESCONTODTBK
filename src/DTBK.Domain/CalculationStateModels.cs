@@ -1,10 +1,91 @@
 namespace DTBK.Domain;
-public enum VerificationStatus{Verified,NeedsVerification,Blocked}
-public sealed record CalculationContext(string ProjectId,string ProjectName,string PackageName,string ProvinceCode,string LocationCode,DateTime AsOfDate,string Investor,string Estimator,string DataPackVersion,string LegalRuleVersion);
-public sealed record CalculationProvenance(string SourceId,string DocumentNo,string RuleId,DateTime? EffectiveFrom,DateTime? EffectiveTo,string Applicability,string FormulaMetadata,string RoundingRule,VerificationStatus VerificationStatus);
-public sealed record CalculationLineState(CostLine Work,decimal MaterialAmount,decimal LaborAmount,decimal MachineAmount,decimal TransportAmount,decimal OtherDirectAmount,CalculationProvenance Provenance){public decimal DirectAmount=>MaterialAmount+LaborAmount+MachineAmount+TransportAmount+OtherDirectAmount;public decimal UnitPrice=>Work.Quantity==0m?0m:DirectAmount/Work.Quantity;}
-public sealed record CalculationState(CalculationContext Context,IReadOnlyList<CalculationLineState> Lines,ProjectCostSummary Summary,CalculationTrace Trace,VerificationStatus VerificationStatus,IReadOnlyList<string> Messages,IReadOnlyList<ResourceConsumption>? ResourceRequirements=null){public IReadOnlyList<ResourceConsumption> Resources=>ResourceRequirements??Array.Empty<ResourceConsumption>();public decimal MaterialTotal=>Lines.Sum(x=>x.MaterialAmount);public decimal LaborTotal=>Lines.Sum(x=>x.LaborAmount);public decimal MachineTotal=>Lines.Sum(x=>x.MachineAmount);public decimal TransportTotal=>Lines.Sum(x=>x.TransportAmount);public decimal OtherDirectTotal=>Lines.Sum(x=>x.OtherDirectAmount);}
-public sealed record CalculationProjection(string ProjectionCode,decimal Value,VerificationStatus VerificationStatus,string TraceId,CalculationTrace Trace);
-public sealed record CalculationTolerance(string Code,decimal MaximumAbsoluteDifference,string RoundingRule,string SourceId,VerificationStatus VerificationStatus);
-public sealed record ReconciliationResult(string ProjectionCode,decimal ExpectedValue,decimal ReportedValue,decimal Difference,decimal Tolerance,VerificationStatus Status,string TraceId,CalculationTrace Trace);
-public sealed record CalculationOutcome<T>(T? Value,VerificationStatus Status,string Message,CalculationTrace? Trace);
+
+public enum VerificationStatus
+{
+    Verified,
+    NeedsVerification,
+    Blocked
+}
+
+public sealed record CalculationContext(
+    string ProjectId,
+    string ProjectName,
+    string PackageName,
+    string ProvinceCode,
+    string LocationCode,
+    DateTime AsOfDate,
+    string Investor,
+    string Estimator,
+    string DataPackVersion,
+    string LegalRuleVersion);
+
+public sealed record CalculationProvenance(
+    string SourceId,
+    string DocumentNo,
+    string RuleId,
+    DateTime? EffectiveFrom,
+    DateTime? EffectiveTo,
+    string Applicability,
+    string FormulaMetadata,
+    string RoundingRule,
+    VerificationStatus VerificationStatus);
+
+public sealed record CalculationLineState(
+    CostLine Work,
+    decimal MaterialAmount,
+    decimal LaborAmount,
+    decimal MachineAmount,
+    decimal TransportAmount,
+    decimal OtherDirectAmount,
+    CalculationProvenance Provenance)
+{
+    public decimal DirectAmount => MaterialAmount + LaborAmount + MachineAmount + TransportAmount + OtherDirectAmount;
+    public decimal UnitPrice => Work.Quantity == 0m ? 0m : DirectAmount / Work.Quantity;
+}
+
+public sealed record CalculationState(
+    CalculationContext Context,
+    IReadOnlyList<CalculationLineState> Lines,
+    ProjectCostSummary Summary,
+    CalculationTrace Trace,
+    VerificationStatus VerificationStatus,
+    IReadOnlyList<string> Messages,
+    IReadOnlyList<ResourceConsumption>? ResourceRequirements = null)
+{
+    public IReadOnlyList<ResourceConsumption> Resources => ResourceRequirements ?? Array.Empty<ResourceConsumption>();
+    public decimal MaterialTotal => Lines.Sum(x => x.MaterialAmount);
+    public decimal LaborTotal => Lines.Sum(x => x.LaborAmount);
+    public decimal MachineTotal => Lines.Sum(x => x.MachineAmount);
+    public decimal TransportTotal => Lines.Sum(x => x.TransportAmount);
+    public decimal OtherDirectTotal => Lines.Sum(x => x.OtherDirectAmount);
+}
+
+public sealed record CalculationProjection(
+    string ProjectionCode,
+    decimal Value,
+    VerificationStatus VerificationStatus,
+    string TraceId,
+    CalculationTrace Trace);
+
+public sealed record CalculationTolerance(
+    string Code,
+    decimal MaximumAbsoluteDifference,
+    string RoundingRule,
+    string SourceId,
+    VerificationStatus VerificationStatus);
+
+public sealed record ReconciliationResult(
+    string ProjectionCode,
+    decimal ExpectedValue,
+    decimal ReportedValue,
+    decimal Difference,
+    decimal Tolerance,
+    VerificationStatus Status,
+    string TraceId,
+    CalculationTrace Trace);
+
+public sealed record CalculationOutcome<T>(
+    T? Value,
+    VerificationStatus Status,
+    string Message,
+    CalculationTrace? Trace);
