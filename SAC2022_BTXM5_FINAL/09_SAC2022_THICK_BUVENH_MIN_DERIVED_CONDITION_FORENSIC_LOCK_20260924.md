@@ -51,11 +51,18 @@ For a horizontal reference (slope = 0), the derived extrema are:
     Z_max_existing = L_OLD_SURF.MaxInterceptY(0)
     Z_min_existing = L_OLD_SURF.MinInterceptY(0)
 
-Therefore:
+Therefore, once a verified Surface/Auxiliary Surface Link representing the Old_Road target interval exists:
+
+    Z_max_existing = SURFACE_LINK.MaxInterceptY(0)
+    Z_min_existing = SURFACE_LINK.MinInterceptY(0)
 
     Thick_BuVenh_Min =
-        L_OLD_SURF.MaxInterceptY(0)
-        - L_OLD_SURF.MinInterceptY(0)
+        SURFACE_LINK.MaxInterceptY(0)
+        - SURFACE_LINK.MinInterceptY(0)
+
+Important: the current ledger's L6 (P7->P8) is an ordinary Link, not evidence of a Surface Link. Do NOT substitute L6 for the required surface-analysis link merely because it has the same endpoints.
+
+The installed SAC 2022 API inventory also exposes CreateAuxLink and the AuxSurfaceLink designer, but the current forensic package does not yet contain the actual final PKT object/property serialization proving the exact Auxiliary Surface Link fields. Therefore the exact object construction remains a runtime/PKT validation item.
 
 Equivalent MaxY/MinY semantics are documented for links, but the current package's targeted API inventory explicitly exposes MaxInterceptY/MinInterceptY. Do not invent a different MAX/MIN function.
 
@@ -101,10 +108,12 @@ LOCKED:
 - Thick_BuVenh_Min is derived, not an Input Parameter.
 - Formula concept: Zmax_existing - Zmin_existing.
 - SAC 2022 has link MaxInterceptY/MinInterceptY mechanisms in the inspected API.
-- A surface-link-based implementation is technically supported by documented SAC mechanisms.
+- Autodesk SAC 2022 documentation defines MaxY/MinY and MaxInterceptY/MinInterceptY for link analysis, including rehab use.
+- The installed assembly inventory exposes CreateAuxLink/AuxSurfaceLink designer infrastructure.
+- The final Surface/Auxiliary Surface Link object is NOT yet runtime-locked.
 
 PENDING RUNTIME/PKT VALIDATION:
-- Exact Auxiliary Surface Link object placement and offsets in the final PKT.
+- Exact Auxiliary Surface Link object type, endpoints/offsets, target binding, and ordering in the final PKT.
 - Exact Expression Editor syntax accepted by the installed SAC 2022 build.
 - Exact Boolean condition that consumes Thick_BuVenh_Min.
 - Whether the required business scope is one half-side or the full existing roadway.
