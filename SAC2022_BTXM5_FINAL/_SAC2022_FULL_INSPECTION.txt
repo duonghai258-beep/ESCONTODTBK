@@ -1,0 +1,762 @@
+===== SAC2022 BTXM5 FULL INSPECTION =====
+PATH: C:\Users\duong\Desktop\SAC2022_BTXM5_FINAL
+
+===== FILE: _SAC2022_FULL_INSPECTION.txt =====
+SIZE: 95 bytes
+SHA256: 9DC669A48450E1F2546BFCA5874211A79C5FC1C80C0A3C7A79B1CFB50E89D8C2
+--- CONTENT ---
+===== SAC2022 BTXM5 FULL INSPECTION =====
+PATH: C:\Users\duong\Desktop\SAC2022_BTXM5_FINAL
+
+===== FILE: _SAC2022_FULL_INSPECTION.txt =====
+SIZE: 95 bytes
+SHA256: 9DC669A48450E1F2546BFCA5874211A79C5FC1C80C0A3C7A79B1CFB50E89D8C2
+--- CONTENT ---
+
+
+===== FILE: 01_OBJECT_LEDGER.csv =====
+SIZE: 3865 bytes
+SHA256: 7DBFE4363B0FE361EDFF1B9D2F266CC939543E422100D20AB447748D0D975B4D
+--- CONTENT ---
+"Kind","Name","From","Type","DeltaX","DeltaY","Target","Codes","Note"
+"POINT","P1","Origin","Origin","","","","","Assembly origin"
+"POINT","P2","P1","Delta X and Delta Y","0","Design_Profile.Elevation-P1.Elevation","Design_Profile","Top,Crown","New crown"
+"POINT","P3","P2","Slope and Delta X","W_New","Slope_ThietKe","","Top,ETW","New edge"
+"LINK","L1","P2->P3","Link","","","","Top,Pave","BTXM top"
+"POINT","P4","P2","Delta X and Delta Y","0","-Thick_BTXM","","Subbase","BTXM underside at crown"
+"POINT","P5","P3","Delta X and Delta Y","0","-Thick_BTXM","","Subbase,ETW_Sub","BTXM underside at edge"
+"POINT","P6","P4","Slope and Delta X","W_Old","Slope_ThietKe","","Subbase_Trong","BTXM underside at old-road edge"
+"LINK","L2","P4->P6","Link","","","","Datum,Nilon_Lop1,Nilon_Lop2","Two nylon sheets are represented by codes on the interface"
+"LINK","L3","P6->P5","Link","","","","Datum,Nilon_Lop1,Nilon_Lop2","Two nylon sheets"
+"LINK","L4","P2->P4","Link","","","","","BTXM thickness"
+"LINK","L5","P3->P5","Link","","","","","BTXM thickness"
+"SHAPE","S1_BTXM","System.Object[]","Closed Shape","","","","BTXM","New concrete only"
+"POINT","P7","P1","Delta X on Surface","0","","Old_Road","Old_Crown","Existing road top at center"
+"POINT","P8","P7","Delta X on Surface","W_Old","","Old_Road","Old_ETW","Existing road top at edge"
+"POINT","P9","P7","Delta X and Delta Y","0","-Thick_Old","","Old_Datum","Existing road underside center"
+"POINT","P10","P8","Delta X and Delta Y","0","-Thick_Old","","Old_Datum","Existing road underside edge"
+"LINK","L6","P7->P8","Link","","","","Old_Pave","Existing road surface"
+"LINK","L7","P9->P10","Link","","","","Old_Datum","Existing road underside"
+"LINK","L8","P7->P9","Link","","","","","Existing road boundary"
+"LINK","L9","P8->P10","Link","","","","","Existing road boundary"
+"SHAPE","S2_OLDROAD","System.Object[]","Closed Shape","","","","ExistingRoad","Existing only; never count as new material"
+"LINK","L10","P8->P6","Link","","","","BuVenh","Bù vênh edge"
+"LINK","L11","P7->P4","Link","","","","BuVenh","Bù vênh center"
+"SHAPE","S3_BUVENH","System.Object[]","Closed Shape","","","","BuVenh","New material above existing road"
+"POINT","P11","P5","Delta X and Delta Y","0","-Thick_CPDD","","Top_DatCP","CPDD bottom at new edge"
+"POINT","P12","P6","Delta X and Delta Y","0","-Thick_CPDD","","Top_DatCP","CPDD bottom at old-road edge"
+"LINK","L12","P12->P11","Link","","","","Top_DatCP","CPDD bottom line"
+"LINK","L13","P5->P11","Link","","","","CPDD","CPDD thickness"
+"LINK","L14","P6->P12","Link","","","","CPDD","CPDD thickness"
+"SHAPE","S4_CPDD","System.Object[]","Closed Shape","","","","CPDD","Crushed aggregate base"
+"POINT","P13","P3","Slope and Delta X","W_Le","Slope_Le","","Top,EPS","Shoulder/expansion edge"
+"POINT","P14","P13","Delta X on Surface","0","","EG","EG,Daylight","EG at shoulder edge"
+"DECISION","D1_EG_VALID","","Condition","","EG.IsValid","EG","","Target validity gate"
+"DECISION","D2_DAYLIGHT","","Condition","","P13.Elevation > P14.Elevation","","","Surface daylight branch"
+"DECISION","D3_BOX","","Condition","","Z_BottomStructure > Z_EGminusHC","EG","","Road-box cut/fill condition; expression must be bound to actual SAC points/variables"
+"POINT","P15","P13","Slope to Surface","","Slope_Fill","EG","Daylight_Fill","Fill daylight"
+"LINK","L15","P13->P15","Link","","","","Daylight_Fill","Fill slope"
+"POINT","P16","P13","Slope to Surface","","Slope_Cut","EG","Daylight_Cut","Cut daylight"
+"LINK","L16","P13->P16","Link","","","","Daylight_Cut","Cut slope"
+"SHAPE","S5_FILL","System.Object[]","Fill closure required in SAC","","","","DatCP","Variable fill to CPDD bottom; do not use fixed thickness"
+"SHAPE","S6_CUT","System.Object[]","Cut closure required in SAC","","","","DaoKhuon","Excavation/organic stripping; do not invent soil thickness"
+
+
+===== FILE: 02_PARAMETERS.csv =====
+SIZE: 593 bytes
+SHA256: 3BF856B37702B1EA85F351C6C0E6092E2B4D9511B8E60049F6FC96BB0B556771
+--- CONTENT ---
+"Name","Type","Default","Description"
+"W_New","Double","2.50","Half width of new BTXM"
+"Thick_BTXM","Double","0.20","New concrete thickness"
+"W_Old","Double","1.50","Half width of existing road"
+"Thick_Old","Double","0.18","Existing pavement thickness"
+"Slope_ThietKe","Slope","-2.0%","Design crossfall"
+"Thick_CPDD","Double","0.12","CPDD thickness"
+"Thick_HC","Double","0.10","Organic stripping thickness"
+"W_Le","Double","1.00","Expansion/shoulder strip"
+"Slope_Le","Slope","-4.0%","Shoulder slope"
+"Slope_Cut","Slope","1:1","Cut slope"
+"Slope_Fill","Slope","1:1.5","Fill slope"
+
+
+===== FILE: 03_TARGETS.csv =====
+SIZE: 173 bytes
+SHA256: D64A2B095D201E76113AC727D8C902EEDDD7F46E2D12670D4DA45FE92A0E65BF
+--- CONTENT ---
+"Name","Type","Description"
+"Design_Profile","Elevation","Design profile target"
+"EG","Surface","Existing ground target"
+"Old_Road","Surface","Existing old-road target"
+
+
+===== FILE: 04_SAC2022_API_TARGETED.txt =====
+SIZE: 27903 bytes
+SHA256: 4977E6E1E1AA520775BDA49DF98A35E57FBF623A5823DA57C050128C98A31048
+--- CONTENT ---
+SAC ROOT: C:\Program Files\Autodesk\Subassembly Composer 2022
+EXE: C:\Program Files\Autodesk\Subassembly Composer 2022\SubassemblyComposer.exe
+API: C:\Program Files\Autodesk\Subassembly Composer 2022\Subassembly.API.dll
+
+===== Subassembly.API.dll =====
+
+===== Subassembly.WorkflowEngine.dll =====
+Autodesk.SubassemblyComposer.FileAccess.AtcFileAccess
+  METHOD CreateAtcFile(String outputAtcFile_FullPath, String categoryName, String categoryDescription, String categoryImage, String SAName, String SADescription, String SAImage, String SAHelpFile, ParamCollection paramsItem, String proxyDllFileName) -> Void
+Autodesk.SubassemblyComposer.FileAccess.CategoryItem
+Autodesk.SubassemblyComposer.FileAccess.CfgFileAccess
+  METHOD LoadConfiguration(String cfgFileFullPath) -> Configuration
+  METHOD SaveConfiguration(String cfgFileFullPath, Configuration configuration) -> Void
+Autodesk.SubassemblyComposer.FileAccess.Configuration
+Autodesk.SubassemblyComposer.FileAccess.CreatorInfo
+Autodesk.SubassemblyComposer.FileAccess.DataItem
+Autodesk.SubassemblyComposer.FileAccess.DllFileAccess
+  METHOD CreateSubassemblyDLL(String subassemblyName, String outputDLLPath, String xamlFileName) -> Void
+Autodesk.SubassemblyComposer.FileAccess.DotNetClassItem
+Autodesk.SubassemblyComposer.FileAccess.EnumData
+Autodesk.SubassemblyComposer.FileAccess.EnumDataFileAccess
+  METHOD Load(String previewDataFile) -> EnumData
+  METHOD Save(String previewDataFile, EnumData dataToWrite) -> Void
+Autodesk.SubassemblyComposer.FileAccess.GuidItem
+Autodesk.SubassemblyComposer.FileAccess.HelpItem
+Autodesk.SubassemblyComposer.FileAccess.ImageItem
+Autodesk.SubassemblyComposer.FileAccess.ImagesItem
+Autodesk.SubassemblyComposer.FileAccess.ParamCollection
+  METHOD GetSchema() -> XmlSchema
+  METHOD ReadXml(XmlReader reader) -> Void
+  METHOD WriteXml(XmlWriter writer) -> Void
+Autodesk.SubassemblyComposer.FileAccess.ParamItem
+  METHOD CopyFrom(ParamItem from) -> Void
+Autodesk.SubassemblyComposer.FileAccess.PktFileAccess
+  METHOD CreatePktFile(PktStructure pktStructure, String pktName) -> Void
+  METHOD OpenPkt(String pktFileName) -> PktStructure
+  METHOD LoadPktStructure(String pktWorkingFolder) -> PktStructure
+  METHOD GenerateGuid() -> String
+Autodesk.SubassemblyComposer.FileAccess.PktStructure
+Autodesk.SubassemblyComposer.FileAccess.PreviewData
+Autodesk.SubassemblyComposer.FileAccess.PreviewDataFileAccess
+  METHOD Load(String previewDataFile) -> PreviewData
+  METHOD Save(String previewDataFile, PreviewData dataToWrite) -> Void
+Autodesk.SubassemblyComposer.FileAccess.PropertiesItem
+Autodesk.SubassemblyComposer.FileAccess.SerializerManager
+  METHOD SerializeToXml(String path, T obj) -> Void
+  METHOD DeserializeFromXml(String path) -> T
+  METHOD DeserializeAsText(String path) -> String
+  METHOD SerializeAsText(String path, String content) -> Void
+Autodesk.SubassemblyComposer.FileAccess.StockToolRefItem
+Autodesk.SubassemblyComposer.FileAccess.SubassemblyItem
+Autodesk.SubassemblyComposer.FileAccess.ToolItem
+Autodesk.SubassemblyComposer.FileAccess.ToolsItem
+Autodesk.SubassemblyComposer.GeomMath.GeomPoint
+  METHOD SumOfSquares() -> Double
+  METHOD op_Equality(GeomPoint point1, GeomPoint point2) -> Boolean
+  METHOD op_Inequality(GeomPoint point1, GeomPoint point2) -> Boolean
+  METHOD Equals(GeomPoint point1, GeomPoint point2) -> Boolean
+  METHOD Equals(GeomPoint value) -> Boolean
+  METHOD Equals(Object o) -> Boolean
+  METHOD EqualsWithPrecision(GeomPoint other) -> Boolean
+  METHOD IsEqual(GeomPoint other) -> Boolean
+  METHOD op_Addition(GeomPoint point, Double offset) -> GeomPoint
+  METHOD op_Addition(GeomPoint point, GeomPoint other) -> GeomPoint
+  METHOD op_Subtraction(GeomPoint point, Double offset) -> GeomPoint
+  METHOD op_Subtraction(GeomPoint point, GeomPoint other) -> GeomPoint
+  METHOD Plus(Double offset) -> GeomPoint
+  METHOD Plus(GeomPoint other) -> GeomPoint
+  METHOD Minus() -> GeomPoint
+  METHOD Minus(Double offset) -> GeomPoint
+  METHOD Minus(GeomPoint other) -> GeomPoint
+  METHOD Offset(Double xOffset, Double yOffset) -> GeomPoint
+  METHOD Offset(Double offset) -> GeomPoint
+  METHOD GetHashCode() -> Int32
+  METHOD Distance(GeomPoint p2) -> Double
+  METHOD AngleTo(GeomPoint point) -> Double
+  METHOD Scale(Double scaleFactor) -> GeomPoint
+  METHOD SnapToIntegers() -> GeomPoint
+  METHOD PointInDirection(GeomPoint direction, Double vectorLength) -> GeomPoint
+  METHOD ToString() -> String
+Autodesk.SubassemblyComposer.WorkflowEngine.ApiErrorCollection
+  METHOD AddError(String name, String message) -> Void
+  METHOD Clear() -> Void
+  METHOD GetAllErrors() -> List`1
+Autodesk.SubassemblyComposer.WorkflowEngine.BaselineInformation
+Autodesk.SubassemblyComposer.WorkflowEngine.BaseTypeInfo
+  METHOD op_Implicit(BaseTypeInfo s) -> Double
+  METHOD op_Implicit(Double d) -> BaseTypeInfo
+  METHOD op_Addition(BaseTypeInfo left, BaseTypeInfo right) -> Double
+  METHOD op_Subtraction(BaseTypeInfo left, BaseTypeInfo right) -> Double
+  METHOD op_Multiply(BaseTypeInfo left, BaseTypeInfo right) -> Double
+  METHOD op_Division(BaseTypeInfo left, BaseTypeInfo right) -> Double
+  METHOD op_UnaryNegation(BaseTypeInfo ti) -> Double
+  METHOD op_Equality(BaseTypeInfo left, BaseTypeInfo right) -> Boolean
+  METHOD op_Inequality(BaseTypeInfo left, BaseTypeInfo right) -> Boolean
+  METHOD op_GreaterThan(BaseTypeInfo left, BaseTypeInfo right) -> Boolean
+  METHOD op_GreaterThanOrEqual(BaseTypeInfo left, BaseTypeInfo right) -> Boolean
+  METHOD op_LessThan(BaseTypeInfo left, BaseTypeInfo right) -> Boolean
+  METHOD op_LessThanOrEqual(BaseTypeInfo left, BaseTypeInfo right) -> Boolean
+  METHOD IsNull(BaseTypeInfo d) -> Boolean
+  METHOD TryParse(String str, Type type, Double& value, IFormatProvider formatProvider) -> Boolean
+  METHOD FormatAsString() -> String
+  METHOD Equals(Object obj) -> Boolean
+  METHOD GetHashCode() -> Int32
+  METHOD CompareTo(Object value) -> Int32
+  METHOD ToString(String format, IFormatProvider formatProvider) -> String
+  METHOD GetTypeCode() -> TypeCode
+  METHOD ToBoolean(IFormatProvider provider) -> Boolean
+  METHOD ToByte(IFormatProvider provider) -> Byte
+  METHOD ToChar(IFormatProvider provider) -> Char
+  METHOD ToDateTime(IFormatProvider provider) -> DateTime
+  METHOD ToDecimal(IFormatProvider provider) -> Decimal
+  METHOD ToDouble(IFormatProvider provider) -> Double
+  METHOD ToInt16(IFormatProvider provider) -> Int16
+  METHOD ToInt32(IFormatProvider provider) -> Int32
+  METHOD ToInt64(IFormatProvider provider) -> Int64
+  METHOD ToSByte(IFormatProvider provider) -> SByte
+  METHOD ToSingle(IFormatProvider provider) -> Single
+  METHOD ToString(IFormatProvider provider) -> String
+  METHOD ToType(Type conversionType, IFormatProvider provider) -> Object
+  METHOD ToUInt16(IFormatProvider provider) -> UInt16
+  METHOD ToUInt32(IFormatProvider provider) -> UInt32
+  METHOD ToUInt64(IFormatProvider provider) -> UInt64
+  METHOD CompareTo(BaseTypeInfo value) -> Int32
+  METHOD Equals(BaseTypeInfo obj) -> Boolean
+Autodesk.SubassemblyComposer.WorkflowEngine.BooleanParameter
+  METHOD Clone() -> IParameter
+  METHOD IsValid(String paramValue) -> Boolean
+  METHOD ParseValue(String paramValue) -> Void
+  METHOD SetDefaultValue() -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.CantInformation
+Autodesk.SubassemblyComposer.WorkflowEngine.CantPivotType
+Autodesk.SubassemblyComposer.WorkflowEngine.CrossSegmentType
+Autodesk.SubassemblyComposer.WorkflowEngine.CrossSegmentTypeExtension
+  METHOD GetAvailableSegmentTypes(CrossSegmentType dummyType) -> Collection`1
+  METHOD GetAvailableSegmentTypesPlusNone(CrossSegmentType dummyType) -> Collection`1
+  METHOD GetAvailableSegmentTypesPlusAll(CrossSegmentType dummyType) -> Collection`1
+  METHOD GetDisplayName(CrossSegmentType segmentType) -> String
+  METHOD GetCrossSegmentType(String segmentTypeName) -> CrossSegmentType
+  METHOD GetDefaultSlope(CrossSegmentType segmentType) -> Double
+Autodesk.SubassemblyComposer.WorkflowEngine.Description2Attribute
+Autodesk.SubassemblyComposer.WorkflowEngine.DisplayName2Attribute
+Autodesk.SubassemblyComposer.WorkflowEngine.DoubleParameter
+  METHOD Clone() -> IParameter
+  METHOD IsValid(String paramValue) -> Boolean
+  METHOD ParseValue(String paramValue) -> Void
+  METHOD SetDefaultValue() -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.DummyShape
+Autodesk.SubassemblyComposer.WorkflowEngine.ElevationTarget
+Autodesk.SubassemblyComposer.WorkflowEngine.ElevationTargetParameter
+  METHOD Clone() -> IParameter
+Autodesk.SubassemblyComposer.WorkflowEngine.EnabledFlag2Attribute
+Autodesk.SubassemblyComposer.WorkflowEngine.EnumContainer
+  METHOD GetAllGroupDatas() -> Void
+  METHOD UpdateEnumTypeData() -> Void
+  METHOD UpdateWorkflow() -> Void
+  METHOD FindEnumItem(String itemName) -> EnumItem
+  METHOD FindEnumGroup(String groupName) -> EnumGroup
+  METHOD FindEnumGroupByItemName(String itemName) -> EnumGroup
+Autodesk.SubassemblyComposer.WorkflowEngine.EnumConverterForBeta
+  METHOD Convert(Object value, Type targetType, Object parameter, CultureInfo culture) -> Object
+  METHOD ConvertBack(Object value, Type targetType, Object parameter, CultureInfo culture) -> Object
+Autodesk.SubassemblyComposer.WorkflowEngine.EnumDataManager
+  METHOD CreateEnumGroup(EnumTypeData data) -> EnumGroup
+  METHOD CreateEnumItem(EnumGroup selectedGroup) -> EnumItem
+Autodesk.SubassemblyComposer.WorkflowEngine.EnumDisplayNameAttribute
+Autodesk.SubassemblyComposer.WorkflowEngine.EnumDisplayNameConverter
+  METHOD GetEnumDisplayName(Object enumObj) -> String
+  METHOD Convert(Object value, Type targetType, Object parameter, CultureInfo culture) -> Object
+  METHOD ConvertBack(Object value, Type targetType, Object parameter, CultureInfo culture) -> Object
+Autodesk.SubassemblyComposer.WorkflowEngine.EnumGeneralConverter`1
+  METHOD Convert(Object value, Type targetType, Object parameter, CultureInfo culture) -> Object
+  METHOD ConvertBack(Object value, Type targetType, Object parameter, CultureInfo culture) -> Object
+Autodesk.SubassemblyComposer.WorkflowEngine.EnumGroup
+  METHOD CopyFrom(EnumGroup group) -> Void
+  METHOD Equals(Object obj) -> Boolean
+  METHOD Equals(EnumGroup group) -> Boolean
+  METHOD GetHashCode() -> Int32
+  METHOD CompareTo(Object obj) -> Int32
+  METHOD SetEnum(ObservableCollection`1 tmp) -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.EnumGroup_Side
+Autodesk.SubassemblyComposer.WorkflowEngine.EnumItem
+  METHOD CopyFrom(EnumItem item) -> Void
+  METHOD CompareTo(Object obj) -> Int32
+  METHOD Clone(EnumItem other) -> EnumItem
+Autodesk.SubassemblyComposer.WorkflowEngine.EnumKeyManager
+  METHOD ResetKeys() -> Void
+  METHOD GetItemKey(String name) -> Int64
+Autodesk.SubassemblyComposer.WorkflowEngine.EnumType
+  METHOD op_Implicit(EnumType et) -> Int32
+  METHOD op_Implicit(Int32 d) -> EnumType
+  METHOD op_Equality(EnumType a, EnumType b) -> Boolean
+  METHOD op_Inequality(EnumType a, EnumType b) -> Boolean
+  METHOD ToString() -> String
+  METHOD Equals(Object obj) -> Boolean
+  METHOD Equals(EnumType other) -> Boolean
+  METHOD GetHashCode() -> Int32
+Autodesk.SubassemblyComposer.WorkflowEngine.EnumTypeData
+  METHOD CopyFrom(EnumTypeData data) -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.ErrorLevel
+Autodesk.SubassemblyComposer.WorkflowEngine.ExecutedStatus
+Autodesk.SubassemblyComposer.WorkflowEngine.Geometry
+  METHOD GetLoopPoint(String loopActivityName) -> Point
+  METHOD GetPoint(String geometryId) -> Point
+  METHOD GetLink(String geometryId) -> Link
+  METHOD GetShape(String geometryId) -> Shape
+  METHOD GenerateDummyShapes(String geometryName, Int32 activityId, List`1 validLinks) -> Int32
+  METHOD RemoveDummyShapes() -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.GeometryElement
+  METHOD Equals(GeometryElement peer) -> Boolean
+Autodesk.SubassemblyComposer.WorkflowEngine.GeometryUtility
+  METHOD GetIntersectPoint(Point line1StartPt, Double line1Slope, Boolean line1TowardRight, Point line2StartPt, Point line2EndPt, Boolean extendLine2) -> Point
+  METHOD GetIntersectPoint(Point line1StartPt, Double line1Slope, Boolean line1TowardRight, Point[] line2Points) -> Point
+  METHOD GetIntersectPoint(Point line1StartPt, Point line1EndPt, Point line2StartPt, Point line2EndPt, Boolean extendLines) -> Point
+  METHOD GetRoundingArc(Point cornerPt, Point pt1, Point pt2, Boolean roundByLenth, Double roundParam, Int32 sampleCount, List`1& curveRet) -> RoundResult
+  METHOD GetRoundingParabola(Point cornerPt, Point pt1, Point pt2, Boolean roundByLenth, Double roundParam, Int32 sampleCount, List`1& curveRet) -> RoundResult
+  METHOD GetAngle(Point ptFrom, Point ptTo) -> Double
+  METHOD FixAngle(Double angle) -> Double
+  METHOD GetDist(Point pt1, Point pt2) -> Double
+  METHOD OffsetLinks(List`1& links, Double depth) -> Void
+  METHOD PolarPoint(Point center, Double angle, Double radius) -> Point
+  METHOD InterpolatePoint(Point source, Point dest, Double para) -> Point
+  METHOD FuzzyEqual(Double d1, Double d2, Double tol) -> Boolean
+  METHOD FuzzyEqual(Double d1, Double d2) -> Boolean
+  METHOD FuzzyEqual(Point pt1, Point pt2) -> Boolean
+Autodesk.SubassemblyComposer.WorkflowEngine.GeometryUtility+RoundResult
+Autodesk.SubassemblyComposer.WorkflowEngine.Grade
+  METHOD op_Implicit(Grade g) -> Double
+  METHOD op_Implicit(Double d) -> Grade
+  METHOD op_Implicit(Grade g) -> Slope
+  METHOD op_Implicit(Slope d) -> Grade
+  METHOD IsNull(Grade g) -> Boolean
+  METHOD TypeInfoId() -> Int32
+  METHOD TryParse(String str, Double& value, IFormatProvider formatProvider) -> Boolean
+  METHOD Parse(String str, IFormatProvider formatProvider) -> Grade
+  METHOD FormatAsString(Grade g) -> String
+  METHOD ToString() -> String
+  METHOD FormatAsString() -> String
+Autodesk.SubassemblyComposer.WorkflowEngine.GradeParameter
+  METHOD Clone() -> IParameter
+  METHOD IsValid(String paramValue) -> Boolean
+  METHOD ParseValue(String paramValue) -> Void
+  METHOD FormatDisplayValue() -> String
+  METHOD SetDefaultValue() -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.ICrossSlope
+Autodesk.SubassemblyComposer.WorkflowEngine.IEnum
+Autodesk.SubassemblyComposer.WorkflowEngine.IMarkPointManager
+  METHOD GetMarkPoint(String name) -> Point
+  METHOD SetMarkPoint(String name, Point pt) -> Boolean
+Autodesk.SubassemblyComposer.WorkflowEngine.Int32Parameter
+  METHOD Clone() -> IParameter
+  METHOD IsValid(String paramValue) -> Boolean
+  METHOD ParseValue(String paramValue) -> Void
+  METHOD SetDefaultValue() -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.InvariantCulture
+  METHOD Dispose() -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.IParameter
+  METHOD AreEquals(IParameter another) -> Boolean
+  METHOD Clone() -> IParameter
+  METHOD CopyFrom(IParameter sourceParam) -> Void
+  METHOD IsValid(String paramValue) -> Boolean
+  METHOD FormatDisplayValue() -> String
+  METHOD ParseValue(String paramValue) -> Void
+  METHOD SetDefaultValue() -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.IParameterForC3D
+Autodesk.SubassemblyComposer.WorkflowEngine.ISuperelevationData
+  METHOD GetSlopeAt(CrossSegmentType segmentToFind) -> ICrossSlope
+Autodesk.SubassemblyComposer.WorkflowEngine.ITypeInfo
+  METHOD FormatAsString() -> String
+Autodesk.SubassemblyComposer.WorkflowEngine.LayoutCantData
+Autodesk.SubassemblyComposer.WorkflowEngine.Link
+  METHOD MaxInterceptY(Double slope) -> Double
+  METHOD MinInterceptY(Double slope) -> Double
+  METHOD HasIntersection(Link link2, Boolean extendLink1, Boolean extendLink2) -> Boolean
+Autodesk.SubassemblyComposer.WorkflowEngine.Migration.MigrationManager
+  METHOD UpgradeToLatestVersion(PktStructure pktStructure) -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.NamingRules
+  METHOD VerifyParamName(String name) -> Boolean
+  METHOD VerifyDisplayName(String displayName) -> Boolean
+Autodesk.SubassemblyComposer.WorkflowEngine.ObjectParameterBase
+  METHOD AreEquals(IParameter another) -> Boolean
+  METHOD CopyFrom(IParameter sourceParam) -> Void
+  METHOD IsValid(String paramValue) -> Boolean
+  METHOD FormatDisplayValue() -> String
+  METHOD ParseValue(String paramValue) -> Void
+  METHOD SetDefaultValue() -> Void
+  METHOD Equals(Object obj) -> Boolean
+  METHOD Equals(ObjectParameterBase obj) -> Boolean
+  METHOD GetHashCode() -> Int32
+Autodesk.SubassemblyComposer.WorkflowEngine.Offset
+  METHOD CompareWith(Offset peer) -> Boolean
+Autodesk.SubassemblyComposer.WorkflowEngine.OffsetTarget
+Autodesk.SubassemblyComposer.WorkflowEngine.OffsetTargetParameter
+  METHOD Clone() -> IParameter
+Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection
+Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirectionForBeta
+Autodesk.SubassemblyComposer.WorkflowEngine.ParameterFactory
+  METHOD GetExpressionTextFromArgument(Argument argument) -> String
+  METHOD ModelProperty_Add(ModelItemCollection properties, IParameter paramItem, Int32 index) -> Boolean
+  METHOD ModelProperty_Remove(ModelItemCollection properties, String paramName) -> Int32
+  METHOD ModelProperty_Modify(ModelItem root, ModelItemCollection properties, IParameter newItem, String propertyName, String oldParameterName) -> Boolean
+Autodesk.SubassemblyComposer.WorkflowEngine.ParameterTypeRegister
+  METHOD InoutDisplayTypeNames() -> Array
+  METHOD TargetDisplayTypeNames() -> Array
+  METHOD GetDataTypeByDisplayName(String dataTypeDisplayName) -> Type
+  METHOD CreateDefaultParameter(String name, String dataTypeDisplayName, ParameterDirection direction, String defaultValue) -> IParameter
+  METHOD CreateDefaultTargetParameter(String name, Boolean bIsEnabled, Type paramType, ParameterDirection direction, String defaultValue) -> IParameter
+  METHOD CreateParameter(DynamicActivityProperty property) -> IParameter
+Autodesk.SubassemblyComposer.WorkflowEngine.Point
+  METHOD SetOrigin(Double Offset, Double Elevation) -> Void
+  METHOD DistanceTo(Point targetPoint) -> Double
+  METHOD DistanceBetween(Point p1, Point p2) -> Double
+  METHOD SlopeTo(Point targetPoint) -> Double
+  METHOD SlopeBetween(Point fromPoint, Point toPoint) -> Double
+Autodesk.SubassemblyComposer.WorkflowEngine.PreviewBaselineInformation
+Autodesk.SubassemblyComposer.WorkflowEngine.PreviewCantData
+  METHOD GetValueAt(String param) -> String
+  METHOD InitializeDefaultValues() -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.PreviewCantInformation
+Autodesk.SubassemblyComposer.WorkflowEngine.PreviewCantParam
+Autodesk.SubassemblyComposer.WorkflowEngine.PreviewCrossSlope
+Autodesk.SubassemblyComposer.WorkflowEngine.PreviewElevationTarget
+  METHOD SetElevation(Double elevation) -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.PreviewOffsetTarget
+  METHOD SetOffset(Double offset) -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.PreviewSuperelevationData
+  METHOD GetSlopeAt(CrossSegmentType segmentToFind) -> ICrossSlope
+  METHOD InitializeDefaultValues() -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.PreviewSurfaceTarget
+  METHOD getDaylightPoint(Point fromPoint, Double slope, Boolean isTowardRight) -> Point
+  METHOD getPointOnOffset(Double offset) -> Point
+  METHOD hasDaylightPoint(Point fromPoint, Double slope, Boolean isTowardRight) -> Boolean
+  METHOD sampleSection(Double offset1, Double offset2) -> List`1
+Autodesk.SubassemblyComposer.WorkflowEngine.PropertyChangedBase
+  METHOD NotifyPropertyChanged(String propertyName) -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.PropertyChangedBaseEx
+  METHOD NotifyPropertyChanged(T propertyChangedBase, Expression`1 expression) -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.RuntimeCantData
+Autodesk.SubassemblyComposer.WorkflowEngine.SALink
+  METHOD MaxInterceptY(Double slope) -> Double
+  METHOD MinInterceptY(Double slope) -> Double
+  METHOD HasIntersection(SALink SALink2, Boolean extendLink1, Boolean extendLink2) -> Boolean
+Autodesk.SubassemblyComposer.WorkflowEngine.SALoop
+Autodesk.SubassemblyComposer.WorkflowEngine.SAPoint
+  METHOD DistanceTo(SAPoint otherPt) -> Double
+  METHOD DistanceTo(String otherPointId) -> Double
+  METHOD SlopeTo(SAPoint otherPt) -> Double
+  METHOD SlopeTo(String otherPointId) -> Double
+  METHOD DistanceToSurface(SurfaceTarget surface) -> Double
+Autodesk.SubassemblyComposer.WorkflowEngine.SASide
+Autodesk.SubassemblyComposer.WorkflowEngine.Shape
+  METHOD CompareWith(Shape peer) -> Boolean
+  METHOD ContainAllLinks(Shape shape) -> Boolean
+  METHOD IsInsideShape(Shape shape) -> Boolean
+Autodesk.SubassemblyComposer.WorkflowEngine.Slope
+  METHOD op_Implicit(Slope s) -> Double
+  METHOD op_Implicit(Double d) -> Slope
+  METHOD IsNull(Slope s) -> Boolean
+  METHOD TypeInfoId() -> Int32
+  METHOD TryParse(String str, Double& value, IFormatProvider formatProvider) -> Boolean
+  METHOD Parse(String str, IFormatProvider formatProvider) -> Slope
+  METHOD FormatAsString(Slope s) -> String
+  METHOD ToString() -> String
+  METHOD FormatAsString() -> String
+Autodesk.SubassemblyComposer.WorkflowEngine.SlopeParameter
+  METHOD Clone() -> IParameter
+  METHOD IsValid(String paramValue) -> Boolean
+  METHOD ParseValue(String paramValue) -> Void
+  METHOD FormatDisplayValue() -> String
+  METHOD SetDefaultValue() -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.StringParameter
+  METHOD Clone() -> IParameter
+  METHOD IsValid(String paramValue) -> Boolean
+  METHOD ParseValue(String paramValue) -> Void
+  METHOD FormatDisplayValue() -> String
+  METHOD SetDefaultValue() -> Void
+Autodesk.SubassemblyComposer.WorkflowEngine.SubassemblyErrorCenter
+Autodesk.SubassemblyComposer.WorkflowEngine.SubassemblyErrorInfo
+Autodesk.SubassemblyComposer.WorkflowEngine.SubassemblyRunMode
+Autodesk.SubassemblyComposer.WorkflowEngine.Superelevation
+  METHOD GetCrossSlopeAt(CrossSegmentType slopeType) -> Double
+Autodesk.SubassemblyComposer.WorkflowEngine.SurfaceTarget
+  METHOD getDaylightPoint(Point fromPoint, Double slope, Boolean isTowardRight) -> Point
+  METHOD getPointOnOffset(Double offset) -> Point
+  METHOD hasDaylightPoint(Point fromPoint, Double slope, Boolean isTowardRight) -> Boolean
+  METHOD sampleSection(Double offset1, Double offset2) -> List`1
+Autodesk.SubassemblyComposer.WorkflowEngine.SurfaceTargetParameter
+  METHOD Clone() -> IParameter
+Autodesk.SubassemblyComposer.WorkflowEngine.Target
+Autodesk.SubassemblyComposer.WorkflowEngine.TargetParameter
+  METHOD IsValid(String paramValue) -> Boolean
+  METHOD ParseValue(String paramValue) -> Void
+  METHOD SetDefaultValue() -> Void
+  METHOD Round(Double value) -> Double
+Autodesk.SubassemblyComposer.WorkflowEngine.TurnDirection
+Autodesk.SubassemblyComposer.WorkflowEngine.Version
+Autodesk.SubassemblyComposer.WorkflowEngine.WorkflowHost
+  METHOD Execute(Dictionary`2 inputParams) -> IDictionary`2
+  METHOD Execute(Action`1 workflowApp_Completed) -> ExecutedStatus
+  METHOD GetStaticInputParametersCount() -> Int32
+
+===== Subassembly.ActivityLibrary.dll =====
+Autodesk.SubassemblyComposer.ActivityLibrary.ActivityDesigner.AuxLinkIntersectionDesigner
+  METHOD InitializeComponent() -> Void
+Autodesk.SubassemblyComposer.ActivityLibrary.ActivityDesigner.AuxSurfaceLinkDesigner
+  METHOD InitializeComponent() -> Void
+Autodesk.SubassemblyComposer.ActivityLibrary.ActivityDesigner.CreateAuxLinkDesigner
+  METHOD InitializeComponent() -> Void
+Autodesk.SubassemblyComposer.ActivityLibrary.ActivityDesigner.CreateAuxPointDesigner
+  METHOD InitializeComponent() -> Void
+Autodesk.SubassemblyComposer.ActivityLibrary.ActivityDesigner.CreateLinkDesigner
+  METHOD InitializeComponent() -> Void
+Autodesk.SubassemblyComposer.ActivityLibrary.ActivityDesigner.CreatePointDesigner
+  METHOD InitializeComponent() -> Void
+Autodesk.SubassemblyComposer.ActivityLibrary.ActivityDesigner.CreateShapeDesigner
+  METHOD InitializeComponent() -> Void
+Autodesk.SubassemblyComposer.ActivityLibrary.ActivityDesigner.GetAuxMarkPointDesigner
+  METHOD InitializeComponent() -> Void
+Autodesk.SubassemblyComposer.ActivityLibrary.ActivityDesigner.GetMarkPointDesigner
+  METHOD InitializeComponent() -> Void
+Autodesk.SubassemblyComposer.ActivityLibrary.ActivityDesigner.LinkIntersectionDesigner
+  METHOD InitializeComponent() -> Void
+Autodesk.SubassemblyComposer.ActivityLibrary.ActivityDesigner.SetMarkPointDesigner
+  METHOD InitializeComponent() -> Void
+Autodesk.SubassemblyComposer.ActivityLibrary.ActivityDesigner.SetOutputParameterValueDesigner
+  METHOD InitializeComponent() -> Void
+Autodesk.SubassemblyComposer.ActivityLibrary.ComputeLoopLinks
+  METHOD Invoke(CreateLoop createloop) -> Void
+  METHOD BeginInvoke(CreateLoop createloop, AsyncCallback callback, Object object) -> IAsyncResult
+  METHOD EndInvoke(IAsyncResult result) -> Void
+Autodesk.SubassemblyComposer.ActivityLibrary.ComputeOffsetLinks
+  METHOD Invoke(CreateOffset createoffset) -> Void
+  METHOD BeginInvoke(CreateOffset createoffset, AsyncCallback callback, Object object) -> IAsyncResult
+  METHOD EndInvoke(IAsyncResult result) -> Void
+Autodesk.SubassemblyComposer.ActivityLibrary.CreateAuxLink
+Autodesk.SubassemblyComposer.ActivityLibrary.CreateAuxPoint
+Autodesk.SubassemblyComposer.ActivityLibrary.CreateLink
+  METHOD SubValidateInDesigntime(Int32 activityId) -> List`1
+  METHOD DependsOnPoint(String pointNumber) -> Boolean
+Autodesk.SubassemblyComposer.ActivityLibrary.CreatePoint
+  METHOD GetPropertyValue(String propertyName) -> Object
+  METHOD SetPropertyValue(String propertyName, Object newValue) -> Void
+  METHOD GetProperties() -> PropertyDescriptorCollection
+  METHOD SubValidateInDesigntime(Int32 activityId) -> List`1
+  METHOD GeneratesPoint(String pointNumber) -> Boolean
+  METHOD DependsOnPoint(String pointNumber) -> Boolean
+Autodesk.SubassemblyComposer.ActivityLibrary.CreateShape
+  METHOD SubValidateInDesigntime(Int32 activityId) -> List`1
+Autodesk.SubassemblyComposer.ActivityLibrary.GetAuxMarkPointActivity
+Autodesk.SubassemblyComposer.ActivityLibrary.GetMarkPointActivity
+  METHOD SubValidateInDesigntime(Int32 activityId) -> List`1
+Autodesk.SubassemblyComposer.ActivityLibrary.LinkIntersection
+  METHOD GetProperties() -> PropertyDescriptorCollection
+  METHOD GetPropertyValue(String propertyName) -> Object
+  METHOD SetPropertyValue(String propertyName, Object newValue) -> Void
+  METHOD SubValidateInDesigntime(Int32 activityId) -> List`1
+  METHOD GeneratesPoint(String pointNumber) -> Boolean
+Autodesk.SubassemblyComposer.ActivityLibrary.PointGeometryType
+Autodesk.SubassemblyComposer.ActivityLibrary.SetMarkPointActivity
+  METHOD SubValidateInDesigntime(Int32 activityId) -> List`1
+Autodesk.SubassemblyComposer.ActivityLibrary.SetOutputParameterValue
+Autodesk.SubassemblyComposer.ActivityLibrary.UserControls.LinksUserCtrl
+  METHOD ItemDataChanged(Object sender, PropertyChangedEventArgs e) -> Void
+  METHOD LinkNameIsExisted(String linkName) -> Boolean
+  METHOD SetStringValue(List`1 names) -> Void
+  METHOD InitializeComponent() -> Void
+Autodesk.SubassemblyComposer.ActivityLibrary.UserControls.LoopLinksUserCtrl
+  METHOD ItemDataChanged(Object sender, PropertyChangedEventArgs e) -> Void
+  METHOD LinkNameIsExisted(String linkName) -> Boolean
+  METHOD SetStringValue(List`1 names) -> Void
+  METHOD InitializeComponent() -> Void
+Autodesk.SubassemblyComposer.ActivityLibrary.UserControls.OffsetLinksUserCtrl
+  METHOD ItemDataChanged(Object sender, PropertyChangedEventArgs e) -> Void
+  METHOD LinkNameIsExisted(String linkName) -> Boolean
+  METHOD SetStringValue(List`1 names) -> Void
+  METHOD InitializeComponent() -> Void
+Autodesk.SubassemblyComposer.WorkflowDesigntime.GeometryAutoNumberingAttribute
+  METHOD GetNextGeometryName(Type type) -> String
+
+===== WorkflowEditor.dll =====
+Autodesk.SubassemblyComposer.WorkflowEditor.Style.StyleType
+
+
+===== FILE: 05_SAC2022_BTXM5_FINAL_BUILD_SPEC.md =====
+SIZE: 7976 bytes
+SHA256: 92AC01E57EE8E99DC6D678B272A4D03D2D0AE62C7D87CCA7689B1E5AEECC4C2D
+--- CONTENT ---
+# SAC 2022 — BTXM 5.0 m rehabilitation / expansion
+
+## 1. Scope
+- Autodesk Civil 3D / Subassembly Composer 2022 only.
+- Model one half-side: 2.50 m new pavement; mirror/use both sides.
+- Existing road half-width 1.50 m; existing thickness 0.18 m.
+- Expansion strip 1.00 m; CPDD 0.12 m; organic strip 0.10 m.
+- Cut slope 1:1; fill slope 1:1.5.
+- Existing pavement must never be cut.
+- No fabricated minimum soil thickness.
+
+## 2. Parameters
+- W_New | Double | 2.50 | Half width of new BTXM
+- Thick_BTXM | Double | 0.20 | New concrete thickness
+- W_Old | Double | 1.50 | Half width of existing road
+- Thick_Old | Double | 0.18 | Existing pavement thickness
+- Slope_ThietKe | Slope | -2.0% | Design crossfall
+- Thick_CPDD | Double | 0.12 | CPDD thickness
+- Thick_HC | Double | 0.10 | Organic stripping thickness
+- W_Le | Double | 1.00 | Expansion/shoulder strip
+- Slope_Le | Slope | -4.0% | Shoulder slope
+- Slope_Cut | Slope | 1:1 | Cut slope
+- Slope_Fill | Slope | 1:1.5 | Fill slope
+
+## 3. Targets
+- Design_Profile | Elevation | Design profile target
+- EG | Surface | Existing ground target
+- Old_Road | Surface | Existing old-road target
+
+## 4. Point/Link/Shape ledger
+- **POINT P1** | From=Origin | Type=Origin | DX= | DY/Slope= | Target= | Codes= | Assembly origin
+- **POINT P2** | From=P1 | Type=Delta X and Delta Y | DX=0 | DY/Slope=Design_Profile.Elevation-P1.Elevation | Target=Design_Profile | Codes=Top,Crown | New crown
+- **POINT P3** | From=P2 | Type=Slope and Delta X | DX=W_New | DY/Slope=Slope_ThietKe | Target= | Codes=Top,ETW | New edge
+- **LINK L1** | From=P2->P3 | Type=Link | DX= | DY/Slope= | Target= | Codes=Top,Pave | BTXM top
+- **POINT P4** | From=P2 | Type=Delta X and Delta Y | DX=0 | DY/Slope=-Thick_BTXM | Target= | Codes=Subbase | BTXM underside at crown
+- **POINT P5** | From=P3 | Type=Delta X and Delta Y | DX=0 | DY/Slope=-Thick_BTXM | Target= | Codes=Subbase,ETW_Sub | BTXM underside at edge
+- **POINT P6** | From=P4 | Type=Slope and Delta X | DX=W_Old | DY/Slope=Slope_ThietKe | Target= | Codes=Subbase_Trong | BTXM underside at old-road edge
+- **LINK L2** | From=P4->P6 | Type=Link | DX= | DY/Slope= | Target= | Codes=Datum,Nilon_Lop1,Nilon_Lop2 | Two nylon sheets are represented by codes on the interface
+- **LINK L3** | From=P6->P5 | Type=Link | DX= | DY/Slope= | Target= | Codes=Datum,Nilon_Lop1,Nilon_Lop2 | Two nylon sheets
+- **LINK L4** | From=P2->P4 | Type=Link | DX= | DY/Slope= | Target= | Codes= | BTXM thickness
+- **LINK L5** | From=P3->P5 | Type=Link | DX= | DY/Slope= | Target= | Codes= | BTXM thickness
+- **SHAPE S1_BTXM** | From=P2 P3 P5 P4 | Type=Closed Shape | DX= | DY/Slope= | Target= | Codes=BTXM | New concrete only
+- **POINT P7** | From=P1 | Type=Delta X on Surface | DX=0 | DY/Slope= | Target=Old_Road | Codes=Old_Crown | Existing road top at center
+- **POINT P8** | From=P7 | Type=Delta X on Surface | DX=W_Old | DY/Slope= | Target=Old_Road | Codes=Old_ETW | Existing road top at edge
+- **POINT P9** | From=P7 | Type=Delta X and Delta Y | DX=0 | DY/Slope=-Thick_Old | Target= | Codes=Old_Datum | Existing road underside center
+- **POINT P10** | From=P8 | Type=Delta X and Delta Y | DX=0 | DY/Slope=-Thick_Old | Target= | Codes=Old_Datum | Existing road underside edge
+- **LINK L6** | From=P7->P8 | Type=Link | DX= | DY/Slope= | Target= | Codes=Old_Pave | Existing road surface
+- **LINK L7** | From=P9->P10 | Type=Link | DX= | DY/Slope= | Target= | Codes=Old_Datum | Existing road underside
+- **LINK L8** | From=P7->P9 | Type=Link | DX= | DY/Slope= | Target= | Codes= | Existing road boundary
+- **LINK L9** | From=P8->P10 | Type=Link | DX= | DY/Slope= | Target= | Codes= | Existing road boundary
+- **SHAPE S2_OLDROAD** | From=P7 P8 P10 P9 | Type=Closed Shape | DX= | DY/Slope= | Target= | Codes=ExistingRoad | Existing only; never count as new material
+- **LINK L10** | From=P8->P6 | Type=Link | DX= | DY/Slope= | Target= | Codes=BuVenh | Bù vênh edge
+- **LINK L11** | From=P7->P4 | Type=Link | DX= | DY/Slope= | Target= | Codes=BuVenh | Bù vênh center
+- **SHAPE S3_BUVENH** | From=P7 P8 P6 P4 | Type=Closed Shape | DX= | DY/Slope= | Target= | Codes=BuVenh | New material above existing road
+- **POINT P11** | From=P5 | Type=Delta X and Delta Y | DX=0 | DY/Slope=-Thick_CPDD | Target= | Codes=Top_DatCP | CPDD bottom at new edge
+- **POINT P12** | From=P6 | Type=Delta X and Delta Y | DX=0 | DY/Slope=-Thick_CPDD | Target= | Codes=Top_DatCP | CPDD bottom at old-road edge
+- **LINK L12** | From=P12->P11 | Type=Link | DX= | DY/Slope= | Target= | Codes=Top_DatCP | CPDD bottom line
+- **LINK L13** | From=P5->P11 | Type=Link | DX= | DY/Slope= | Target= | Codes=CPDD | CPDD thickness
+- **LINK L14** | From=P6->P12 | Type=Link | DX= | DY/Slope= | Target= | Codes=CPDD | CPDD thickness
+- **SHAPE S4_CPDD** | From=P5 P11 P12 P6 | Type=Closed Shape | DX= | DY/Slope= | Target= | Codes=CPDD | Crushed aggregate base
+- **POINT P13** | From=P3 | Type=Slope and Delta X | DX=W_Le | DY/Slope=Slope_Le | Target= | Codes=Top,EPS | Shoulder/expansion edge
+- **POINT P14** | From=P13 | Type=Delta X on Surface | DX=0 | DY/Slope= | Target=EG | Codes=EG,Daylight | EG at shoulder edge
+- **DECISION D1_EG_VALID** | From= | Type=Condition | DX= | DY/Slope=EG.IsValid | Target=EG | Codes= | Target validity gate
+- **DECISION D2_DAYLIGHT** | From= | Type=Condition | DX= | DY/Slope=P13.Elevation > P14.Elevation | Target= | Codes= | Surface daylight branch
+- **DECISION D3_BOX** | From= | Type=Condition | DX= | DY/Slope=Z_BottomStructure > Z_EGminusHC | Target=EG | Codes= | Road-box cut/fill condition; expression must be bound to actual SAC points/variables
+- **POINT P15** | From=P13 | Type=Slope to Surface | DX= | DY/Slope=Slope_Fill | Target=EG | Codes=Daylight_Fill | Fill daylight
+- **LINK L15** | From=P13->P15 | Type=Link | DX= | DY/Slope= | Target= | Codes=Daylight_Fill | Fill slope
+- **POINT P16** | From=P13 | Type=Slope to Surface | DX= | DY/Slope=Slope_Cut | Target=EG | Codes=Daylight_Cut | Cut daylight
+- **LINK L16** | From=P13->P16 | Type=Link | DX= | DY/Slope= | Target= | Codes=Daylight_Cut | Cut slope
+- **SHAPE S5_FILL** | From=P13 P15 | Type=Fill closure required in SAC | DX= | DY/Slope= | Target= | Codes=DatCP | Variable fill to CPDD bottom; do not use fixed thickness
+- **SHAPE S6_CUT** | From=P13 P16 | Type=Cut closure required in SAC | DX= | DY/Slope= | Target= | Codes=DaoKhuon | Excavation/organic stripping; do not invent soil thickness
+
+## 5. Non-destructive bù vênh rule
+- Required condition: bottom of new BTXM must be at or above existing-road surface at every relevant offset over the 1.50 m half-width.
+- Endpoint equality/inequality alone is not a mathematical proof for arbitrary target surfaces.
+- Therefore the final SAC implementation must either use a verified continuous/target mechanism or explicitly sample and compare the required offsets. The script does not invent an unsupported MAX expression.
+
+## 6. Cut/fill rule
+- Required structural-bottom elevation is compared against EG after the 0.10 m organic strip.
+- If EG is above the required bottom: road-box excavation/cut branch.
+- If EG is below the required bottom: variable compacted-soil fill branch.
+- Fill thickness is calculated from actual elevations; it is not fixed at 0.30 m.
+
+## 7. Important SAC 2022 implementation facts
+- Use target validity as `EG.IsValid`.
+- Use `Delta X on Surface` for a point at a specified offset on a target surface.
+- Use `Slope and Delta X` for a point defined by slope and horizontal offset.
+- Use Sequences to organize flow and Decisions to branch.
+
+## 8. Automation boundary
+- This PS1 does not fabricate a PKT binary or undocumented PKT XML.
+- It creates the complete verified build ledger and performs targeted inspection of the installed SAC 2022 assemblies.
+- A direct PKT writer is only valid after its actual SAC 2022 object model and save path are proven from the installed assemblies.
+
+
+===== CSV STRUCTURE =====
+FILE=01_OBJECT_LEDGER.csv
+ROWS=41
+COLUMNS=Kind | Name | From | Type | DeltaX | DeltaY | Target | Codes | Note
+
+Kind     Name        From            Type                         DeltaX DeltaY                                Target         Codes                       Note
+----     ----        ----            ----                         ------ ------                                ------         -----                       ----
+POINT    P1          Origin          Origin                                                                                                               Assembly origin
+POINT    P2          P1              Delta X and Delta Y          0      Design_Profile.Elevation-P1.Elevation Design_Profile Top,Crown                   New crown
+POINT    P3          P2              Slope and Delta X            W_New  Slope_ThietKe                                        Top,ETW                     New edge
+LINK     L1          P2->P3          Link                                                                                     Top,Pave                    BTXM top
+POINT    P4          P2              Delta X and Delta Y          0      -Thick_BTXM                                          Subbase                     BTXM underside at crown
+POINT    P5          P3              Delta X and Delta Y          0      -Thick_BTXM                                          Subbase,ETW_Sub             BTXM underside at edge
+POINT    P6          P4              Slope and Delta X            W_Old  Slope_ThietKe                                        Subbase_Trong               BTXM underside at old-road edge
+LINK     L2          P4->P6          Link                                                                                     Datum,Nilon_Lop1,Nilon_Lop2 Two nylon sheets are represented by codes on the interface
+LINK     L3          P6->P5          Link                                                                                     Datum,Nilon_Lop1,Nilon_Lop2 Two nylon sheets
+LINK     L4          P2->P4          Link                                                                                                                 BTXM thickness
+LINK     L5          P3->P5          Link                                                                                                                 BTXM thickness
+SHAPE    S1_BTXM     System.Object[] Closed Shape                                                                             BTXM                        New concrete only
+POINT    P7          P1              Delta X on Surface           0                                            Old_Road       Old_Crown                   Existing road top at center
+POINT    P8          P7              Delta X on Surface           W_Old                                        Old_Road       Old_ETW                     Existing road top at edge
+POINT    P9          P7              Delta X and Delta Y          0      -Thick_Old                                           Old_Datum                   Existing road underside center
+POINT    P10         P8              Delta X and Delta Y          0      -Thick_Old                                           Old_Datum                   Existing road underside edge
+LINK     L6          P7->P8          Link                                                                                     Old_Pave                    Existing road surface
+LINK     L7          P9->P10         Link                                                                                     Old_Datum                   Existing road underside
+LINK     L8          P7->P9          Link                                                                                                                 Existing road boundary
+LINK     L9          P8->P10         Link                                                                                                                 Existing road boundary
+SHAPE    S2_OLDROAD  System.Object[] Closed Shape                                                                             ExistingRoad                Existing only; never count as new material
+LINK     L10         P8->P6          Link                                                                                     BuVenh                      Bù vênh edge
+LINK     L11         P7->P4          Link                                                                                     BuVenh                      Bù vênh center
+SHAPE    S3_BUVENH   System.Object[] Closed Shape                                                                             BuVenh                      New material above existing road
+POINT    P11         P5              Delta X and Delta Y          0      -Thick_CPDD                                          Top_DatCP                   CPDD bottom at new edge
+POINT    P12         P6              Delta X and Delta Y          0      -Thick_CPDD                                          Top_DatCP                   CPDD bottom at old-road edge
+LINK     L12         P12->P11        Link                                                                                     Top_DatCP                   CPDD bottom line
+LINK     L13         P5->P11         Link                                                                                     CPDD                        CPDD thickness
+LINK     L14         P6->P12         Link                                                                                     CPDD                        CPDD thickness
+SHAPE    S4_CPDD     System.Object[] Closed Shape                                                                             CPDD                        Crushed aggregate base
+POINT    P13         P3              Slope and Delta X            W_Le   Slope_Le                                             Top,EPS                     Shoulder/expansion edge
+POINT    P14         P13             Delta X on Surface           0                                            EG             EG,Daylight                 EG at shoulder edge
+DECISION D1_EG_VALID                 Condition                           EG.IsValid                            EG                                         Target validity gate
+DECISION D2_DAYLIGHT                 Condition                           P13.Elevation > P14.Elevation                                                    Surface daylight branch
+DECISION D3_BOX                      Condition                           Z_BottomStructure > Z_EGminusHC       EG                                         Road-box cut/fill condition; expression must be bound to actual SAC points/variables
+POINT    P15         P13             Slope to Surface                    Slope_Fill                            EG             Daylight_Fill               Fill daylight
+LINK     L15         P13->P15        Link                                                                                     Daylight_Fill               Fill slope
+POINT    P16         P13             Slope to Surface                    Slope_Cut                             EG             Daylight_Cut                Cut daylight
+LINK     L16         P13->P16        Link                                                                                     Daylight_Cut                Cut slope
+SHAPE    S5_FILL     System.Object[] Fill closure required in SAC                                                             DatCP                       Variable fill to CPDD bottom; do not use fixed thickness
+SHAPE    S6_CUT      System.Object[] Cut closure required in SAC                                                              DaoKhuon                    Excavation/organic stripping; do not invent soil thickness
+
+
+
+FILE=02_PARAMETERS.csv
+ROWS=11
+COLUMNS=Name | Type | Default | Description
+
+Name          Type   Default Description
+----          ----   ------- -----------
+W_New         Double 2.50    Half width of new BTXM
+Thick_BTXM    Double 0.20    New concrete thickness
+W_Old         Double 1.50    Half width of existing road
+Thick_Old     Double 0.18    Existing pavement thickness
+Slope_ThietKe Slope  -2.0%   Design crossfall
+Thick_CPDD    Double 0.12    CPDD thickness
+Thick_HC      Double 0.10    Organic stripping thickness
+W_Le          Double 1.00    Expansion/shoulder strip
+Slope_Le      Slope  -4.0%   Shoulder slope
+Slope_Cut     Slope  1:1     Cut slope
+Slope_Fill    Slope  1:1.5   Fill slope
+
+
+
+FILE=03_TARGETS.csv
+ROWS=3
+COLUMNS=Name | Type | Description
+
+Name           Type      Description
+----           ----      -----------
+Design_Profile Elevation Design profile target
+EG             Surface   Existing ground target
+Old_Road       Surface   Existing old-road target
+
+
+
+===== END =====
