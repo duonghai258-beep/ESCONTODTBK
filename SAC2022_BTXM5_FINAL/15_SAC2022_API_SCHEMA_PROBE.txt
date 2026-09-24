@@ -1,0 +1,1755 @@
+SAC 2022 ACTUAL API SCHEMA PROBE
+Date=2026-09-24T15:12:02
+Root=C:\Program Files\Autodesk\Subassembly Composer 2022
+
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.FileAccess.PktFileAccess
+Assembly=Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+PROPERTIES
+  System.String WorkingFolder CanRead=True CanWrite=False
+FIELDS
+  System.String _workingFolder Static=True
+METHODS
+  System.Void CreatePktFile(Autodesk.SubassemblyComposer.FileAccess.PktStructure pktStructure, System.String pktName)
+  Autodesk.SubassemblyComposer.FileAccess.PktStructure OpenPkt(System.String pktFileName)
+  System.String ExtractGuid(Autodesk.SubassemblyComposer.FileAccess.PktStructure pktStructure)
+  Autodesk.SubassemblyComposer.FileAccess.PktStructure LoadPktStructure(System.String pktWorkingFolder)
+  System.String GenerateGuid()
+  System.String GenerateWorkingFolder(System.String pktFileName)
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.FileAccess.PktStructure
+Assembly=Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+PROPERTIES
+FIELDS
+  System.String AtcFile Static=False
+  System.String CfgFile Static=False
+  System.String DllFile Static=False
+  System.String XamlFile Static=False
+  System.String ImageFile Static=False
+  System.String HelpFile Static=False
+  System.String EnumDataFile Static=False
+  System.String PreviewDataFile Static=False
+  System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] OtherFiles Static=False
+  System.String Guid Static=False
+  System.String WorkingFolder Static=False
+METHODS
+  System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] GetFiles()
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.FileAccess.ParamCollection
+Assembly=Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+  Void .ctor(System.String)
+PROPERTIES
+  System.String ToolName CanRead=True CanWrite=False
+  System.Int32 Count CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[Autodesk.SubassemblyComposer.FileAccess.ParamItem, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] Items CanRead=True CanWrite=False
+  Autodesk.SubassemblyComposer.FileAccess.ParamItem Item CanRead=True CanWrite=True
+FIELDS
+  System.String _toolName Static=False
+  System.String ENUM Static=True
+METHODS
+  System.Xml.Schema.XmlSchema GetSchema()
+  System.Void ReadXml(System.Xml.XmlReader reader)
+  System.Void WriteXml(System.Xml.XmlWriter writer)
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.FileAccess.ParamItem
+Assembly=Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+  Void .ctor(System.String, System.Type, System.String, System.String, System.String, System.String, System.String)
+PROPERTIES
+  System.String ParamName CanRead=True CanWrite=True
+  System.Type Datatype CanRead=True CanWrite=True
+  System.String TypeInfo CanRead=True CanWrite=True
+  System.String DisplayTypeName CanRead=True CanWrite=True
+  System.String DisplayName CanRead=True CanWrite=True
+  System.String Description CanRead=True CanWrite=True
+  System.String ParamValue CanRead=True CanWrite=True
+  Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection Direction CanRead=True CanWrite=True
+FIELDS
+  System.String _paramName Static=False
+  System.Type _dataType Static=False
+  System.String _typeInfo Static=False
+  System.String _displayTypeName Static=False
+  System.String _displayName Static=False
+  System.String _description Static=False
+  System.String _paramValue Static=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection _direction Static=False
+  System.String PARAMNAME Static=True
+  System.String PARAMVALUE Static=True
+  System.String DATATYPE Static=True
+  System.String TYPEINFO Static=True
+  System.String DISPLAYNAME Static=True
+  System.String DESCRIPTION Static=True
+  System.String DIRECTION Static=True
+METHODS
+  System.Void CopyFrom(Autodesk.SubassemblyComposer.FileAccess.ParamItem from)
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.FileAccess.SubassemblyItem
+Assembly=Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+  Void .ctor(System.String, System.String, Autodesk.SubassemblyComposer.FileAccess.ParamCollection)
+PROPERTIES
+  System.String GeometryGenerateMode CanRead=True CanWrite=True
+  Autodesk.SubassemblyComposer.FileAccess.DotNetClassItem DotNetClass CanRead=True CanWrite=True
+  Autodesk.SubassemblyComposer.FileAccess.ParamCollection Params CanRead=True CanWrite=True
+FIELDS
+  System.String <GeometryGenerateMode>k__BackingField Static=False
+  Autodesk.SubassemblyComposer.FileAccess.DotNetClassItem <DotNetClass>k__BackingField Static=False
+  Autodesk.SubassemblyComposer.FileAccess.ParamCollection <Params>k__BackingField Static=False
+METHODS
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.FileAccess.SerializerManager
+Assembly=Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+PROPERTIES
+FIELDS
+METHODS
+  System.Void SerializeToXml(System.String path,  obj)
+   DeserializeFromXml(System.String path)
+  System.String DeserializeAsText(System.String path)
+  System.Void SerializeAsText(System.String path, System.String content)
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.WorkflowEngine.ParameterTypeRegister
+Assembly=Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+PROPERTIES
+  Autodesk.SubassemblyComposer.WorkflowEngine.ParameterTypeRegister Instance CanRead=True CanWrite=False
+FIELDS
+  System.EventHandler`1[[System.EventArgs, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] UpdataEnum Static=False
+  System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[Autodesk.SubassemblyComposer.WorkflowEngine.ParameterTypeRegister+ParameterStruct, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] _dictionaryWithTypeName Static=False
+  System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[Autodesk.SubassemblyComposer.WorkflowEngine.ParameterTypeRegister+ParameterStruct, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] _dictionaryWithDisplayName Static=False
+  System.Collections.ObjectModel.ObservableCollection`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] _inoutOriginNames Static=False
+  System.Collections.ObjectModel.ObservableCollection`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] _targetOriginNames Static=False
+  System.Collections.ObjectModel.ObservableCollection`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] InoutUINames Static=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.ParameterTypeRegister _thisClass Static=True
+METHODS
+  System.Array InoutDisplayTypeNames()
+  System.Array TargetDisplayTypeNames()
+  System.Type GetDataTypeByDisplayName(System.String dataTypeDisplayName)
+  Autodesk.SubassemblyComposer.WorkflowEngine.IParameter CreateDefaultParameter(System.String name, System.String dataTypeDisplayName, Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection direction, System.String defaultValue)
+  Autodesk.SubassemblyComposer.WorkflowEngine.IParameter CreateDefaultTargetParameter(System.String name, System.Boolean bIsEnabled, System.Type paramType, Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection direction, System.String defaultValue)
+  Autodesk.SubassemblyComposer.WorkflowEngine.IParameter CreateParameter(System.Activities.DynamicActivityProperty property)
+  System.Void Instance_UpdataEnum(System.Object sender, System.EventArgs e)
+  System.Void Initialize()
+  Autodesk.SubassemblyComposer.WorkflowEngine.IParameter CreateParameter(System.String paramName, System.Type parameterType, System.Activities.Argument paramValue, Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection direction, System.String displayName, System.String description, System.Boolean bEnabled)
+  System.Type GetObjectParameterTypeByDisplayName(System.String dataTypeDisplayName)
+  System.Type GetObjectParameterTypeByTypeName(System.String typeName)
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.WorkflowEngine.ParameterFactory
+Assembly=Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+PROPERTIES
+FIELDS
+METHODS
+  System.String GetExpressionTextFromArgument(System.Activities.Argument argument)
+  System.Boolean ModelProperty_Add(System.Activities.Presentation.Model.ModelItemCollection properties, Autodesk.SubassemblyComposer.WorkflowEngine.IParameter paramItem, System.Int32 index)
+  System.Int32 ModelProperty_Remove(System.Activities.Presentation.Model.ModelItemCollection properties, System.String paramName)
+  System.Boolean ModelProperty_Modify(System.Activities.Presentation.Model.ModelItem root, System.Activities.Presentation.Model.ModelItemCollection properties, Autodesk.SubassemblyComposer.WorkflowEngine.IParameter newItem, System.String propertyName, System.String oldParameterName)
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.WorkflowEngine.IParameter
+Assembly=Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+PROPERTIES
+  System.String DisplayTypeName CanRead=True CanWrite=True
+  System.String ParamValue CanRead=True CanWrite=True
+  System.Type ArgumentType CanRead=True CanWrite=False
+  System.Activities.Argument ArgumentValue CanRead=True CanWrite=True
+  System.Type ParamType CanRead=True CanWrite=False
+  System.Boolean IsEnabled CanRead=True CanWrite=True
+FIELDS
+METHODS
+  System.Boolean AreEquals(Autodesk.SubassemblyComposer.WorkflowEngine.IParameter another)
+  Autodesk.SubassemblyComposer.WorkflowEngine.IParameter Clone()
+  System.Void CopyFrom(Autodesk.SubassemblyComposer.WorkflowEngine.IParameter sourceParam)
+  System.Boolean IsValid(System.String paramValue)
+  System.String FormatDisplayValue()
+  System.Void ParseValue(System.String paramValue)
+  System.Void SetDefaultValue()
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.WorkflowEngine.DoubleParameter
+Assembly=Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+PROPERTIES
+  System.Type ParamType CanRead=True CanWrite=False
+  System.String DisplayTypeName CanRead=True CanWrite=True
+  System.Object Value CanRead=True CanWrite=False
+  System.Type ArgumentType CanRead=True CanWrite=False
+  System.Activities.Argument ArgumentValue CanRead=True CanWrite=True
+  System.String Name CanRead=True CanWrite=True
+  System.String ParamValue CanRead=True CanWrite=True
+  System.Type Datatype CanRead=True CanWrite=True
+  Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection Direction CanRead=True CanWrite=True
+  System.String Description CanRead=True CanWrite=True
+  System.String DisplayName CanRead=True CanWrite=True
+  System.Boolean IsEnabled CanRead=True CanWrite=True
+FIELDS
+  System.Double _value Static=False
+  System.String _guid Static=False
+  System.String _name Static=False
+  System.String _paramValue Static=False
+  System.String _displayTypeName Static=False
+  System.Type _datatype Static=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection _direction Static=False
+  System.String _description Static=False
+  System.String _displayName Static=False
+  System.Boolean _isEnabled Static=False
+METHODS
+  Autodesk.SubassemblyComposer.WorkflowEngine.IParameter Clone()
+  System.Boolean IsValid(System.String paramValue)
+  System.Void ParseValue(System.String paramValue)
+  System.Void SetDefaultValue()
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.WorkflowEngine.GradeParameter
+Assembly=Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+PROPERTIES
+  System.Type ParamType CanRead=True CanWrite=False
+  System.String DisplayTypeName CanRead=True CanWrite=True
+  System.Object Value CanRead=True CanWrite=False
+  System.Type ArgumentType CanRead=True CanWrite=False
+  System.Activities.Argument ArgumentValue CanRead=True CanWrite=True
+  System.String Name CanRead=True CanWrite=True
+  System.String ParamValue CanRead=True CanWrite=True
+  System.Type Datatype CanRead=True CanWrite=True
+  Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection Direction CanRead=True CanWrite=True
+  System.String Description CanRead=True CanWrite=True
+  System.String DisplayName CanRead=True CanWrite=True
+  System.Boolean IsEnabled CanRead=True CanWrite=True
+FIELDS
+  Autodesk.SubassemblyComposer.WorkflowEngine.Grade _value Static=False
+  System.String _guid Static=False
+  System.String _name Static=False
+  System.String _paramValue Static=False
+  System.String _displayTypeName Static=False
+  System.Type _datatype Static=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection _direction Static=False
+  System.String _description Static=False
+  System.String _displayName Static=False
+  System.Boolean _isEnabled Static=False
+METHODS
+  System.String GetInArgumentValueExpressionText()
+  Autodesk.SubassemblyComposer.WorkflowEngine.IParameter Clone()
+  System.Boolean IsValid(System.String paramValue)
+  System.Void ParseValue(System.String paramValue)
+  System.String FormatDisplayValue()
+  System.Void SetDefaultValue()
+  System.String GetExpressionFromArgument(System.Activities.Argument argument)
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.WorkflowEngine.SlopeParameter
+Assembly=Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+PROPERTIES
+  System.Type ParamType CanRead=True CanWrite=False
+  System.String DisplayTypeName CanRead=True CanWrite=True
+  System.Object Value CanRead=True CanWrite=False
+  System.Type ArgumentType CanRead=True CanWrite=False
+  System.Activities.Argument ArgumentValue CanRead=True CanWrite=True
+  System.String Name CanRead=True CanWrite=True
+  System.String ParamValue CanRead=True CanWrite=True
+  System.Type Datatype CanRead=True CanWrite=True
+  Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection Direction CanRead=True CanWrite=True
+  System.String Description CanRead=True CanWrite=True
+  System.String DisplayName CanRead=True CanWrite=True
+  System.Boolean IsEnabled CanRead=True CanWrite=True
+FIELDS
+  Autodesk.SubassemblyComposer.WorkflowEngine.Slope _value Static=False
+  System.String _guid Static=False
+  System.String _name Static=False
+  System.String _paramValue Static=False
+  System.String _displayTypeName Static=False
+  System.Type _datatype Static=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection _direction Static=False
+  System.String _description Static=False
+  System.String _displayName Static=False
+  System.Boolean _isEnabled Static=False
+METHODS
+  System.String GetInArgumentValueExpressionText()
+  Autodesk.SubassemblyComposer.WorkflowEngine.IParameter Clone()
+  System.Boolean IsValid(System.String paramValue)
+  System.Void ParseValue(System.String paramValue)
+  System.String FormatDisplayValue()
+  System.Void SetDefaultValue()
+  System.String GetExpressionFromArgument(System.Activities.Argument argument)
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.WorkflowEngine.ElevationTargetParameter
+Assembly=Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+PROPERTIES
+  System.Type ParamType CanRead=True CanWrite=False
+  System.String DisplayTypeName CanRead=True CanWrite=True
+  System.Type ArgumentType CanRead=True CanWrite=False
+  System.Activities.Argument ArgumentValue CanRead=True CanWrite=True
+  System.Object Value CanRead=True CanWrite=False
+  System.String Name CanRead=True CanWrite=True
+  System.String ParamValue CanRead=True CanWrite=True
+  System.Type Datatype CanRead=True CanWrite=True
+  Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection Direction CanRead=True CanWrite=True
+  System.String Description CanRead=True CanWrite=True
+  System.String DisplayName CanRead=True CanWrite=True
+  System.Boolean IsEnabled CanRead=True CanWrite=True
+FIELDS
+  System.String _guid Static=False
+  System.String _name Static=False
+  System.String _paramValue Static=False
+  System.String _displayTypeName Static=False
+  System.Type _datatype Static=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection _direction Static=False
+  System.String _description Static=False
+  System.String _displayName Static=False
+  System.Boolean _isEnabled Static=False
+METHODS
+  Autodesk.SubassemblyComposer.WorkflowEngine.IParameter Clone()
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.WorkflowEngine.SurfaceTargetParameter
+Assembly=Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+PROPERTIES
+  System.Type ParamType CanRead=True CanWrite=False
+  System.String DisplayTypeName CanRead=True CanWrite=True
+  System.Type ArgumentType CanRead=True CanWrite=False
+  System.Activities.Argument ArgumentValue CanRead=True CanWrite=True
+  System.Object Value CanRead=True CanWrite=False
+  System.String Name CanRead=True CanWrite=True
+  System.String ParamValue CanRead=True CanWrite=True
+  System.Type Datatype CanRead=True CanWrite=True
+  Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection Direction CanRead=True CanWrite=True
+  System.String Description CanRead=True CanWrite=True
+  System.String DisplayName CanRead=True CanWrite=True
+  System.Boolean IsEnabled CanRead=True CanWrite=True
+FIELDS
+  System.String _guid Static=False
+  System.String _name Static=False
+  System.String _paramValue Static=False
+  System.String _displayTypeName Static=False
+  System.Type _datatype Static=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection _direction Static=False
+  System.String _description Static=False
+  System.String _displayName Static=False
+  System.Boolean _isEnabled Static=False
+METHODS
+  Autodesk.SubassemblyComposer.WorkflowEngine.IParameter Clone()
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.WorkflowEngine.OffsetTargetParameter
+Assembly=Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+PROPERTIES
+  System.Type ParamType CanRead=True CanWrite=False
+  System.String DisplayTypeName CanRead=True CanWrite=True
+  System.Type ArgumentType CanRead=True CanWrite=False
+  System.Activities.Argument ArgumentValue CanRead=True CanWrite=True
+  System.Object Value CanRead=True CanWrite=False
+  System.String Name CanRead=True CanWrite=True
+  System.String ParamValue CanRead=True CanWrite=True
+  System.Type Datatype CanRead=True CanWrite=True
+  Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection Direction CanRead=True CanWrite=True
+  System.String Description CanRead=True CanWrite=True
+  System.String DisplayName CanRead=True CanWrite=True
+  System.Boolean IsEnabled CanRead=True CanWrite=True
+FIELDS
+  System.String _guid Static=False
+  System.String _name Static=False
+  System.String _paramValue Static=False
+  System.String _displayTypeName Static=False
+  System.Type _datatype Static=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.ParameterDirection _direction Static=False
+  System.String _description Static=False
+  System.String _displayName Static=False
+  System.Boolean _isEnabled Static=False
+METHODS
+  Autodesk.SubassemblyComposer.WorkflowEngine.IParameter Clone()
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.WorkflowEngine.WorkflowHost
+Assembly=Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor(System.String, Boolean)
+  Void .cctor()
+PROPERTIES
+  Autodesk.SubassemblyComposer.WorkflowEngine.WorkflowHost RunningWorkflowHost CanRead=True CanWrite=False
+  System.Activities.DynamicActivity RootActivity CanRead=True CanWrite=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.Geometry SubassemblyGeometry CanRead=True CanWrite=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.SASide Side CanRead=True CanWrite=True
+  System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[Autodesk.SubassemblyComposer.WorkflowEngine.IParameter, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] InputParameters CanRead=True CanWrite=False
+  System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[Autodesk.SubassemblyComposer.WorkflowEngine.IParameter, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] OutputParameters CanRead=True CanWrite=False
+  System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[Autodesk.SubassemblyComposer.WorkflowEngine.TargetParameter, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] TargetParameters CanRead=True CanWrite=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.SubassemblyErrorCenter ErrorInfoCenter CanRead=True CanWrite=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.SubassemblyRunMode RunMode CanRead=True CanWrite=True
+  Autodesk.SubassemblyComposer.WorkflowEngine.BaselineInformation BaseLineInfo CanRead=True CanWrite=True
+  Autodesk.SubassemblyComposer.WorkflowEngine.CantInformation CantInfo CanRead=True CanWrite=True
+FIELDS
+  System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[Autodesk.SubassemblyComposer.WorkflowEngine.IParameter, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] _inputParameters Static=False
+  System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[Autodesk.SubassemblyComposer.WorkflowEngine.IParameter, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] _outputParameters Static=False
+  System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[Autodesk.SubassemblyComposer.WorkflowEngine.TargetParameter, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] _targetParameters Static=False
+  System.Activities.DynamicActivity _rootActivity Static=False
+  System.Activities.WorkflowInvoker _workflowInvoker Static=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.Geometry _saGeometry Static=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.SubassemblyErrorCenter _errorInfoCenter Static=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.SubassemblyRunMode _runMode Static=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.BaselineInformation _baselineInfo Static=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.CantInformation _cantInfo Static=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.SASide <Side>k__BackingField Static=False
+  Autodesk.SubassemblyComposer.WorkflowEngine.WorkflowHost _runningWorkflowHost Static=True
+  System.Int32 _staticParamsCount Static=True
+  System.String PARAM_SUBASSEMBLYGEOMETRY Static=True
+  System.String PARAM_SUBASSSEMBLYERRORINFOCENTER Static=True
+  System.String PARAM_RUNMODE Static=True
+METHODS
+  System.Activities.DynamicActivity Load(System.String fileName)
+  System.Activities.DynamicActivity Load(System.IO.TextReader textReader)
+  System.Collections.Generic.IDictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] Execute(System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] inputParams)
+  Autodesk.SubassemblyComposer.WorkflowEngine.ExecutedStatus Execute(System.Action`1[[System.Activities.WorkflowApplicationCompletedEventArgs, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] workflowApp_Completed)
+  System.Int32 GetStaticInputParametersCount()
+  System.Void PrepareInputParams(System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] inputParams)
+  System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] GetStaticInputParams()
+  System.Void InitParameters(System.Activities.DynamicActivity rootActivity)
+  Autodesk.SubassemblyComposer.WorkflowEngine.SASide GetSASide(System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] inputParams)
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.ActivityLibrary.CreatePoint
+Assembly=Subassembly.ActivityLibrary, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+PROPERTIES
+  Autodesk.SubassemblyComposer.ActivityLibrary.IPointRule CurrentRule CanRead=True CanWrite=False
+  System.Activities.InArgument`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] PointNumber CanRead=True CanWrite=True
+  System.Collections.Generic.List`1[[System.Activities.InArgument`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] PointCodes CanRead=True CanWrite=True
+  Autodesk.SubassemblyComposer.ActivityLibrary.PointGeometryType Positioning CanRead=True CanWrite=True
+  System.Activities.InArgument`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] FromPoint CanRead=True CanWrite=True
+  System.Activities.InArgument`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] AutoLink CanRead=True CanWrite=True
+  System.Activities.InArgument`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] AutoLinkGeometryName CanRead=True CanWrite=True
+  System.Collections.Generic.List`1[[System.Activities.InArgument`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] AutoLinkCodes CanRead=True CanWrite=True
+  System.Activities.InArgument`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] ApplyAOR CanRead=True CanWrite=True
+  System.Activities.InArgument`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] Side CanRead=True CanWrite=True
+  System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Activities.Argument, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] Arguments CanRead=True CanWrite=True
+  System.Activities.InOutArgument`1[[Autodesk.SubassemblyComposer.WorkflowEngine.Geometry, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] Geometry CanRead=True CanWrite=True
+  System.Boolean IsCreatingAux CanRead=True CanWrite=False
+  System.String DisplayName CanRead=True CanWrite=True
+  System.Activities.InArgument`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] ActivityId CanRead=True CanWrite=True
+  System.Activities.InOutArgument`1[[Autodesk.SubassemblyComposer.WorkflowEngine.SubassemblyErrorCenter, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] SubassemblyErrorCenter CanRead=True CanWrite=True
+  System.Activities.InOutArgument`1[[Autodesk.SubassemblyComposer.WorkflowEngine.SubassemblyRunMode, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] SubassemblyRunMode CanRead=True CanWrite=True
+  System.Boolean ShowErrors CanRead=True CanWrite=True
+  System.Version ImplementationVersion CanRead=True CanWrite=True
+  System.Func`1[[System.Activities.Activity, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] Implementation CanRead=True CanWrite=True
+  System.Collections.ObjectModel.Collection`1[[System.Activities.Validation.Constraint, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] Constraints CanRead=True CanWrite=False
+  System.Int32 CacheId CanRead=True CanWrite=False
+  System.Activities.Activity+RelationshipType RelationshipToParent CanRead=True CanWrite=False
+  System.Boolean HasNonEmptySubtree CanRead=True CanWrite=False
+  System.Int32 SymbolCount CanRead=True CanWrite=False
+  System.Activities.IdSpace MemberOf CanRead=True CanWrite=True
+  System.Activities.IdSpace ParentOf CanRead=True CanWrite=True
+  System.Activities.QualifiedId QualifiedId CanRead=True CanWrite=False
+  System.Boolean UseOldFastPath CanRead=True CanWrite=True
+  System.Boolean SkipArgumentResolution CanRead=True CanWrite=True
+  System.Boolean IsFastPath CanRead=True CanWrite=False
+  System.Boolean IsActivityWithResult CanRead=True CanWrite=False
+  System.Object Origin CanRead=True CanWrite=True
+  System.String Id CanRead=True CanWrite=False
+  System.Boolean IsExpressionRoot CanRead=True CanWrite=False
+  System.Boolean HasStartedCachingMetadata CanRead=True CanWrite=False
+  System.Boolean IsMetadataCached CanRead=True CanWrite=False
+  System.Boolean IsMetadataFullyCached CanRead=True CanWrite=False
+  System.Boolean IsRuntimeReady CanRead=True CanWrite=False
+  System.Activities.Activity RootActivity CanRead=True CanWrite=False
+  System.Int32 InternalId CanRead=True CanWrite=True
+  System.Activities.ActivityDelegate HandlerOf CanRead=True CanWrite=False
+  System.Activities.Activity Parent CanRead=True CanWrite=False
+  System.Activities.LocationReferenceEnvironment HostEnvironment CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.RuntimeArgument, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] RuntimeArguments CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Activity, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] Children CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Activity, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ImplementationChildren CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Activity, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ImportedChildren CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.ActivityDelegate, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] Delegates CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.ActivityDelegate, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ImplementationDelegates CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.ActivityDelegate, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ImportedDelegates CanRead=True CanWrite=False
+  System.Boolean HasBeenAssociatedWithAnInstance CanRead=True CanWrite=True
+  System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Collections.Generic.List`1[[System.Activities.RuntimeArgument, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] OverloadGroups CanRead=True CanWrite=True
+  System.Collections.Generic.List`1[[System.Activities.RuntimeArgument, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] RequiredArgumentsNotInOverloadGroups CanRead=True CanWrite=True
+  System.Activities.Validation.ValidationHelper+OverloadGroupEquivalenceInfo EquivalenceInfo CanRead=True CanWrite=True
+  System.Collections.Generic.IList`1[[System.Activities.Variable, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] RuntimeVariables CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Variable, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ImplementationVariables CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Validation.Constraint, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] RuntimeConstraints CanRead=True CanWrite=False
+  System.Activities.LocationReferenceEnvironment PublicEnvironment CanRead=True CanWrite=True
+  System.Activities.LocationReferenceEnvironment ImplementationEnvironment CanRead=True CanWrite=True
+  System.Boolean InternalCanInduceIdle CanRead=True CanWrite=False
+  System.Boolean HasTempViolations CanRead=True CanWrite=False
+  System.Object ThisLock CanRead=True CanWrite=False
+  System.Int32 RequiredExtensionTypesCount CanRead=True CanWrite=False
+  System.Int32 DefaultExtensionsCount CanRead=True CanWrite=False
+FIELDS
+  System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Activities.Argument, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] _arguments Static=False
+  System.Collections.Generic.Dictionary`2[[Autodesk.SubassemblyComposer.ActivityLibrary.PointGeometryType, Subassembly.ActivityLibrary, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null],[Autodesk.SubassemblyComposer.ActivityLibrary.IPointRule, Subassembly.ActivityLibrary, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] _rules Static=False
+  Autodesk.SubassemblyComposer.ActivityLibrary.IPointRule _currentRule Static=False
+  Autodesk.SubassemblyComposer.ActivityLibrary.PointGeometryType _creationType Static=False
+  System.Activities.InArgument`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] _pointNumber Static=False
+  System.Activities.InArgument`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] _linkName Static=False
+  System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.ComponentModel.PropertyDescriptorCollection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] _cachedProperties Static=False
+  System.EventHandler`1[[System.EventArgs, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] GeometryTypeChanged Static=False
+METHODS
+  System.Void PointNumberOnChanged(System.Object value)
+  System.Void PositioningOnChanged(System.Object value)
+  System.Void AutoLinkGeometryNameOnChanged(System.Object value)
+  System.Object GetPropertyValue(System.String propertyName)
+  System.Void SetPropertyValue(System.String propertyName, System.Object newValue)
+  System.ComponentModel.PropertyDescriptorCollection GetProperties()
+  System.Void LayoutExecute(System.Activities.CodeActivityContext context)
+  System.Void RoadwayExecute(System.Activities.CodeActivityContext context)
+  System.Void InternalExecute(System.Activities.CodeActivityContext context, Autodesk.SubassemblyComposer.WorkflowEngine.SubassemblyRunMode runMode)
+  System.Void CacheMetadata(System.Activities.CodeActivityMetadata metadata)
+  System.Object GetActivity(System.Int32 id, System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[Autodesk.SubassemblyComposer.ActivityLibrary.CustomActivity, Subassembly.ActivityLibrary, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] dictActivity)
+  System.Collections.Generic.List`1[[Autodesk.SubassemblyComposer.ActivityLibrary.CustomActivity, Subassembly.ActivityLibrary, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] GetActivityPath(System.Collections.Generic.IEnumerable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] lstIds, System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[Autodesk.SubassemblyComposer.ActivityLibrary.CustomActivity, Subassembly.ActivityLibrary, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] dictActivity)
+  System.Collections.Generic.List`1[[System.Activities.Validation.ValidationError, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] SubValidateInDesigntime(System.Int32 activityId)
+  System.Boolean IsOrigin(System.Activities.InArgument`1[[Autodesk.SubassemblyComposer.WorkflowEngine.Point, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] argument)
+  System.Boolean GeneratesPoint(System.String pointNumber)
+  System.Boolean DependsOnPoint(System.String pointNumber)
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.ActivityLibrary.CreateLink
+Assembly=Subassembly.ActivityLibrary, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+PROPERTIES
+  System.Activities.InArgument`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] LinkNumber CanRead=True CanWrite=True
+  System.Collections.Generic.List`1[[System.Activities.InArgument`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] LinkCodes CanRead=True CanWrite=True
+  System.Activities.InArgument`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] ApplyAOR CanRead=True CanWrite=True
+  System.Activities.InArgument`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] StartPoint CanRead=True CanWrite=True
+  System.Activities.InArgument`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] EndPoint CanRead=True CanWrite=True
+  System.Activities.InArgument`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] IsEnabled CanRead=True CanWrite=True
+  System.Activities.InOutArgument`1[[Autodesk.SubassemblyComposer.WorkflowEngine.Geometry, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] Geometry CanRead=True CanWrite=True
+  System.Boolean IsCreatingAux CanRead=True CanWrite=False
+  System.String DisplayName CanRead=True CanWrite=True
+  System.Activities.InArgument`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] ActivityId CanRead=True CanWrite=True
+  System.Activities.InOutArgument`1[[Autodesk.SubassemblyComposer.WorkflowEngine.SubassemblyErrorCenter, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] SubassemblyErrorCenter CanRead=True CanWrite=True
+  System.Activities.InOutArgument`1[[Autodesk.SubassemblyComposer.WorkflowEngine.SubassemblyRunMode, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] SubassemblyRunMode CanRead=True CanWrite=True
+  System.Boolean ShowErrors CanRead=True CanWrite=True
+  System.Version ImplementationVersion CanRead=True CanWrite=True
+  System.Func`1[[System.Activities.Activity, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] Implementation CanRead=True CanWrite=True
+  System.Collections.ObjectModel.Collection`1[[System.Activities.Validation.Constraint, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] Constraints CanRead=True CanWrite=False
+  System.Int32 CacheId CanRead=True CanWrite=False
+  System.Activities.Activity+RelationshipType RelationshipToParent CanRead=True CanWrite=False
+  System.Boolean HasNonEmptySubtree CanRead=True CanWrite=False
+  System.Int32 SymbolCount CanRead=True CanWrite=False
+  System.Activities.IdSpace MemberOf CanRead=True CanWrite=True
+  System.Activities.IdSpace ParentOf CanRead=True CanWrite=True
+  System.Activities.QualifiedId QualifiedId CanRead=True CanWrite=False
+  System.Boolean UseOldFastPath CanRead=True CanWrite=True
+  System.Boolean SkipArgumentResolution CanRead=True CanWrite=True
+  System.Boolean IsFastPath CanRead=True CanWrite=False
+  System.Boolean IsActivityWithResult CanRead=True CanWrite=False
+  System.Object Origin CanRead=True CanWrite=True
+  System.String Id CanRead=True CanWrite=False
+  System.Boolean IsExpressionRoot CanRead=True CanWrite=False
+  System.Boolean HasStartedCachingMetadata CanRead=True CanWrite=False
+  System.Boolean IsMetadataCached CanRead=True CanWrite=False
+  System.Boolean IsMetadataFullyCached CanRead=True CanWrite=False
+  System.Boolean IsRuntimeReady CanRead=True CanWrite=False
+  System.Activities.Activity RootActivity CanRead=True CanWrite=False
+  System.Int32 InternalId CanRead=True CanWrite=True
+  System.Activities.ActivityDelegate HandlerOf CanRead=True CanWrite=False
+  System.Activities.Activity Parent CanRead=True CanWrite=False
+  System.Activities.LocationReferenceEnvironment HostEnvironment CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.RuntimeArgument, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] RuntimeArguments CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Activity, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] Children CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Activity, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ImplementationChildren CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Activity, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ImportedChildren CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.ActivityDelegate, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] Delegates CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.ActivityDelegate, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ImplementationDelegates CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.ActivityDelegate, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ImportedDelegates CanRead=True CanWrite=False
+  System.Boolean HasBeenAssociatedWithAnInstance CanRead=True CanWrite=True
+  System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Collections.Generic.List`1[[System.Activities.RuntimeArgument, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] OverloadGroups CanRead=True CanWrite=True
+  System.Collections.Generic.List`1[[System.Activities.RuntimeArgument, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] RequiredArgumentsNotInOverloadGroups CanRead=True CanWrite=True
+  System.Activities.Validation.ValidationHelper+OverloadGroupEquivalenceInfo EquivalenceInfo CanRead=True CanWrite=True
+  System.Collections.Generic.IList`1[[System.Activities.Variable, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] RuntimeVariables CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Variable, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ImplementationVariables CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Validation.Constraint, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] RuntimeConstraints CanRead=True CanWrite=False
+  System.Activities.LocationReferenceEnvironment PublicEnvironment CanRead=True CanWrite=True
+  System.Activities.LocationReferenceEnvironment ImplementationEnvironment CanRead=True CanWrite=True
+  System.Boolean InternalCanInduceIdle CanRead=True CanWrite=False
+  System.Boolean HasTempViolations CanRead=True CanWrite=False
+  System.Object ThisLock CanRead=True CanWrite=False
+  System.Int32 RequiredExtensionTypesCount CanRead=True CanWrite=False
+  System.Int32 DefaultExtensionsCount CanRead=True CanWrite=False
+FIELDS
+  System.Activities.InArgument`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] _linkNumber Static=False
+  System.String c_StartPoint Static=True
+  System.String c_EndPoint Static=True
+  System.String c_LinkNumber Static=True
+  System.EventHandler`1[[System.EventArgs, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] GeometryTypeChanged Static=False
+METHODS
+  System.Void LinkNumberOnChanged(System.Object value)
+  System.Void LayoutExecute(System.Activities.CodeActivityContext context)
+  System.Void RoadwayExecute(System.Activities.CodeActivityContext context)
+  System.Void InternalExecute(System.Activities.CodeActivityContext context)
+  System.Void CacheMetadata(System.Activities.CodeActivityMetadata metadata)
+  System.Object GetActivity(System.Int32 id, System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[Autodesk.SubassemblyComposer.ActivityLibrary.CustomActivity, Subassembly.ActivityLibrary, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] dictActivity)
+  System.Collections.Generic.List`1[[Autodesk.SubassemblyComposer.ActivityLibrary.CustomActivity, Subassembly.ActivityLibrary, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] GetActivityPath(System.Collections.Generic.IEnumerable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] lstIds, System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[Autodesk.SubassemblyComposer.ActivityLibrary.CustomActivity, Subassembly.ActivityLibrary, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] dictActivity)
+  System.Collections.Generic.List`1[[System.Activities.Validation.ValidationError, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] SubValidateInDesigntime(System.Int32 activityId)
+  System.Boolean DependsOnPoint(System.String pointNumber)
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.ActivityLibrary.CreateShape
+Assembly=Subassembly.ActivityLibrary, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+PROPERTIES
+  System.Activities.InArgument`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] ShapeNumber CanRead=True CanWrite=True
+  System.Collections.Generic.List`1[[System.Activities.InArgument`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ShapeCodes CanRead=True CanWrite=True
+  System.Activities.InArgument`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] Links CanRead=True CanWrite=True
+  System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] ComponentNames CanRead=True CanWrite=False
+  System.Activities.InOutArgument`1[[Autodesk.SubassemblyComposer.WorkflowEngine.Geometry, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] Geometry CanRead=True CanWrite=True
+  System.Boolean IsCreatingAux CanRead=True CanWrite=False
+  System.String DisplayName CanRead=True CanWrite=True
+  System.Activities.InArgument`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] ActivityId CanRead=True CanWrite=True
+  System.Activities.InOutArgument`1[[Autodesk.SubassemblyComposer.WorkflowEngine.SubassemblyErrorCenter, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] SubassemblyErrorCenter CanRead=True CanWrite=True
+  System.Activities.InOutArgument`1[[Autodesk.SubassemblyComposer.WorkflowEngine.SubassemblyRunMode, Subassembly.WorkflowEngine, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] SubassemblyRunMode CanRead=True CanWrite=True
+  System.Boolean ShowErrors CanRead=True CanWrite=True
+  System.Version ImplementationVersion CanRead=True CanWrite=True
+  System.Func`1[[System.Activities.Activity, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] Implementation CanRead=True CanWrite=True
+  System.Collections.ObjectModel.Collection`1[[System.Activities.Validation.Constraint, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] Constraints CanRead=True CanWrite=False
+  System.Int32 CacheId CanRead=True CanWrite=False
+  System.Activities.Activity+RelationshipType RelationshipToParent CanRead=True CanWrite=False
+  System.Boolean HasNonEmptySubtree CanRead=True CanWrite=False
+  System.Int32 SymbolCount CanRead=True CanWrite=False
+  System.Activities.IdSpace MemberOf CanRead=True CanWrite=True
+  System.Activities.IdSpace ParentOf CanRead=True CanWrite=True
+  System.Activities.QualifiedId QualifiedId CanRead=True CanWrite=False
+  System.Boolean UseOldFastPath CanRead=True CanWrite=True
+  System.Boolean SkipArgumentResolution CanRead=True CanWrite=True
+  System.Boolean IsFastPath CanRead=True CanWrite=False
+  System.Boolean IsActivityWithResult CanRead=True CanWrite=False
+  System.Object Origin CanRead=True CanWrite=True
+  System.String Id CanRead=True CanWrite=False
+  System.Boolean IsExpressionRoot CanRead=True CanWrite=False
+  System.Boolean HasStartedCachingMetadata CanRead=True CanWrite=False
+  System.Boolean IsMetadataCached CanRead=True CanWrite=False
+  System.Boolean IsMetadataFullyCached CanRead=True CanWrite=False
+  System.Boolean IsRuntimeReady CanRead=True CanWrite=False
+  System.Activities.Activity RootActivity CanRead=True CanWrite=False
+  System.Int32 InternalId CanRead=True CanWrite=True
+  System.Activities.ActivityDelegate HandlerOf CanRead=True CanWrite=False
+  System.Activities.Activity Parent CanRead=True CanWrite=False
+  System.Activities.LocationReferenceEnvironment HostEnvironment CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.RuntimeArgument, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] RuntimeArguments CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Activity, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] Children CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Activity, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ImplementationChildren CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Activity, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ImportedChildren CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.ActivityDelegate, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] Delegates CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.ActivityDelegate, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ImplementationDelegates CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.ActivityDelegate, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ImportedDelegates CanRead=True CanWrite=False
+  System.Boolean HasBeenAssociatedWithAnInstance CanRead=True CanWrite=True
+  System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Collections.Generic.List`1[[System.Activities.RuntimeArgument, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] OverloadGroups CanRead=True CanWrite=True
+  System.Collections.Generic.List`1[[System.Activities.RuntimeArgument, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] RequiredArgumentsNotInOverloadGroups CanRead=True CanWrite=True
+  System.Activities.Validation.ValidationHelper+OverloadGroupEquivalenceInfo EquivalenceInfo CanRead=True CanWrite=True
+  System.Collections.Generic.IList`1[[System.Activities.Variable, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] RuntimeVariables CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Variable, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ImplementationVariables CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Validation.Constraint, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] RuntimeConstraints CanRead=True CanWrite=False
+  System.Activities.LocationReferenceEnvironment PublicEnvironment CanRead=True CanWrite=True
+  System.Activities.LocationReferenceEnvironment ImplementationEnvironment CanRead=True CanWrite=True
+  System.Boolean InternalCanInduceIdle CanRead=True CanWrite=False
+  System.Boolean HasTempViolations CanRead=True CanWrite=False
+  System.Object ThisLock CanRead=True CanWrite=False
+  System.Int32 RequiredExtensionTypesCount CanRead=True CanWrite=False
+  System.Int32 DefaultExtensionsCount CanRead=True CanWrite=False
+FIELDS
+  System.Activities.InArgument`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] _shapeNumber Static=False
+  System.String c_Links Static=True
+  System.Char linksSeparator Static=True
+  System.EventHandler`1[[System.EventArgs, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] GeometryTypeChanged Static=False
+METHODS
+  System.Void ShapeNumberOnChanged(System.Object value)
+  System.Void LayoutExecute(System.Activities.CodeActivityContext context)
+  System.Void RoadwayExecute(System.Activities.CodeActivityContext context)
+  System.Void InternalExecute(System.Activities.CodeActivityContext context)
+  System.Void CacheMetadata(System.Activities.CodeActivityMetadata metadata)
+  System.Collections.Generic.List`1[[System.Activities.Validation.ValidationError, System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] SubValidateInDesigntime(System.Int32 activityId)
+  System.Activities.Validation.ValidationError ConstructTempShape(Autodesk.SubassemblyComposer.WorkflowEngine.Shape shape, System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] linkNames, System.Collections.Generic.List`1[[Autodesk.SubassemblyComposer.WorkflowDesigntime.CodePathTreeNode, Subassembly.ActivityLibrary, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null]] path)
+  System.Void FindStartAndEndPointNames(Autodesk.SubassemblyComposer.WorkflowEngine.Link link, System.String linkName, System.Int32 activityId)
+  System.Void AddPoint(System.Activities.Presentation.Model.ModelItem modelItem, System.String proeprtyName, Autodesk.SubassemblyComposer.WorkflowEngine.Link link)
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.ActivityLibrary.ActivityDesigner.CreatePointDesigner
+Assembly=Subassembly.ActivityLibrary, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+PROPERTIES
+  System.Windows.Media.DrawingBrush Icon CanRead=True CanWrite=True
+  System.Collections.ObjectModel.ObservableCollection`1[[System.Activities.Presentation.ActivityDelegateInfo, System.Activities.Presentation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ActivityDelegates CanRead=True CanWrite=True
+  System.Boolean HasActivityDelegates CanRead=True CanWrite=True
+  System.String CustomItemStatus CanRead=True CanWrite=True
+  System.Activities.Presentation.EditingContext Context CanRead=True CanWrite=True
+  System.Boolean ExpandState CanRead=True CanWrite=True
+  System.Boolean PinState CanRead=True CanWrite=True
+  System.Boolean Collapsible CanRead=True CanWrite=True
+  System.Boolean IsRootDesigner CanRead=True CanWrite=True
+  System.Boolean IsAncestorOfRootDesigner CanRead=True CanWrite=True
+  System.Boolean ShowExpanded CanRead=True CanWrite=False
+  System.Activities.Presentation.Model.ModelItem ModelItem CanRead=True CanWrite=True
+  System.Windows.FrameworkElement DragHandle CanRead=True CanWrite=True
+  System.Boolean IsReadOnly CanRead=True CanWrite=False
+  System.Activities.Presentation.ICompositeView ActiveCompositeView CanRead=True CanWrite=False
+  System.Activities.Presentation.Services.ViewService ViewService CanRead=True CanWrite=False
+  System.Activities.Presentation.View.ViewStateService ViewStateService CanRead=True CanWrite=False
+  System.Activities.Presentation.View.DesignerView Designer CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Presentation.ICompositeView, System.Activities.Presentation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] CompositeViews CanRead=True CanWrite=False
+  System.Activities.Presentation.ICompositeView DefaultCompositeView CanRead=True CanWrite=False
+  System.Boolean DraggingMultipleItemsEnabled CanRead=True CanWrite=False
+  System.Collections.IEnumerator LogicalChildren CanRead=True CanWrite=False
+  System.Object Content CanRead=True CanWrite=True
+  System.Boolean HasContent CanRead=True CanWrite=False
+  System.Windows.DataTemplate ContentTemplate CanRead=True CanWrite=True
+  System.Windows.Controls.DataTemplateSelector ContentTemplateSelector CanRead=True CanWrite=True
+  System.String ContentStringFormat CanRead=True CanWrite=True
+  System.Boolean ContentIsNotLogical CanRead=True CanWrite=True
+  System.Boolean ContentIsItem CanRead=True CanWrite=True
+  System.Int32 EffectiveValuesInitialSize CanRead=True CanWrite=False
+  System.Windows.DependencyObjectType DTypeThemeStyleKey CanRead=True CanWrite=False
+  System.Windows.Media.Brush BorderBrush CanRead=True CanWrite=True
+  System.Windows.Thickness BorderThickness CanRead=True CanWrite=True
+  System.Windows.Media.Brush Background CanRead=True CanWrite=True
+  System.Windows.Media.Brush Foreground CanRead=True CanWrite=True
+  System.Windows.Media.FontFamily FontFamily CanRead=True CanWrite=True
+  System.Double FontSize CanRead=True CanWrite=True
+  System.Windows.FontStretch FontStretch CanRead=True CanWrite=True
+  System.Windows.FontStyle FontStyle CanRead=True CanWrite=True
+  System.Windows.FontWeight FontWeight CanRead=True CanWrite=True
+  System.Windows.HorizontalAlignment HorizontalContentAlignment CanRead=True CanWrite=True
+  System.Windows.VerticalAlignment VerticalContentAlignment CanRead=True CanWrite=True
+  System.Int32 TabIndex CanRead=True CanWrite=True
+  System.Boolean IsTabStop CanRead=True CanWrite=True
+  System.Windows.Thickness Padding CanRead=True CanWrite=True
+  System.Windows.Controls.ControlTemplate Template CanRead=True CanWrite=True
+  System.Windows.FrameworkTemplate TemplateInternal CanRead=True CanWrite=False
+  System.Windows.FrameworkTemplate TemplateCache CanRead=True CanWrite=True
+  System.Boolean HandlesScrolling CanRead=True CanWrite=False
+  System.Boolean VisualStateChangeSuspended CanRead=True CanWrite=True
+  System.Windows.Style Style CanRead=True CanWrite=True
+  System.Boolean OverridesDefaultStyle CanRead=True CanWrite=True
+  System.Boolean UseLayoutRounding CanRead=True CanWrite=True
+  System.Object DefaultStyleKey CanRead=True CanWrite=True
+  System.Windows.Style ThemeStyle CanRead=True CanWrite=False
+  System.Windows.TriggerCollection Triggers CanRead=True CanWrite=False
+  System.Windows.DependencyObject TemplatedParent CanRead=True CanWrite=False
+  System.Boolean IsTemplateRoot CanRead=True CanWrite=False
+  System.Windows.UIElement TemplateChild CanRead=True CanWrite=True
+  System.Windows.FrameworkElement StateGroupsRoot CanRead=True CanWrite=False
+  System.Int32 VisualChildrenCount CanRead=True CanWrite=False
+  System.Boolean HasResources CanRead=True CanWrite=False
+  System.Windows.ResourceDictionary Resources CanRead=True CanWrite=True
+  System.Windows.InheritanceBehavior InheritanceBehavior CanRead=True CanWrite=True
+  System.Object DataContext CanRead=True CanWrite=True
+  System.Windows.Data.BindingGroup BindingGroup CanRead=True CanWrite=True
+  System.Windows.Markup.XmlLanguage Language CanRead=True CanWrite=True
+  System.String Name CanRead=True CanWrite=True
+  System.Object Tag CanRead=True CanWrite=True
+  System.Windows.Input.InputScope InputScope CanRead=True CanWrite=True
+  System.Double ActualWidth CanRead=True CanWrite=False
+  System.Double ActualHeight CanRead=True CanWrite=False
+  System.Windows.Media.Transform LayoutTransform CanRead=True CanWrite=True
+  System.Double Width CanRead=True CanWrite=True
+  System.Double MinWidth CanRead=True CanWrite=True
+  System.Double MaxWidth CanRead=True CanWrite=True
+  System.Double Height CanRead=True CanWrite=True
+  System.Double MinHeight CanRead=True CanWrite=True
+  System.Double MaxHeight CanRead=True CanWrite=True
+  System.Windows.FlowDirection FlowDirection CanRead=True CanWrite=True
+  System.Windows.Thickness Margin CanRead=True CanWrite=True
+  System.Windows.HorizontalAlignment HorizontalAlignment CanRead=True CanWrite=True
+  System.Windows.VerticalAlignment VerticalAlignment CanRead=True CanWrite=True
+  System.Windows.Style FocusVisualStyle CanRead=True CanWrite=True
+  System.Windows.Input.Cursor Cursor CanRead=True CanWrite=True
+  System.Boolean ForceCursor CanRead=True CanWrite=True
+  System.Boolean IsInitialized CanRead=True CanWrite=False
+  System.Boolean IsLoaded CanRead=True CanWrite=False
+  System.Object ToolTip CanRead=True CanWrite=True
+  System.Windows.Controls.ContextMenu ContextMenu CanRead=True CanWrite=True
+  System.Boolean HasResourceReference CanRead=True CanWrite=True
+  System.Boolean IsLogicalChildrenIterationInProgress CanRead=True CanWrite=True
+  System.Boolean InVisibilityCollapsedTree CanRead=True CanWrite=True
+  System.Boolean SubtreeHasLoadedChangeHandler CanRead=True CanWrite=True
+  System.Boolean IsLoadedCache CanRead=True CanWrite=True
+  System.Boolean IsParentAnFE CanRead=True CanWrite=True
+  System.Boolean IsTemplatedParentAnFE CanRead=True CanWrite=True
+  System.Boolean HasLogicalChildren CanRead=True CanWrite=True
+  System.Boolean IsRightToLeft CanRead=True CanWrite=True
+  System.Int32 TemplateChildIndex CanRead=True CanWrite=True
+  System.Boolean IsRequestingExpression CanRead=True CanWrite=True
+  System.Boolean BypassLayoutPolicies CanRead=True CanWrite=True
+  System.Windows.DependencyObject Parent CanRead=True CanWrite=False
+  System.Boolean ThisHasLoadedChangeEventHandler CanRead=True CanWrite=False
+  System.Boolean HasFefLoadedChangeHandler CanRead=True CanWrite=False
+  System.Windows.DependencyObject InheritanceContext CanRead=True CanWrite=False
+  System.Boolean IsStyleUpdateInProgress CanRead=True CanWrite=True
+  System.Boolean IsThemeStyleUpdateInProgress CanRead=True CanWrite=True
+  System.Boolean StoresParentTemplateValues CanRead=True CanWrite=True
+  System.Boolean HasNumberSubstitutionChanged CanRead=True CanWrite=True
+  System.Boolean HasTemplateGeneratedSubTree CanRead=True CanWrite=True
+  System.Boolean HasImplicitStyleFromResources CanRead=True CanWrite=True
+  System.Boolean ShouldLookupImplicitStyles CanRead=True CanWrite=True
+  System.Boolean IsStyleSetFromGenerator CanRead=True CanWrite=True
+  System.Boolean HasStyleChanged CanRead=True CanWrite=True
+  System.Boolean HasTemplateChanged CanRead=True CanWrite=True
+  System.Boolean HasStyleInvalidated CanRead=True CanWrite=True
+  System.Boolean HasStyleEverBeenFetched CanRead=True CanWrite=True
+  System.Boolean HasLocalStyle CanRead=True CanWrite=True
+  System.Boolean HasThemeStyleEverBeenFetched CanRead=True CanWrite=True
+  System.Boolean AncestorChangeInProgress CanRead=True CanWrite=True
+  MS.Utility.FrugalObjectList`1[[System.Windows.DependencyProperty, WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] InheritableProperties CanRead=True CanWrite=True
+  System.Object[] LoadedPending CanRead=True CanWrite=False
+  System.Object[] UnloadedPending CanRead=True CanWrite=False
+  System.Boolean HasMultipleInheritanceContexts CanRead=True CanWrite=False
+  System.Boolean PotentiallyHasMentees CanRead=True CanWrite=True
+  System.Boolean HasAnimatedProperties CanRead=True CanWrite=False
+  System.Windows.Input.InputBindingCollection InputBindings CanRead=True CanWrite=False
+  System.Windows.Input.InputBindingCollection InputBindingsInternal CanRead=True CanWrite=False
+  System.Windows.Input.CommandBindingCollection CommandBindings CanRead=True CanWrite=False
+  System.Windows.Input.CommandBindingCollection CommandBindingsInternal CanRead=True CanWrite=False
+  System.Windows.EventHandlersStore EventHandlersStore CanRead=True CanWrite=False
+  System.Boolean AllowDrop CanRead=True CanWrite=True
+  System.Windows.Input.StylusPlugIns.StylusPlugInCollection StylusPlugIns CanRead=True CanWrite=False
+  System.Windows.Size DesiredSize CanRead=True CanWrite=False
+  System.Windows.Size PreviousConstraint CanRead=True CanWrite=False
+  System.Boolean IsMeasureValid CanRead=True CanWrite=False
+  System.Boolean IsArrangeValid CanRead=True CanWrite=False
+  System.Windows.Size RenderSize CanRead=True CanWrite=True
+  System.Windows.Media.Transform RenderTransform CanRead=True CanWrite=True
+  System.Windows.Point RenderTransformOrigin CanRead=True CanWrite=True
+  System.Boolean IsMouseDirectlyOver CanRead=True CanWrite=False
+  System.Boolean IsMouseOver CanRead=True CanWrite=False
+  System.Boolean IsStylusOver CanRead=True CanWrite=False
+  System.Boolean IsKeyboardFocusWithin CanRead=True CanWrite=False
+  System.Boolean IsMouseCaptured CanRead=True CanWrite=False
+  System.Boolean IsMouseCaptureWithin CanRead=True CanWrite=False
+  System.Boolean IsStylusDirectlyOver CanRead=True CanWrite=False
+  System.Boolean IsStylusCaptured CanRead=True CanWrite=False
+  System.Boolean IsStylusCaptureWithin CanRead=True CanWrite=False
+  System.Boolean IsKeyboardFocused CanRead=True CanWrite=False
+  System.Boolean IsInputMethodEnabled CanRead=True CanWrite=False
+  System.Double Opacity CanRead=True CanWrite=True
+  System.Windows.Media.Brush OpacityMask CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffect BitmapEffect CanRead=True CanWrite=True
+  System.Windows.Media.Effects.Effect Effect CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffectInput BitmapEffectInput CanRead=True CanWrite=True
+  System.Windows.Media.CacheMode CacheMode CanRead=True CanWrite=True
+  System.String Uid CanRead=True CanWrite=True
+  System.Windows.Visibility Visibility CanRead=True CanWrite=True
+  System.Boolean ClipToBounds CanRead=True CanWrite=True
+  System.Windows.Media.Geometry Clip CanRead=True CanWrite=True
+  System.Boolean SnapsToDevicePixels CanRead=True CanWrite=True
+  System.Boolean HasEffectiveKeyboardFocus CanRead=True CanWrite=False
+  System.Boolean IsFocused CanRead=True CanWrite=False
+  System.Boolean IsEnabled CanRead=True CanWrite=True
+  System.Boolean IsEnabledCore CanRead=True CanWrite=False
+  System.Boolean IsHitTestVisible CanRead=True CanWrite=True
+  System.Boolean IsVisible CanRead=True CanWrite=False
+  System.Boolean Focusable CanRead=True CanWrite=True
+  System.Int32 PersistId CanRead=True CanWrite=False
+  System.Windows.Rect PreviousArrangeRect CanRead=True CanWrite=False
+  System.Boolean IsManipulationEnabled CanRead=True CanWrite=True
+  System.Boolean AreAnyTouchesOver CanRead=True CanWrite=False
+  System.Boolean AreAnyTouchesDirectlyOver CanRead=True CanWrite=False
+  System.Boolean AreAnyTouchesCapturedWithin CanRead=True CanWrite=False
+  System.Boolean AreAnyTouchesCaptured CanRead=True CanWrite=False
+  System.Collections.Generic.IEnumerable`1[[System.Windows.Input.TouchDevice, PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] TouchesCaptured CanRead=True CanWrite=False
+  System.Collections.Generic.IEnumerable`1[[System.Windows.Input.TouchDevice, PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] TouchesCapturedWithin CanRead=True CanWrite=False
+  System.Collections.Generic.IEnumerable`1[[System.Windows.Input.TouchDevice, PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] TouchesOver CanRead=True CanWrite=False
+  System.Collections.Generic.IEnumerable`1[[System.Windows.Input.TouchDevice, PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] TouchesDirectlyOver CanRead=True CanWrite=False
+  System.Windows.UIElement PositionAndSizeOfSetController CanRead=True CanWrite=True
+  System.Boolean HasAutomationPeer CanRead=True CanWrite=True
+  System.Boolean SnapsToDevicePixelsCache CanRead=True CanWrite=True
+  System.Boolean ClipToBoundsCache CanRead=True CanWrite=True
+  System.Boolean MeasureDirty CanRead=True CanWrite=True
+  System.Boolean ArrangeDirty CanRead=True CanWrite=True
+  System.Boolean MeasureInProgress CanRead=True CanWrite=True
+  System.Boolean ArrangeInProgress CanRead=True CanWrite=True
+  System.Boolean NeverMeasured CanRead=True CanWrite=True
+  System.Boolean NeverArranged CanRead=True CanWrite=True
+  System.Boolean MeasureDuringArrange CanRead=True CanWrite=True
+  System.Boolean AreTransformsClean CanRead=True CanWrite=True
+  System.Boolean IsVisualChildrenIterationInProgress CanRead=True CanWrite=True
+  System.Boolean IsRootElement CanRead=True CanWrite=True
+  System.Windows.Rect VisualContentBounds CanRead=True CanWrite=False
+  System.Windows.Rect VisualDescendantBounds CanRead=True CanWrite=False
+  System.Int32 InternalVisualChildrenCount CanRead=True CanWrite=False
+  System.Int32 InternalVisual2DOr3DChildrenCount CanRead=True CanWrite=False
+  System.Boolean HasVisualChildren CanRead=True CanWrite=False
+  System.UInt32 TreeLevel CanRead=True CanWrite=True
+  System.Windows.DependencyObject VisualParent CanRead=True CanWrite=False
+  System.Windows.DependencyObject InternalVisualParent CanRead=True CanWrite=False
+  System.Windows.Media.Transform VisualTransform CanRead=True CanWrite=True
+  System.Windows.Media.Effects.Effect VisualEffect CanRead=True CanWrite=True
+  System.Windows.Media.Effects.Effect VisualEffectInternal CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffect VisualBitmapEffect CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffectInput VisualBitmapEffectInput CanRead=True CanWrite=True
+  System.Boolean BitmapEffectEmulationDisabled CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffect VisualBitmapEffectInternal CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffectInput VisualBitmapEffectInputInternal CanRead=True CanWrite=True
+  System.Windows.Media.CacheMode VisualCacheMode CanRead=True CanWrite=True
+  System.Nullable`1[[System.Windows.Rect, WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] VisualScrollableAreaClip CanRead=True CanWrite=True
+  System.Windows.Media.Geometry VisualClip CanRead=True CanWrite=True
+  System.Windows.Vector VisualOffset CanRead=True CanWrite=True
+  System.Double VisualOpacity CanRead=True CanWrite=True
+  System.Windows.Media.EdgeMode VisualEdgeMode CanRead=True CanWrite=True
+  System.Windows.Media.BitmapScalingMode VisualBitmapScalingMode CanRead=True CanWrite=True
+  System.Windows.Media.ClearTypeHint VisualClearTypeHint CanRead=True CanWrite=True
+  System.Windows.Media.TextRenderingMode VisualTextRenderingMode CanRead=True CanWrite=True
+  System.Windows.Media.TextHintingMode VisualTextHintingMode CanRead=True CanWrite=True
+  System.Windows.Media.Brush VisualOpacityMask CanRead=True CanWrite=True
+  System.Windows.Media.DoubleCollection VisualXSnappingGuidelines CanRead=True CanWrite=True
+  System.Windows.Media.DoubleCollection VisualYSnappingGuidelines CanRead=True CanWrite=True
+  System.EventHandler ClipChangedHandler CanRead=True CanWrite=False
+  System.EventHandler ScrollableAreaClipChangedHandler CanRead=True CanWrite=False
+  System.EventHandler TransformChangedHandler CanRead=True CanWrite=False
+  System.EventHandler EffectChangedHandler CanRead=True CanWrite=False
+  System.EventHandler CacheModeChangedHandler CanRead=True CanWrite=False
+  System.EventHandler GuidelinesChangedHandler CanRead=True CanWrite=False
+  System.EventHandler OpacityMaskChangedHandler CanRead=True CanWrite=False
+  System.EventHandler ContentsChangedHandler CanRead=True CanWrite=False
+  System.Windows.DependencyObjectType DependencyObjectType CanRead=True CanWrite=False
+  System.Boolean IsSealed CanRead=True CanWrite=False
+  System.Boolean IsInheritanceContextSealed CanRead=True CanWrite=True
+  System.Boolean Freezable_Frozen CanRead=True CanWrite=True
+  System.Boolean Freezable_HasMultipleInheritanceContexts CanRead=True CanWrite=True
+  System.Boolean Freezable_UsingHandlerList CanRead=True CanWrite=True
+  System.Boolean Freezable_UsingContextList CanRead=True CanWrite=True
+  System.Boolean Freezable_UsingSingletonHandler CanRead=True CanWrite=True
+  System.Boolean Freezable_UsingSingletonContext CanRead=True CanWrite=True
+  System.Boolean Animatable_IsResourceInvalidationNecessary CanRead=True CanWrite=True
+  System.Boolean IAnimatable_HasAnimatedProperties CanRead=True CanWrite=True
+  System.Boolean CanBeInheritanceContext CanRead=True CanWrite=True
+  System.Windows.EffectiveValueEntry[] EffectiveValues CanRead=True CanWrite=False
+  System.UInt32 EffectiveValuesCount CanRead=True CanWrite=False
+  System.UInt32 InheritableEffectiveValuesCount CanRead=True CanWrite=True
+  System.Windows.DependencyObject InheritanceParent CanRead=True CanWrite=False
+  System.Boolean IsSelfInheritanceParent CanRead=True CanWrite=False
+  System.Windows.Threading.Dispatcher Dispatcher CanRead=True CanWrite=False
+FIELDS
+  System.Boolean _contentLoaded Static=False
+  System.Windows.Controls.Control+ControlBoolFlags _controlBoolField Static=False
+  System.Windows.DependencyObject _templatedParent Static=False
+  System.Windows.ContextLayoutManager+LayoutQueue+Request MeasureRequest Static=False
+  System.Windows.ContextLayoutManager+LayoutQueue+Request ArrangeRequest Static=False
+  System.Windows.SizeChangedInfo sizeChangedInfo Static=False
+  System.Int32 _parentIndex Static=False
+  System.Windows.DependencyObject _parent Static=False
+  System.Windows.Media.Composition.VisualProxy _proxy Static=False
+  System.Object _contextStorage Static=False
+METHODS
+  System.Void InitializeComponent()
+  System.Void System.Windows.Markup.IComponentConnector.Connect(System.Int32 connectionId, System.Object target)
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.ActivityLibrary.ActivityDesigner.CreateLinkDesigner
+Assembly=Subassembly.ActivityLibrary, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+PROPERTIES
+  System.Windows.Media.DrawingBrush Icon CanRead=True CanWrite=True
+  System.Collections.ObjectModel.ObservableCollection`1[[System.Activities.Presentation.ActivityDelegateInfo, System.Activities.Presentation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ActivityDelegates CanRead=True CanWrite=True
+  System.Boolean HasActivityDelegates CanRead=True CanWrite=True
+  System.String CustomItemStatus CanRead=True CanWrite=True
+  System.Activities.Presentation.EditingContext Context CanRead=True CanWrite=True
+  System.Boolean ExpandState CanRead=True CanWrite=True
+  System.Boolean PinState CanRead=True CanWrite=True
+  System.Boolean Collapsible CanRead=True CanWrite=True
+  System.Boolean IsRootDesigner CanRead=True CanWrite=True
+  System.Boolean IsAncestorOfRootDesigner CanRead=True CanWrite=True
+  System.Boolean ShowExpanded CanRead=True CanWrite=False
+  System.Activities.Presentation.Model.ModelItem ModelItem CanRead=True CanWrite=True
+  System.Windows.FrameworkElement DragHandle CanRead=True CanWrite=True
+  System.Boolean IsReadOnly CanRead=True CanWrite=False
+  System.Activities.Presentation.ICompositeView ActiveCompositeView CanRead=True CanWrite=False
+  System.Activities.Presentation.Services.ViewService ViewService CanRead=True CanWrite=False
+  System.Activities.Presentation.View.ViewStateService ViewStateService CanRead=True CanWrite=False
+  System.Activities.Presentation.View.DesignerView Designer CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Presentation.ICompositeView, System.Activities.Presentation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] CompositeViews CanRead=True CanWrite=False
+  System.Activities.Presentation.ICompositeView DefaultCompositeView CanRead=True CanWrite=False
+  System.Boolean DraggingMultipleItemsEnabled CanRead=True CanWrite=False
+  System.Collections.IEnumerator LogicalChildren CanRead=True CanWrite=False
+  System.Object Content CanRead=True CanWrite=True
+  System.Boolean HasContent CanRead=True CanWrite=False
+  System.Windows.DataTemplate ContentTemplate CanRead=True CanWrite=True
+  System.Windows.Controls.DataTemplateSelector ContentTemplateSelector CanRead=True CanWrite=True
+  System.String ContentStringFormat CanRead=True CanWrite=True
+  System.Boolean ContentIsNotLogical CanRead=True CanWrite=True
+  System.Boolean ContentIsItem CanRead=True CanWrite=True
+  System.Int32 EffectiveValuesInitialSize CanRead=True CanWrite=False
+  System.Windows.DependencyObjectType DTypeThemeStyleKey CanRead=True CanWrite=False
+  System.Windows.Media.Brush BorderBrush CanRead=True CanWrite=True
+  System.Windows.Thickness BorderThickness CanRead=True CanWrite=True
+  System.Windows.Media.Brush Background CanRead=True CanWrite=True
+  System.Windows.Media.Brush Foreground CanRead=True CanWrite=True
+  System.Windows.Media.FontFamily FontFamily CanRead=True CanWrite=True
+  System.Double FontSize CanRead=True CanWrite=True
+  System.Windows.FontStretch FontStretch CanRead=True CanWrite=True
+  System.Windows.FontStyle FontStyle CanRead=True CanWrite=True
+  System.Windows.FontWeight FontWeight CanRead=True CanWrite=True
+  System.Windows.HorizontalAlignment HorizontalContentAlignment CanRead=True CanWrite=True
+  System.Windows.VerticalAlignment VerticalContentAlignment CanRead=True CanWrite=True
+  System.Int32 TabIndex CanRead=True CanWrite=True
+  System.Boolean IsTabStop CanRead=True CanWrite=True
+  System.Windows.Thickness Padding CanRead=True CanWrite=True
+  System.Windows.Controls.ControlTemplate Template CanRead=True CanWrite=True
+  System.Windows.FrameworkTemplate TemplateInternal CanRead=True CanWrite=False
+  System.Windows.FrameworkTemplate TemplateCache CanRead=True CanWrite=True
+  System.Boolean HandlesScrolling CanRead=True CanWrite=False
+  System.Boolean VisualStateChangeSuspended CanRead=True CanWrite=True
+  System.Windows.Style Style CanRead=True CanWrite=True
+  System.Boolean OverridesDefaultStyle CanRead=True CanWrite=True
+  System.Boolean UseLayoutRounding CanRead=True CanWrite=True
+  System.Object DefaultStyleKey CanRead=True CanWrite=True
+  System.Windows.Style ThemeStyle CanRead=True CanWrite=False
+  System.Windows.TriggerCollection Triggers CanRead=True CanWrite=False
+  System.Windows.DependencyObject TemplatedParent CanRead=True CanWrite=False
+  System.Boolean IsTemplateRoot CanRead=True CanWrite=False
+  System.Windows.UIElement TemplateChild CanRead=True CanWrite=True
+  System.Windows.FrameworkElement StateGroupsRoot CanRead=True CanWrite=False
+  System.Int32 VisualChildrenCount CanRead=True CanWrite=False
+  System.Boolean HasResources CanRead=True CanWrite=False
+  System.Windows.ResourceDictionary Resources CanRead=True CanWrite=True
+  System.Windows.InheritanceBehavior InheritanceBehavior CanRead=True CanWrite=True
+  System.Object DataContext CanRead=True CanWrite=True
+  System.Windows.Data.BindingGroup BindingGroup CanRead=True CanWrite=True
+  System.Windows.Markup.XmlLanguage Language CanRead=True CanWrite=True
+  System.String Name CanRead=True CanWrite=True
+  System.Object Tag CanRead=True CanWrite=True
+  System.Windows.Input.InputScope InputScope CanRead=True CanWrite=True
+  System.Double ActualWidth CanRead=True CanWrite=False
+  System.Double ActualHeight CanRead=True CanWrite=False
+  System.Windows.Media.Transform LayoutTransform CanRead=True CanWrite=True
+  System.Double Width CanRead=True CanWrite=True
+  System.Double MinWidth CanRead=True CanWrite=True
+  System.Double MaxWidth CanRead=True CanWrite=True
+  System.Double Height CanRead=True CanWrite=True
+  System.Double MinHeight CanRead=True CanWrite=True
+  System.Double MaxHeight CanRead=True CanWrite=True
+  System.Windows.FlowDirection FlowDirection CanRead=True CanWrite=True
+  System.Windows.Thickness Margin CanRead=True CanWrite=True
+  System.Windows.HorizontalAlignment HorizontalAlignment CanRead=True CanWrite=True
+  System.Windows.VerticalAlignment VerticalAlignment CanRead=True CanWrite=True
+  System.Windows.Style FocusVisualStyle CanRead=True CanWrite=True
+  System.Windows.Input.Cursor Cursor CanRead=True CanWrite=True
+  System.Boolean ForceCursor CanRead=True CanWrite=True
+  System.Boolean IsInitialized CanRead=True CanWrite=False
+  System.Boolean IsLoaded CanRead=True CanWrite=False
+  System.Object ToolTip CanRead=True CanWrite=True
+  System.Windows.Controls.ContextMenu ContextMenu CanRead=True CanWrite=True
+  System.Boolean HasResourceReference CanRead=True CanWrite=True
+  System.Boolean IsLogicalChildrenIterationInProgress CanRead=True CanWrite=True
+  System.Boolean InVisibilityCollapsedTree CanRead=True CanWrite=True
+  System.Boolean SubtreeHasLoadedChangeHandler CanRead=True CanWrite=True
+  System.Boolean IsLoadedCache CanRead=True CanWrite=True
+  System.Boolean IsParentAnFE CanRead=True CanWrite=True
+  System.Boolean IsTemplatedParentAnFE CanRead=True CanWrite=True
+  System.Boolean HasLogicalChildren CanRead=True CanWrite=True
+  System.Boolean IsRightToLeft CanRead=True CanWrite=True
+  System.Int32 TemplateChildIndex CanRead=True CanWrite=True
+  System.Boolean IsRequestingExpression CanRead=True CanWrite=True
+  System.Boolean BypassLayoutPolicies CanRead=True CanWrite=True
+  System.Windows.DependencyObject Parent CanRead=True CanWrite=False
+  System.Boolean ThisHasLoadedChangeEventHandler CanRead=True CanWrite=False
+  System.Boolean HasFefLoadedChangeHandler CanRead=True CanWrite=False
+  System.Windows.DependencyObject InheritanceContext CanRead=True CanWrite=False
+  System.Boolean IsStyleUpdateInProgress CanRead=True CanWrite=True
+  System.Boolean IsThemeStyleUpdateInProgress CanRead=True CanWrite=True
+  System.Boolean StoresParentTemplateValues CanRead=True CanWrite=True
+  System.Boolean HasNumberSubstitutionChanged CanRead=True CanWrite=True
+  System.Boolean HasTemplateGeneratedSubTree CanRead=True CanWrite=True
+  System.Boolean HasImplicitStyleFromResources CanRead=True CanWrite=True
+  System.Boolean ShouldLookupImplicitStyles CanRead=True CanWrite=True
+  System.Boolean IsStyleSetFromGenerator CanRead=True CanWrite=True
+  System.Boolean HasStyleChanged CanRead=True CanWrite=True
+  System.Boolean HasTemplateChanged CanRead=True CanWrite=True
+  System.Boolean HasStyleInvalidated CanRead=True CanWrite=True
+  System.Boolean HasStyleEverBeenFetched CanRead=True CanWrite=True
+  System.Boolean HasLocalStyle CanRead=True CanWrite=True
+  System.Boolean HasThemeStyleEverBeenFetched CanRead=True CanWrite=True
+  System.Boolean AncestorChangeInProgress CanRead=True CanWrite=True
+  MS.Utility.FrugalObjectList`1[[System.Windows.DependencyProperty, WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] InheritableProperties CanRead=True CanWrite=True
+  System.Object[] LoadedPending CanRead=True CanWrite=False
+  System.Object[] UnloadedPending CanRead=True CanWrite=False
+  System.Boolean HasMultipleInheritanceContexts CanRead=True CanWrite=False
+  System.Boolean PotentiallyHasMentees CanRead=True CanWrite=True
+  System.Boolean HasAnimatedProperties CanRead=True CanWrite=False
+  System.Windows.Input.InputBindingCollection InputBindings CanRead=True CanWrite=False
+  System.Windows.Input.InputBindingCollection InputBindingsInternal CanRead=True CanWrite=False
+  System.Windows.Input.CommandBindingCollection CommandBindings CanRead=True CanWrite=False
+  System.Windows.Input.CommandBindingCollection CommandBindingsInternal CanRead=True CanWrite=False
+  System.Windows.EventHandlersStore EventHandlersStore CanRead=True CanWrite=False
+  System.Boolean AllowDrop CanRead=True CanWrite=True
+  System.Windows.Input.StylusPlugIns.StylusPlugInCollection StylusPlugIns CanRead=True CanWrite=False
+  System.Windows.Size DesiredSize CanRead=True CanWrite=False
+  System.Windows.Size PreviousConstraint CanRead=True CanWrite=False
+  System.Boolean IsMeasureValid CanRead=True CanWrite=False
+  System.Boolean IsArrangeValid CanRead=True CanWrite=False
+  System.Windows.Size RenderSize CanRead=True CanWrite=True
+  System.Windows.Media.Transform RenderTransform CanRead=True CanWrite=True
+  System.Windows.Point RenderTransformOrigin CanRead=True CanWrite=True
+  System.Boolean IsMouseDirectlyOver CanRead=True CanWrite=False
+  System.Boolean IsMouseOver CanRead=True CanWrite=False
+  System.Boolean IsStylusOver CanRead=True CanWrite=False
+  System.Boolean IsKeyboardFocusWithin CanRead=True CanWrite=False
+  System.Boolean IsMouseCaptured CanRead=True CanWrite=False
+  System.Boolean IsMouseCaptureWithin CanRead=True CanWrite=False
+  System.Boolean IsStylusDirectlyOver CanRead=True CanWrite=False
+  System.Boolean IsStylusCaptured CanRead=True CanWrite=False
+  System.Boolean IsStylusCaptureWithin CanRead=True CanWrite=False
+  System.Boolean IsKeyboardFocused CanRead=True CanWrite=False
+  System.Boolean IsInputMethodEnabled CanRead=True CanWrite=False
+  System.Double Opacity CanRead=True CanWrite=True
+  System.Windows.Media.Brush OpacityMask CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffect BitmapEffect CanRead=True CanWrite=True
+  System.Windows.Media.Effects.Effect Effect CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffectInput BitmapEffectInput CanRead=True CanWrite=True
+  System.Windows.Media.CacheMode CacheMode CanRead=True CanWrite=True
+  System.String Uid CanRead=True CanWrite=True
+  System.Windows.Visibility Visibility CanRead=True CanWrite=True
+  System.Boolean ClipToBounds CanRead=True CanWrite=True
+  System.Windows.Media.Geometry Clip CanRead=True CanWrite=True
+  System.Boolean SnapsToDevicePixels CanRead=True CanWrite=True
+  System.Boolean HasEffectiveKeyboardFocus CanRead=True CanWrite=False
+  System.Boolean IsFocused CanRead=True CanWrite=False
+  System.Boolean IsEnabled CanRead=True CanWrite=True
+  System.Boolean IsEnabledCore CanRead=True CanWrite=False
+  System.Boolean IsHitTestVisible CanRead=True CanWrite=True
+  System.Boolean IsVisible CanRead=True CanWrite=False
+  System.Boolean Focusable CanRead=True CanWrite=True
+  System.Int32 PersistId CanRead=True CanWrite=False
+  System.Windows.Rect PreviousArrangeRect CanRead=True CanWrite=False
+  System.Boolean IsManipulationEnabled CanRead=True CanWrite=True
+  System.Boolean AreAnyTouchesOver CanRead=True CanWrite=False
+  System.Boolean AreAnyTouchesDirectlyOver CanRead=True CanWrite=False
+  System.Boolean AreAnyTouchesCapturedWithin CanRead=True CanWrite=False
+  System.Boolean AreAnyTouchesCaptured CanRead=True CanWrite=False
+  System.Collections.Generic.IEnumerable`1[[System.Windows.Input.TouchDevice, PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] TouchesCaptured CanRead=True CanWrite=False
+  System.Collections.Generic.IEnumerable`1[[System.Windows.Input.TouchDevice, PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] TouchesCapturedWithin CanRead=True CanWrite=False
+  System.Collections.Generic.IEnumerable`1[[System.Windows.Input.TouchDevice, PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] TouchesOver CanRead=True CanWrite=False
+  System.Collections.Generic.IEnumerable`1[[System.Windows.Input.TouchDevice, PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] TouchesDirectlyOver CanRead=True CanWrite=False
+  System.Windows.UIElement PositionAndSizeOfSetController CanRead=True CanWrite=True
+  System.Boolean HasAutomationPeer CanRead=True CanWrite=True
+  System.Boolean SnapsToDevicePixelsCache CanRead=True CanWrite=True
+  System.Boolean ClipToBoundsCache CanRead=True CanWrite=True
+  System.Boolean MeasureDirty CanRead=True CanWrite=True
+  System.Boolean ArrangeDirty CanRead=True CanWrite=True
+  System.Boolean MeasureInProgress CanRead=True CanWrite=True
+  System.Boolean ArrangeInProgress CanRead=True CanWrite=True
+  System.Boolean NeverMeasured CanRead=True CanWrite=True
+  System.Boolean NeverArranged CanRead=True CanWrite=True
+  System.Boolean MeasureDuringArrange CanRead=True CanWrite=True
+  System.Boolean AreTransformsClean CanRead=True CanWrite=True
+  System.Boolean IsVisualChildrenIterationInProgress CanRead=True CanWrite=True
+  System.Boolean IsRootElement CanRead=True CanWrite=True
+  System.Windows.Rect VisualContentBounds CanRead=True CanWrite=False
+  System.Windows.Rect VisualDescendantBounds CanRead=True CanWrite=False
+  System.Int32 InternalVisualChildrenCount CanRead=True CanWrite=False
+  System.Int32 InternalVisual2DOr3DChildrenCount CanRead=True CanWrite=False
+  System.Boolean HasVisualChildren CanRead=True CanWrite=False
+  System.UInt32 TreeLevel CanRead=True CanWrite=True
+  System.Windows.DependencyObject VisualParent CanRead=True CanWrite=False
+  System.Windows.DependencyObject InternalVisualParent CanRead=True CanWrite=False
+  System.Windows.Media.Transform VisualTransform CanRead=True CanWrite=True
+  System.Windows.Media.Effects.Effect VisualEffect CanRead=True CanWrite=True
+  System.Windows.Media.Effects.Effect VisualEffectInternal CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffect VisualBitmapEffect CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffectInput VisualBitmapEffectInput CanRead=True CanWrite=True
+  System.Boolean BitmapEffectEmulationDisabled CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffect VisualBitmapEffectInternal CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffectInput VisualBitmapEffectInputInternal CanRead=True CanWrite=True
+  System.Windows.Media.CacheMode VisualCacheMode CanRead=True CanWrite=True
+  System.Nullable`1[[System.Windows.Rect, WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] VisualScrollableAreaClip CanRead=True CanWrite=True
+  System.Windows.Media.Geometry VisualClip CanRead=True CanWrite=True
+  System.Windows.Vector VisualOffset CanRead=True CanWrite=True
+  System.Double VisualOpacity CanRead=True CanWrite=True
+  System.Windows.Media.EdgeMode VisualEdgeMode CanRead=True CanWrite=True
+  System.Windows.Media.BitmapScalingMode VisualBitmapScalingMode CanRead=True CanWrite=True
+  System.Windows.Media.ClearTypeHint VisualClearTypeHint CanRead=True CanWrite=True
+  System.Windows.Media.TextRenderingMode VisualTextRenderingMode CanRead=True CanWrite=True
+  System.Windows.Media.TextHintingMode VisualTextHintingMode CanRead=True CanWrite=True
+  System.Windows.Media.Brush VisualOpacityMask CanRead=True CanWrite=True
+  System.Windows.Media.DoubleCollection VisualXSnappingGuidelines CanRead=True CanWrite=True
+  System.Windows.Media.DoubleCollection VisualYSnappingGuidelines CanRead=True CanWrite=True
+  System.EventHandler ClipChangedHandler CanRead=True CanWrite=False
+  System.EventHandler ScrollableAreaClipChangedHandler CanRead=True CanWrite=False
+  System.EventHandler TransformChangedHandler CanRead=True CanWrite=False
+  System.EventHandler EffectChangedHandler CanRead=True CanWrite=False
+  System.EventHandler CacheModeChangedHandler CanRead=True CanWrite=False
+  System.EventHandler GuidelinesChangedHandler CanRead=True CanWrite=False
+  System.EventHandler OpacityMaskChangedHandler CanRead=True CanWrite=False
+  System.EventHandler ContentsChangedHandler CanRead=True CanWrite=False
+  System.Windows.DependencyObjectType DependencyObjectType CanRead=True CanWrite=False
+  System.Boolean IsSealed CanRead=True CanWrite=False
+  System.Boolean IsInheritanceContextSealed CanRead=True CanWrite=True
+  System.Boolean Freezable_Frozen CanRead=True CanWrite=True
+  System.Boolean Freezable_HasMultipleInheritanceContexts CanRead=True CanWrite=True
+  System.Boolean Freezable_UsingHandlerList CanRead=True CanWrite=True
+  System.Boolean Freezable_UsingContextList CanRead=True CanWrite=True
+  System.Boolean Freezable_UsingSingletonHandler CanRead=True CanWrite=True
+  System.Boolean Freezable_UsingSingletonContext CanRead=True CanWrite=True
+  System.Boolean Animatable_IsResourceInvalidationNecessary CanRead=True CanWrite=True
+  System.Boolean IAnimatable_HasAnimatedProperties CanRead=True CanWrite=True
+  System.Boolean CanBeInheritanceContext CanRead=True CanWrite=True
+  System.Windows.EffectiveValueEntry[] EffectiveValues CanRead=True CanWrite=False
+  System.UInt32 EffectiveValuesCount CanRead=True CanWrite=False
+  System.UInt32 InheritableEffectiveValuesCount CanRead=True CanWrite=True
+  System.Windows.DependencyObject InheritanceParent CanRead=True CanWrite=False
+  System.Boolean IsSelfInheritanceParent CanRead=True CanWrite=False
+  System.Windows.Threading.Dispatcher Dispatcher CanRead=True CanWrite=False
+FIELDS
+  System.Boolean _contentLoaded Static=False
+  System.Windows.Controls.Control+ControlBoolFlags _controlBoolField Static=False
+  System.Windows.DependencyObject _templatedParent Static=False
+  System.Windows.ContextLayoutManager+LayoutQueue+Request MeasureRequest Static=False
+  System.Windows.ContextLayoutManager+LayoutQueue+Request ArrangeRequest Static=False
+  System.Windows.SizeChangedInfo sizeChangedInfo Static=False
+  System.Int32 _parentIndex Static=False
+  System.Windows.DependencyObject _parent Static=False
+  System.Windows.Media.Composition.VisualProxy _proxy Static=False
+  System.Object _contextStorage Static=False
+METHODS
+  System.Void InitializeComponent()
+  System.Void System.Windows.Markup.IComponentConnector.Connect(System.Int32 connectionId, System.Object target)
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.ActivityLibrary.ActivityDesigner.CreateShapeDesigner
+Assembly=Subassembly.ActivityLibrary, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+PROPERTIES
+  System.Windows.Media.DrawingBrush Icon CanRead=True CanWrite=True
+  System.Collections.ObjectModel.ObservableCollection`1[[System.Activities.Presentation.ActivityDelegateInfo, System.Activities.Presentation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ActivityDelegates CanRead=True CanWrite=True
+  System.Boolean HasActivityDelegates CanRead=True CanWrite=True
+  System.String CustomItemStatus CanRead=True CanWrite=True
+  System.Activities.Presentation.EditingContext Context CanRead=True CanWrite=True
+  System.Boolean ExpandState CanRead=True CanWrite=True
+  System.Boolean PinState CanRead=True CanWrite=True
+  System.Boolean Collapsible CanRead=True CanWrite=True
+  System.Boolean IsRootDesigner CanRead=True CanWrite=True
+  System.Boolean IsAncestorOfRootDesigner CanRead=True CanWrite=True
+  System.Boolean ShowExpanded CanRead=True CanWrite=False
+  System.Activities.Presentation.Model.ModelItem ModelItem CanRead=True CanWrite=True
+  System.Windows.FrameworkElement DragHandle CanRead=True CanWrite=True
+  System.Boolean IsReadOnly CanRead=True CanWrite=False
+  System.Activities.Presentation.ICompositeView ActiveCompositeView CanRead=True CanWrite=False
+  System.Activities.Presentation.Services.ViewService ViewService CanRead=True CanWrite=False
+  System.Activities.Presentation.View.ViewStateService ViewStateService CanRead=True CanWrite=False
+  System.Activities.Presentation.View.DesignerView Designer CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Presentation.ICompositeView, System.Activities.Presentation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] CompositeViews CanRead=True CanWrite=False
+  System.Activities.Presentation.ICompositeView DefaultCompositeView CanRead=True CanWrite=False
+  System.Boolean DraggingMultipleItemsEnabled CanRead=True CanWrite=False
+  System.Collections.IEnumerator LogicalChildren CanRead=True CanWrite=False
+  System.Object Content CanRead=True CanWrite=True
+  System.Boolean HasContent CanRead=True CanWrite=False
+  System.Windows.DataTemplate ContentTemplate CanRead=True CanWrite=True
+  System.Windows.Controls.DataTemplateSelector ContentTemplateSelector CanRead=True CanWrite=True
+  System.String ContentStringFormat CanRead=True CanWrite=True
+  System.Boolean ContentIsNotLogical CanRead=True CanWrite=True
+  System.Boolean ContentIsItem CanRead=True CanWrite=True
+  System.Int32 EffectiveValuesInitialSize CanRead=True CanWrite=False
+  System.Windows.DependencyObjectType DTypeThemeStyleKey CanRead=True CanWrite=False
+  System.Windows.Media.Brush BorderBrush CanRead=True CanWrite=True
+  System.Windows.Thickness BorderThickness CanRead=True CanWrite=True
+  System.Windows.Media.Brush Background CanRead=True CanWrite=True
+  System.Windows.Media.Brush Foreground CanRead=True CanWrite=True
+  System.Windows.Media.FontFamily FontFamily CanRead=True CanWrite=True
+  System.Double FontSize CanRead=True CanWrite=True
+  System.Windows.FontStretch FontStretch CanRead=True CanWrite=True
+  System.Windows.FontStyle FontStyle CanRead=True CanWrite=True
+  System.Windows.FontWeight FontWeight CanRead=True CanWrite=True
+  System.Windows.HorizontalAlignment HorizontalContentAlignment CanRead=True CanWrite=True
+  System.Windows.VerticalAlignment VerticalContentAlignment CanRead=True CanWrite=True
+  System.Int32 TabIndex CanRead=True CanWrite=True
+  System.Boolean IsTabStop CanRead=True CanWrite=True
+  System.Windows.Thickness Padding CanRead=True CanWrite=True
+  System.Windows.Controls.ControlTemplate Template CanRead=True CanWrite=True
+  System.Windows.FrameworkTemplate TemplateInternal CanRead=True CanWrite=False
+  System.Windows.FrameworkTemplate TemplateCache CanRead=True CanWrite=True
+  System.Boolean HandlesScrolling CanRead=True CanWrite=False
+  System.Boolean VisualStateChangeSuspended CanRead=True CanWrite=True
+  System.Windows.Style Style CanRead=True CanWrite=True
+  System.Boolean OverridesDefaultStyle CanRead=True CanWrite=True
+  System.Boolean UseLayoutRounding CanRead=True CanWrite=True
+  System.Object DefaultStyleKey CanRead=True CanWrite=True
+  System.Windows.Style ThemeStyle CanRead=True CanWrite=False
+  System.Windows.TriggerCollection Triggers CanRead=True CanWrite=False
+  System.Windows.DependencyObject TemplatedParent CanRead=True CanWrite=False
+  System.Boolean IsTemplateRoot CanRead=True CanWrite=False
+  System.Windows.UIElement TemplateChild CanRead=True CanWrite=True
+  System.Windows.FrameworkElement StateGroupsRoot CanRead=True CanWrite=False
+  System.Int32 VisualChildrenCount CanRead=True CanWrite=False
+  System.Boolean HasResources CanRead=True CanWrite=False
+  System.Windows.ResourceDictionary Resources CanRead=True CanWrite=True
+  System.Windows.InheritanceBehavior InheritanceBehavior CanRead=True CanWrite=True
+  System.Object DataContext CanRead=True CanWrite=True
+  System.Windows.Data.BindingGroup BindingGroup CanRead=True CanWrite=True
+  System.Windows.Markup.XmlLanguage Language CanRead=True CanWrite=True
+  System.String Name CanRead=True CanWrite=True
+  System.Object Tag CanRead=True CanWrite=True
+  System.Windows.Input.InputScope InputScope CanRead=True CanWrite=True
+  System.Double ActualWidth CanRead=True CanWrite=False
+  System.Double ActualHeight CanRead=True CanWrite=False
+  System.Windows.Media.Transform LayoutTransform CanRead=True CanWrite=True
+  System.Double Width CanRead=True CanWrite=True
+  System.Double MinWidth CanRead=True CanWrite=True
+  System.Double MaxWidth CanRead=True CanWrite=True
+  System.Double Height CanRead=True CanWrite=True
+  System.Double MinHeight CanRead=True CanWrite=True
+  System.Double MaxHeight CanRead=True CanWrite=True
+  System.Windows.FlowDirection FlowDirection CanRead=True CanWrite=True
+  System.Windows.Thickness Margin CanRead=True CanWrite=True
+  System.Windows.HorizontalAlignment HorizontalAlignment CanRead=True CanWrite=True
+  System.Windows.VerticalAlignment VerticalAlignment CanRead=True CanWrite=True
+  System.Windows.Style FocusVisualStyle CanRead=True CanWrite=True
+  System.Windows.Input.Cursor Cursor CanRead=True CanWrite=True
+  System.Boolean ForceCursor CanRead=True CanWrite=True
+  System.Boolean IsInitialized CanRead=True CanWrite=False
+  System.Boolean IsLoaded CanRead=True CanWrite=False
+  System.Object ToolTip CanRead=True CanWrite=True
+  System.Windows.Controls.ContextMenu ContextMenu CanRead=True CanWrite=True
+  System.Boolean HasResourceReference CanRead=True CanWrite=True
+  System.Boolean IsLogicalChildrenIterationInProgress CanRead=True CanWrite=True
+  System.Boolean InVisibilityCollapsedTree CanRead=True CanWrite=True
+  System.Boolean SubtreeHasLoadedChangeHandler CanRead=True CanWrite=True
+  System.Boolean IsLoadedCache CanRead=True CanWrite=True
+  System.Boolean IsParentAnFE CanRead=True CanWrite=True
+  System.Boolean IsTemplatedParentAnFE CanRead=True CanWrite=True
+  System.Boolean HasLogicalChildren CanRead=True CanWrite=True
+  System.Boolean IsRightToLeft CanRead=True CanWrite=True
+  System.Int32 TemplateChildIndex CanRead=True CanWrite=True
+  System.Boolean IsRequestingExpression CanRead=True CanWrite=True
+  System.Boolean BypassLayoutPolicies CanRead=True CanWrite=True
+  System.Windows.DependencyObject Parent CanRead=True CanWrite=False
+  System.Boolean ThisHasLoadedChangeEventHandler CanRead=True CanWrite=False
+  System.Boolean HasFefLoadedChangeHandler CanRead=True CanWrite=False
+  System.Windows.DependencyObject InheritanceContext CanRead=True CanWrite=False
+  System.Boolean IsStyleUpdateInProgress CanRead=True CanWrite=True
+  System.Boolean IsThemeStyleUpdateInProgress CanRead=True CanWrite=True
+  System.Boolean StoresParentTemplateValues CanRead=True CanWrite=True
+  System.Boolean HasNumberSubstitutionChanged CanRead=True CanWrite=True
+  System.Boolean HasTemplateGeneratedSubTree CanRead=True CanWrite=True
+  System.Boolean HasImplicitStyleFromResources CanRead=True CanWrite=True
+  System.Boolean ShouldLookupImplicitStyles CanRead=True CanWrite=True
+  System.Boolean IsStyleSetFromGenerator CanRead=True CanWrite=True
+  System.Boolean HasStyleChanged CanRead=True CanWrite=True
+  System.Boolean HasTemplateChanged CanRead=True CanWrite=True
+  System.Boolean HasStyleInvalidated CanRead=True CanWrite=True
+  System.Boolean HasStyleEverBeenFetched CanRead=True CanWrite=True
+  System.Boolean HasLocalStyle CanRead=True CanWrite=True
+  System.Boolean HasThemeStyleEverBeenFetched CanRead=True CanWrite=True
+  System.Boolean AncestorChangeInProgress CanRead=True CanWrite=True
+  MS.Utility.FrugalObjectList`1[[System.Windows.DependencyProperty, WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] InheritableProperties CanRead=True CanWrite=True
+  System.Object[] LoadedPending CanRead=True CanWrite=False
+  System.Object[] UnloadedPending CanRead=True CanWrite=False
+  System.Boolean HasMultipleInheritanceContexts CanRead=True CanWrite=False
+  System.Boolean PotentiallyHasMentees CanRead=True CanWrite=True
+  System.Boolean HasAnimatedProperties CanRead=True CanWrite=False
+  System.Windows.Input.InputBindingCollection InputBindings CanRead=True CanWrite=False
+  System.Windows.Input.InputBindingCollection InputBindingsInternal CanRead=True CanWrite=False
+  System.Windows.Input.CommandBindingCollection CommandBindings CanRead=True CanWrite=False
+  System.Windows.Input.CommandBindingCollection CommandBindingsInternal CanRead=True CanWrite=False
+  System.Windows.EventHandlersStore EventHandlersStore CanRead=True CanWrite=False
+  System.Boolean AllowDrop CanRead=True CanWrite=True
+  System.Windows.Input.StylusPlugIns.StylusPlugInCollection StylusPlugIns CanRead=True CanWrite=False
+  System.Windows.Size DesiredSize CanRead=True CanWrite=False
+  System.Windows.Size PreviousConstraint CanRead=True CanWrite=False
+  System.Boolean IsMeasureValid CanRead=True CanWrite=False
+  System.Boolean IsArrangeValid CanRead=True CanWrite=False
+  System.Windows.Size RenderSize CanRead=True CanWrite=True
+  System.Windows.Media.Transform RenderTransform CanRead=True CanWrite=True
+  System.Windows.Point RenderTransformOrigin CanRead=True CanWrite=True
+  System.Boolean IsMouseDirectlyOver CanRead=True CanWrite=False
+  System.Boolean IsMouseOver CanRead=True CanWrite=False
+  System.Boolean IsStylusOver CanRead=True CanWrite=False
+  System.Boolean IsKeyboardFocusWithin CanRead=True CanWrite=False
+  System.Boolean IsMouseCaptured CanRead=True CanWrite=False
+  System.Boolean IsMouseCaptureWithin CanRead=True CanWrite=False
+  System.Boolean IsStylusDirectlyOver CanRead=True CanWrite=False
+  System.Boolean IsStylusCaptured CanRead=True CanWrite=False
+  System.Boolean IsStylusCaptureWithin CanRead=True CanWrite=False
+  System.Boolean IsKeyboardFocused CanRead=True CanWrite=False
+  System.Boolean IsInputMethodEnabled CanRead=True CanWrite=False
+  System.Double Opacity CanRead=True CanWrite=True
+  System.Windows.Media.Brush OpacityMask CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffect BitmapEffect CanRead=True CanWrite=True
+  System.Windows.Media.Effects.Effect Effect CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffectInput BitmapEffectInput CanRead=True CanWrite=True
+  System.Windows.Media.CacheMode CacheMode CanRead=True CanWrite=True
+  System.String Uid CanRead=True CanWrite=True
+  System.Windows.Visibility Visibility CanRead=True CanWrite=True
+  System.Boolean ClipToBounds CanRead=True CanWrite=True
+  System.Windows.Media.Geometry Clip CanRead=True CanWrite=True
+  System.Boolean SnapsToDevicePixels CanRead=True CanWrite=True
+  System.Boolean HasEffectiveKeyboardFocus CanRead=True CanWrite=False
+  System.Boolean IsFocused CanRead=True CanWrite=False
+  System.Boolean IsEnabled CanRead=True CanWrite=True
+  System.Boolean IsEnabledCore CanRead=True CanWrite=False
+  System.Boolean IsHitTestVisible CanRead=True CanWrite=True
+  System.Boolean IsVisible CanRead=True CanWrite=False
+  System.Boolean Focusable CanRead=True CanWrite=True
+  System.Int32 PersistId CanRead=True CanWrite=False
+  System.Windows.Rect PreviousArrangeRect CanRead=True CanWrite=False
+  System.Boolean IsManipulationEnabled CanRead=True CanWrite=True
+  System.Boolean AreAnyTouchesOver CanRead=True CanWrite=False
+  System.Boolean AreAnyTouchesDirectlyOver CanRead=True CanWrite=False
+  System.Boolean AreAnyTouchesCapturedWithin CanRead=True CanWrite=False
+  System.Boolean AreAnyTouchesCaptured CanRead=True CanWrite=False
+  System.Collections.Generic.IEnumerable`1[[System.Windows.Input.TouchDevice, PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] TouchesCaptured CanRead=True CanWrite=False
+  System.Collections.Generic.IEnumerable`1[[System.Windows.Input.TouchDevice, PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] TouchesCapturedWithin CanRead=True CanWrite=False
+  System.Collections.Generic.IEnumerable`1[[System.Windows.Input.TouchDevice, PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] TouchesOver CanRead=True CanWrite=False
+  System.Collections.Generic.IEnumerable`1[[System.Windows.Input.TouchDevice, PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] TouchesDirectlyOver CanRead=True CanWrite=False
+  System.Windows.UIElement PositionAndSizeOfSetController CanRead=True CanWrite=True
+  System.Boolean HasAutomationPeer CanRead=True CanWrite=True
+  System.Boolean SnapsToDevicePixelsCache CanRead=True CanWrite=True
+  System.Boolean ClipToBoundsCache CanRead=True CanWrite=True
+  System.Boolean MeasureDirty CanRead=True CanWrite=True
+  System.Boolean ArrangeDirty CanRead=True CanWrite=True
+  System.Boolean MeasureInProgress CanRead=True CanWrite=True
+  System.Boolean ArrangeInProgress CanRead=True CanWrite=True
+  System.Boolean NeverMeasured CanRead=True CanWrite=True
+  System.Boolean NeverArranged CanRead=True CanWrite=True
+  System.Boolean MeasureDuringArrange CanRead=True CanWrite=True
+  System.Boolean AreTransformsClean CanRead=True CanWrite=True
+  System.Boolean IsVisualChildrenIterationInProgress CanRead=True CanWrite=True
+  System.Boolean IsRootElement CanRead=True CanWrite=True
+  System.Windows.Rect VisualContentBounds CanRead=True CanWrite=False
+  System.Windows.Rect VisualDescendantBounds CanRead=True CanWrite=False
+  System.Int32 InternalVisualChildrenCount CanRead=True CanWrite=False
+  System.Int32 InternalVisual2DOr3DChildrenCount CanRead=True CanWrite=False
+  System.Boolean HasVisualChildren CanRead=True CanWrite=False
+  System.UInt32 TreeLevel CanRead=True CanWrite=True
+  System.Windows.DependencyObject VisualParent CanRead=True CanWrite=False
+  System.Windows.DependencyObject InternalVisualParent CanRead=True CanWrite=False
+  System.Windows.Media.Transform VisualTransform CanRead=True CanWrite=True
+  System.Windows.Media.Effects.Effect VisualEffect CanRead=True CanWrite=True
+  System.Windows.Media.Effects.Effect VisualEffectInternal CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffect VisualBitmapEffect CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffectInput VisualBitmapEffectInput CanRead=True CanWrite=True
+  System.Boolean BitmapEffectEmulationDisabled CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffect VisualBitmapEffectInternal CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffectInput VisualBitmapEffectInputInternal CanRead=True CanWrite=True
+  System.Windows.Media.CacheMode VisualCacheMode CanRead=True CanWrite=True
+  System.Nullable`1[[System.Windows.Rect, WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] VisualScrollableAreaClip CanRead=True CanWrite=True
+  System.Windows.Media.Geometry VisualClip CanRead=True CanWrite=True
+  System.Windows.Vector VisualOffset CanRead=True CanWrite=True
+  System.Double VisualOpacity CanRead=True CanWrite=True
+  System.Windows.Media.EdgeMode VisualEdgeMode CanRead=True CanWrite=True
+  System.Windows.Media.BitmapScalingMode VisualBitmapScalingMode CanRead=True CanWrite=True
+  System.Windows.Media.ClearTypeHint VisualClearTypeHint CanRead=True CanWrite=True
+  System.Windows.Media.TextRenderingMode VisualTextRenderingMode CanRead=True CanWrite=True
+  System.Windows.Media.TextHintingMode VisualTextHintingMode CanRead=True CanWrite=True
+  System.Windows.Media.Brush VisualOpacityMask CanRead=True CanWrite=True
+  System.Windows.Media.DoubleCollection VisualXSnappingGuidelines CanRead=True CanWrite=True
+  System.Windows.Media.DoubleCollection VisualYSnappingGuidelines CanRead=True CanWrite=True
+  System.EventHandler ClipChangedHandler CanRead=True CanWrite=False
+  System.EventHandler ScrollableAreaClipChangedHandler CanRead=True CanWrite=False
+  System.EventHandler TransformChangedHandler CanRead=True CanWrite=False
+  System.EventHandler EffectChangedHandler CanRead=True CanWrite=False
+  System.EventHandler CacheModeChangedHandler CanRead=True CanWrite=False
+  System.EventHandler GuidelinesChangedHandler CanRead=True CanWrite=False
+  System.EventHandler OpacityMaskChangedHandler CanRead=True CanWrite=False
+  System.EventHandler ContentsChangedHandler CanRead=True CanWrite=False
+  System.Windows.DependencyObjectType DependencyObjectType CanRead=True CanWrite=False
+  System.Boolean IsSealed CanRead=True CanWrite=False
+  System.Boolean IsInheritanceContextSealed CanRead=True CanWrite=True
+  System.Boolean Freezable_Frozen CanRead=True CanWrite=True
+  System.Boolean Freezable_HasMultipleInheritanceContexts CanRead=True CanWrite=True
+  System.Boolean Freezable_UsingHandlerList CanRead=True CanWrite=True
+  System.Boolean Freezable_UsingContextList CanRead=True CanWrite=True
+  System.Boolean Freezable_UsingSingletonHandler CanRead=True CanWrite=True
+  System.Boolean Freezable_UsingSingletonContext CanRead=True CanWrite=True
+  System.Boolean Animatable_IsResourceInvalidationNecessary CanRead=True CanWrite=True
+  System.Boolean IAnimatable_HasAnimatedProperties CanRead=True CanWrite=True
+  System.Boolean CanBeInheritanceContext CanRead=True CanWrite=True
+  System.Windows.EffectiveValueEntry[] EffectiveValues CanRead=True CanWrite=False
+  System.UInt32 EffectiveValuesCount CanRead=True CanWrite=False
+  System.UInt32 InheritableEffectiveValuesCount CanRead=True CanWrite=True
+  System.Windows.DependencyObject InheritanceParent CanRead=True CanWrite=False
+  System.Boolean IsSelfInheritanceParent CanRead=True CanWrite=False
+  System.Windows.Threading.Dispatcher Dispatcher CanRead=True CanWrite=False
+FIELDS
+  System.Boolean _contentLoaded Static=False
+  System.Windows.Controls.Control+ControlBoolFlags _controlBoolField Static=False
+  System.Windows.DependencyObject _templatedParent Static=False
+  System.Windows.ContextLayoutManager+LayoutQueue+Request MeasureRequest Static=False
+  System.Windows.ContextLayoutManager+LayoutQueue+Request ArrangeRequest Static=False
+  System.Windows.SizeChangedInfo sizeChangedInfo Static=False
+  System.Int32 _parentIndex Static=False
+  System.Windows.DependencyObject _parent Static=False
+  System.Windows.Media.Composition.VisualProxy _proxy Static=False
+  System.Object _contextStorage Static=False
+METHODS
+  System.Void InitializeComponent()
+  System.Void System.Windows.Markup.IComponentConnector.Connect(System.Int32 connectionId, System.Object target)
+==========================================================================================
+TYPE Autodesk.SubassemblyComposer.ActivityLibrary.ActivityDesigner.AuxSurfaceLinkDesigner
+Assembly=Subassembly.ActivityLibrary, Version=13.4.214.0, Culture=neutral, PublicKeyToken=null
+CONSTRUCTORS
+  Void .ctor()
+PROPERTIES
+  System.Windows.Media.DrawingBrush Icon CanRead=True CanWrite=True
+  System.Collections.ObjectModel.ObservableCollection`1[[System.Activities.Presentation.ActivityDelegateInfo, System.Activities.Presentation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] ActivityDelegates CanRead=True CanWrite=True
+  System.Boolean HasActivityDelegates CanRead=True CanWrite=True
+  System.String CustomItemStatus CanRead=True CanWrite=True
+  System.Activities.Presentation.EditingContext Context CanRead=True CanWrite=True
+  System.Boolean ExpandState CanRead=True CanWrite=True
+  System.Boolean PinState CanRead=True CanWrite=True
+  System.Boolean Collapsible CanRead=True CanWrite=True
+  System.Boolean IsRootDesigner CanRead=True CanWrite=True
+  System.Boolean IsAncestorOfRootDesigner CanRead=True CanWrite=True
+  System.Boolean ShowExpanded CanRead=True CanWrite=False
+  System.Activities.Presentation.Model.ModelItem ModelItem CanRead=True CanWrite=True
+  System.Windows.FrameworkElement DragHandle CanRead=True CanWrite=True
+  System.Boolean IsReadOnly CanRead=True CanWrite=False
+  System.Activities.Presentation.ICompositeView ActiveCompositeView CanRead=True CanWrite=False
+  System.Activities.Presentation.Services.ViewService ViewService CanRead=True CanWrite=False
+  System.Activities.Presentation.View.ViewStateService ViewStateService CanRead=True CanWrite=False
+  System.Activities.Presentation.View.DesignerView Designer CanRead=True CanWrite=False
+  System.Collections.Generic.IList`1[[System.Activities.Presentation.ICompositeView, System.Activities.Presentation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] CompositeViews CanRead=True CanWrite=False
+  System.Activities.Presentation.ICompositeView DefaultCompositeView CanRead=True CanWrite=False
+  System.Boolean DraggingMultipleItemsEnabled CanRead=True CanWrite=False
+  System.Collections.IEnumerator LogicalChildren CanRead=True CanWrite=False
+  System.Object Content CanRead=True CanWrite=True
+  System.Boolean HasContent CanRead=True CanWrite=False
+  System.Windows.DataTemplate ContentTemplate CanRead=True CanWrite=True
+  System.Windows.Controls.DataTemplateSelector ContentTemplateSelector CanRead=True CanWrite=True
+  System.String ContentStringFormat CanRead=True CanWrite=True
+  System.Boolean ContentIsNotLogical CanRead=True CanWrite=True
+  System.Boolean ContentIsItem CanRead=True CanWrite=True
+  System.Int32 EffectiveValuesInitialSize CanRead=True CanWrite=False
+  System.Windows.DependencyObjectType DTypeThemeStyleKey CanRead=True CanWrite=False
+  System.Windows.Media.Brush BorderBrush CanRead=True CanWrite=True
+  System.Windows.Thickness BorderThickness CanRead=True CanWrite=True
+  System.Windows.Media.Brush Background CanRead=True CanWrite=True
+  System.Windows.Media.Brush Foreground CanRead=True CanWrite=True
+  System.Windows.Media.FontFamily FontFamily CanRead=True CanWrite=True
+  System.Double FontSize CanRead=True CanWrite=True
+  System.Windows.FontStretch FontStretch CanRead=True CanWrite=True
+  System.Windows.FontStyle FontStyle CanRead=True CanWrite=True
+  System.Windows.FontWeight FontWeight CanRead=True CanWrite=True
+  System.Windows.HorizontalAlignment HorizontalContentAlignment CanRead=True CanWrite=True
+  System.Windows.VerticalAlignment VerticalContentAlignment CanRead=True CanWrite=True
+  System.Int32 TabIndex CanRead=True CanWrite=True
+  System.Boolean IsTabStop CanRead=True CanWrite=True
+  System.Windows.Thickness Padding CanRead=True CanWrite=True
+  System.Windows.Controls.ControlTemplate Template CanRead=True CanWrite=True
+  System.Windows.FrameworkTemplate TemplateInternal CanRead=True CanWrite=False
+  System.Windows.FrameworkTemplate TemplateCache CanRead=True CanWrite=True
+  System.Boolean HandlesScrolling CanRead=True CanWrite=False
+  System.Boolean VisualStateChangeSuspended CanRead=True CanWrite=True
+  System.Windows.Style Style CanRead=True CanWrite=True
+  System.Boolean OverridesDefaultStyle CanRead=True CanWrite=True
+  System.Boolean UseLayoutRounding CanRead=True CanWrite=True
+  System.Object DefaultStyleKey CanRead=True CanWrite=True
+  System.Windows.Style ThemeStyle CanRead=True CanWrite=False
+  System.Windows.TriggerCollection Triggers CanRead=True CanWrite=False
+  System.Windows.DependencyObject TemplatedParent CanRead=True CanWrite=False
+  System.Boolean IsTemplateRoot CanRead=True CanWrite=False
+  System.Windows.UIElement TemplateChild CanRead=True CanWrite=True
+  System.Windows.FrameworkElement StateGroupsRoot CanRead=True CanWrite=False
+  System.Int32 VisualChildrenCount CanRead=True CanWrite=False
+  System.Boolean HasResources CanRead=True CanWrite=False
+  System.Windows.ResourceDictionary Resources CanRead=True CanWrite=True
+  System.Windows.InheritanceBehavior InheritanceBehavior CanRead=True CanWrite=True
+  System.Object DataContext CanRead=True CanWrite=True
+  System.Windows.Data.BindingGroup BindingGroup CanRead=True CanWrite=True
+  System.Windows.Markup.XmlLanguage Language CanRead=True CanWrite=True
+  System.String Name CanRead=True CanWrite=True
+  System.Object Tag CanRead=True CanWrite=True
+  System.Windows.Input.InputScope InputScope CanRead=True CanWrite=True
+  System.Double ActualWidth CanRead=True CanWrite=False
+  System.Double ActualHeight CanRead=True CanWrite=False
+  System.Windows.Media.Transform LayoutTransform CanRead=True CanWrite=True
+  System.Double Width CanRead=True CanWrite=True
+  System.Double MinWidth CanRead=True CanWrite=True
+  System.Double MaxWidth CanRead=True CanWrite=True
+  System.Double Height CanRead=True CanWrite=True
+  System.Double MinHeight CanRead=True CanWrite=True
+  System.Double MaxHeight CanRead=True CanWrite=True
+  System.Windows.FlowDirection FlowDirection CanRead=True CanWrite=True
+  System.Windows.Thickness Margin CanRead=True CanWrite=True
+  System.Windows.HorizontalAlignment HorizontalAlignment CanRead=True CanWrite=True
+  System.Windows.VerticalAlignment VerticalAlignment CanRead=True CanWrite=True
+  System.Windows.Style FocusVisualStyle CanRead=True CanWrite=True
+  System.Windows.Input.Cursor Cursor CanRead=True CanWrite=True
+  System.Boolean ForceCursor CanRead=True CanWrite=True
+  System.Boolean IsInitialized CanRead=True CanWrite=False
+  System.Boolean IsLoaded CanRead=True CanWrite=False
+  System.Object ToolTip CanRead=True CanWrite=True
+  System.Windows.Controls.ContextMenu ContextMenu CanRead=True CanWrite=True
+  System.Boolean HasResourceReference CanRead=True CanWrite=True
+  System.Boolean IsLogicalChildrenIterationInProgress CanRead=True CanWrite=True
+  System.Boolean InVisibilityCollapsedTree CanRead=True CanWrite=True
+  System.Boolean SubtreeHasLoadedChangeHandler CanRead=True CanWrite=True
+  System.Boolean IsLoadedCache CanRead=True CanWrite=True
+  System.Boolean IsParentAnFE CanRead=True CanWrite=True
+  System.Boolean IsTemplatedParentAnFE CanRead=True CanWrite=True
+  System.Boolean HasLogicalChildren CanRead=True CanWrite=True
+  System.Boolean IsRightToLeft CanRead=True CanWrite=True
+  System.Int32 TemplateChildIndex CanRead=True CanWrite=True
+  System.Boolean IsRequestingExpression CanRead=True CanWrite=True
+  System.Boolean BypassLayoutPolicies CanRead=True CanWrite=True
+  System.Windows.DependencyObject Parent CanRead=True CanWrite=False
+  System.Boolean ThisHasLoadedChangeEventHandler CanRead=True CanWrite=False
+  System.Boolean HasFefLoadedChangeHandler CanRead=True CanWrite=False
+  System.Windows.DependencyObject InheritanceContext CanRead=True CanWrite=False
+  System.Boolean IsStyleUpdateInProgress CanRead=True CanWrite=True
+  System.Boolean IsThemeStyleUpdateInProgress CanRead=True CanWrite=True
+  System.Boolean StoresParentTemplateValues CanRead=True CanWrite=True
+  System.Boolean HasNumberSubstitutionChanged CanRead=True CanWrite=True
+  System.Boolean HasTemplateGeneratedSubTree CanRead=True CanWrite=True
+  System.Boolean HasImplicitStyleFromResources CanRead=True CanWrite=True
+  System.Boolean ShouldLookupImplicitStyles CanRead=True CanWrite=True
+  System.Boolean IsStyleSetFromGenerator CanRead=True CanWrite=True
+  System.Boolean HasStyleChanged CanRead=True CanWrite=True
+  System.Boolean HasTemplateChanged CanRead=True CanWrite=True
+  System.Boolean HasStyleInvalidated CanRead=True CanWrite=True
+  System.Boolean HasStyleEverBeenFetched CanRead=True CanWrite=True
+  System.Boolean HasLocalStyle CanRead=True CanWrite=True
+  System.Boolean HasThemeStyleEverBeenFetched CanRead=True CanWrite=True
+  System.Boolean AncestorChangeInProgress CanRead=True CanWrite=True
+  MS.Utility.FrugalObjectList`1[[System.Windows.DependencyProperty, WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] InheritableProperties CanRead=True CanWrite=True
+  System.Object[] LoadedPending CanRead=True CanWrite=False
+  System.Object[] UnloadedPending CanRead=True CanWrite=False
+  System.Boolean HasMultipleInheritanceContexts CanRead=True CanWrite=False
+  System.Boolean PotentiallyHasMentees CanRead=True CanWrite=True
+  System.Boolean HasAnimatedProperties CanRead=True CanWrite=False
+  System.Windows.Input.InputBindingCollection InputBindings CanRead=True CanWrite=False
+  System.Windows.Input.InputBindingCollection InputBindingsInternal CanRead=True CanWrite=False
+  System.Windows.Input.CommandBindingCollection CommandBindings CanRead=True CanWrite=False
+  System.Windows.Input.CommandBindingCollection CommandBindingsInternal CanRead=True CanWrite=False
+  System.Windows.EventHandlersStore EventHandlersStore CanRead=True CanWrite=False
+  System.Boolean AllowDrop CanRead=True CanWrite=True
+  System.Windows.Input.StylusPlugIns.StylusPlugInCollection StylusPlugIns CanRead=True CanWrite=False
+  System.Windows.Size DesiredSize CanRead=True CanWrite=False
+  System.Windows.Size PreviousConstraint CanRead=True CanWrite=False
+  System.Boolean IsMeasureValid CanRead=True CanWrite=False
+  System.Boolean IsArrangeValid CanRead=True CanWrite=False
+  System.Windows.Size RenderSize CanRead=True CanWrite=True
+  System.Windows.Media.Transform RenderTransform CanRead=True CanWrite=True
+  System.Windows.Point RenderTransformOrigin CanRead=True CanWrite=True
+  System.Boolean IsMouseDirectlyOver CanRead=True CanWrite=False
+  System.Boolean IsMouseOver CanRead=True CanWrite=False
+  System.Boolean IsStylusOver CanRead=True CanWrite=False
+  System.Boolean IsKeyboardFocusWithin CanRead=True CanWrite=False
+  System.Boolean IsMouseCaptured CanRead=True CanWrite=False
+  System.Boolean IsMouseCaptureWithin CanRead=True CanWrite=False
+  System.Boolean IsStylusDirectlyOver CanRead=True CanWrite=False
+  System.Boolean IsStylusCaptured CanRead=True CanWrite=False
+  System.Boolean IsStylusCaptureWithin CanRead=True CanWrite=False
+  System.Boolean IsKeyboardFocused CanRead=True CanWrite=False
+  System.Boolean IsInputMethodEnabled CanRead=True CanWrite=False
+  System.Double Opacity CanRead=True CanWrite=True
+  System.Windows.Media.Brush OpacityMask CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffect BitmapEffect CanRead=True CanWrite=True
+  System.Windows.Media.Effects.Effect Effect CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffectInput BitmapEffectInput CanRead=True CanWrite=True
+  System.Windows.Media.CacheMode CacheMode CanRead=True CanWrite=True
+  System.String Uid CanRead=True CanWrite=True
+  System.Windows.Visibility Visibility CanRead=True CanWrite=True
+  System.Boolean ClipToBounds CanRead=True CanWrite=True
+  System.Windows.Media.Geometry Clip CanRead=True CanWrite=True
+  System.Boolean SnapsToDevicePixels CanRead=True CanWrite=True
+  System.Boolean HasEffectiveKeyboardFocus CanRead=True CanWrite=False
+  System.Boolean IsFocused CanRead=True CanWrite=False
+  System.Boolean IsEnabled CanRead=True CanWrite=True
+  System.Boolean IsEnabledCore CanRead=True CanWrite=False
+  System.Boolean IsHitTestVisible CanRead=True CanWrite=True
+  System.Boolean IsVisible CanRead=True CanWrite=False
+  System.Boolean Focusable CanRead=True CanWrite=True
+  System.Int32 PersistId CanRead=True CanWrite=False
+  System.Windows.Rect PreviousArrangeRect CanRead=True CanWrite=False
+  System.Boolean IsManipulationEnabled CanRead=True CanWrite=True
+  System.Boolean AreAnyTouchesOver CanRead=True CanWrite=False
+  System.Boolean AreAnyTouchesDirectlyOver CanRead=True CanWrite=False
+  System.Boolean AreAnyTouchesCapturedWithin CanRead=True CanWrite=False
+  System.Boolean AreAnyTouchesCaptured CanRead=True CanWrite=False
+  System.Collections.Generic.IEnumerable`1[[System.Windows.Input.TouchDevice, PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] TouchesCaptured CanRead=True CanWrite=False
+  System.Collections.Generic.IEnumerable`1[[System.Windows.Input.TouchDevice, PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] TouchesCapturedWithin CanRead=True CanWrite=False
+  System.Collections.Generic.IEnumerable`1[[System.Windows.Input.TouchDevice, PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] TouchesOver CanRead=True CanWrite=False
+  System.Collections.Generic.IEnumerable`1[[System.Windows.Input.TouchDevice, PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] TouchesDirectlyOver CanRead=True CanWrite=False
+  System.Windows.UIElement PositionAndSizeOfSetController CanRead=True CanWrite=True
+  System.Boolean HasAutomationPeer CanRead=True CanWrite=True
+  System.Boolean SnapsToDevicePixelsCache CanRead=True CanWrite=True
+  System.Boolean ClipToBoundsCache CanRead=True CanWrite=True
+  System.Boolean MeasureDirty CanRead=True CanWrite=True
+  System.Boolean ArrangeDirty CanRead=True CanWrite=True
+  System.Boolean MeasureInProgress CanRead=True CanWrite=True
+  System.Boolean ArrangeInProgress CanRead=True CanWrite=True
+  System.Boolean NeverMeasured CanRead=True CanWrite=True
+  System.Boolean NeverArranged CanRead=True CanWrite=True
+  System.Boolean MeasureDuringArrange CanRead=True CanWrite=True
+  System.Boolean AreTransformsClean CanRead=True CanWrite=True
+  System.Boolean IsVisualChildrenIterationInProgress CanRead=True CanWrite=True
+  System.Boolean IsRootElement CanRead=True CanWrite=True
+  System.Windows.Rect VisualContentBounds CanRead=True CanWrite=False
+  System.Windows.Rect VisualDescendantBounds CanRead=True CanWrite=False
+  System.Int32 InternalVisualChildrenCount CanRead=True CanWrite=False
+  System.Int32 InternalVisual2DOr3DChildrenCount CanRead=True CanWrite=False
+  System.Boolean HasVisualChildren CanRead=True CanWrite=False
+  System.UInt32 TreeLevel CanRead=True CanWrite=True
+  System.Windows.DependencyObject VisualParent CanRead=True CanWrite=False
+  System.Windows.DependencyObject InternalVisualParent CanRead=True CanWrite=False
+  System.Windows.Media.Transform VisualTransform CanRead=True CanWrite=True
+  System.Windows.Media.Effects.Effect VisualEffect CanRead=True CanWrite=True
+  System.Windows.Media.Effects.Effect VisualEffectInternal CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffect VisualBitmapEffect CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffectInput VisualBitmapEffectInput CanRead=True CanWrite=True
+  System.Boolean BitmapEffectEmulationDisabled CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffect VisualBitmapEffectInternal CanRead=True CanWrite=True
+  System.Windows.Media.Effects.BitmapEffectInput VisualBitmapEffectInputInternal CanRead=True CanWrite=True
+  System.Windows.Media.CacheMode VisualCacheMode CanRead=True CanWrite=True
+  System.Nullable`1[[System.Windows.Rect, WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]] VisualScrollableAreaClip CanRead=True CanWrite=True
+  System.Windows.Media.Geometry VisualClip CanRead=True CanWrite=True
+  System.Windows.Vector VisualOffset CanRead=True CanWrite=True
+  System.Double VisualOpacity CanRead=True CanWrite=True
+  System.Windows.Media.EdgeMode VisualEdgeMode CanRead=True CanWrite=True
+  System.Windows.Media.BitmapScalingMode VisualBitmapScalingMode CanRead=True CanWrite=True
+  System.Windows.Media.ClearTypeHint VisualClearTypeHint CanRead=True CanWrite=True
+  System.Windows.Media.TextRenderingMode VisualTextRenderingMode CanRead=True CanWrite=True
+  System.Windows.Media.TextHintingMode VisualTextHintingMode CanRead=True CanWrite=True
+  System.Windows.Media.Brush VisualOpacityMask CanRead=True CanWrite=True
+  System.Windows.Media.DoubleCollection VisualXSnappingGuidelines CanRead=True CanWrite=True
+  System.Windows.Media.DoubleCollection VisualYSnappingGuidelines CanRead=True CanWrite=True
+  System.EventHandler ClipChangedHandler CanRead=True CanWrite=False
+  System.EventHandler ScrollableAreaClipChangedHandler CanRead=True CanWrite=False
+  System.EventHandler TransformChangedHandler CanRead=True CanWrite=False
+  System.EventHandler EffectChangedHandler CanRead=True CanWrite=False
+  System.EventHandler CacheModeChangedHandler CanRead=True CanWrite=False
+  System.EventHandler GuidelinesChangedHandler CanRead=True CanWrite=False
+  System.EventHandler OpacityMaskChangedHandler CanRead=True CanWrite=False
+  System.EventHandler ContentsChangedHandler CanRead=True CanWrite=False
+  System.Windows.DependencyObjectType DependencyObjectType CanRead=True CanWrite=False
+  System.Boolean IsSealed CanRead=True CanWrite=False
+  System.Boolean IsInheritanceContextSealed CanRead=True CanWrite=True
+  System.Boolean Freezable_Frozen CanRead=True CanWrite=True
+  System.Boolean Freezable_HasMultipleInheritanceContexts CanRead=True CanWrite=True
+  System.Boolean Freezable_UsingHandlerList CanRead=True CanWrite=True
+  System.Boolean Freezable_UsingContextList CanRead=True CanWrite=True
+  System.Boolean Freezable_UsingSingletonHandler CanRead=True CanWrite=True
+  System.Boolean Freezable_UsingSingletonContext CanRead=True CanWrite=True
+  System.Boolean Animatable_IsResourceInvalidationNecessary CanRead=True CanWrite=True
+  System.Boolean IAnimatable_HasAnimatedProperties CanRead=True CanWrite=True
+  System.Boolean CanBeInheritanceContext CanRead=True CanWrite=True
+  System.Windows.EffectiveValueEntry[] EffectiveValues CanRead=True CanWrite=False
+  System.UInt32 EffectiveValuesCount CanRead=True CanWrite=False
+  System.UInt32 InheritableEffectiveValuesCount CanRead=True CanWrite=True
+  System.Windows.DependencyObject InheritanceParent CanRead=True CanWrite=False
+  System.Boolean IsSelfInheritanceParent CanRead=True CanWrite=False
+  System.Windows.Threading.Dispatcher Dispatcher CanRead=True CanWrite=False
+FIELDS
+  System.Boolean _contentLoaded Static=False
+  System.Windows.Controls.Control+ControlBoolFlags _controlBoolField Static=False
+  System.Windows.DependencyObject _templatedParent Static=False
+  System.Windows.ContextLayoutManager+LayoutQueue+Request MeasureRequest Static=False
+  System.Windows.ContextLayoutManager+LayoutQueue+Request ArrangeRequest Static=False
+  System.Windows.SizeChangedInfo sizeChangedInfo Static=False
+  System.Int32 _parentIndex Static=False
+  System.Windows.DependencyObject _parent Static=False
+  System.Windows.Media.Composition.VisualProxy _proxy Static=False
+  System.Object _contextStorage Static=False
+METHODS
+  System.Void InitializeComponent()
+  System.Void System.Windows.Markup.IComponentConnector.Connect(System.Int32 connectionId, System.Object target)
